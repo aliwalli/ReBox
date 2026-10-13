@@ -1,0 +1,155 @@
+
+:root {
+  --green: #145443;
+  --light: #f3f7f4;
+  --border: #dce6df;
+  --text: #19332c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--light);
+  font-family: Arial, sans-serif;
+  color: var(--text);
+}
+
+header {
+  background: var(--green);
+  color: white;
+  padding: 24px 6%;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+header p {
+  margin-bottom: 0;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px;
+}
+
+.notice {
+  background: #fff5d8;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+button {
+  background: var(--green);
+  color: white;
+  padding: 11px 17px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  margin: 4px 4px 4px 0;
+  font: inherit;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+button.secondary {
+  background: #e3eae6;
+  color: var(--text);
+}
+
+nav button.active {
+  background: #208568;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 22px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+
+.item {
+  border: 1px solid var(--border);
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  margin: 7px 0 15px;
+  border: 1px solid #bacbc2;
+  border-radius: 7px;
+  font: inherit;
+}
+
+label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(230px, 1fr));
+  gap: 15px;
+}
+
+.status {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #e4f2e9;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.muted {
+  color: #667c72;
+  font-size: 14px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #71877c;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 14px;
+  }
+
+  header {
+    padding: 20px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  nav button {
+    flex: 1;
+  }
+}

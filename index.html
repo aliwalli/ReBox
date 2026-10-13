@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>ReBox | Circular Materials</title>
+
+  <link rel="stylesheet" href="Styles.css">
+  <script src="Script.js" defer></script>
+</head>
+
+<body>
+
+  <header>
+    <h1>ReBox</h1>
+    <p>Circular Materials Platform</p>
+  </header>
+
+  <main>
+    <div class="notice">
+      DEMO ONLY / SOLO DEMOSTRACIÓN:
+      Esta aplicación utiliza datos simulados.
+    </div>
+
+    <label for="language">Idioma / Language</label>
+    <select id="language" onchange="changeLanguage()">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+
+    <nav id="navigation"></nav>
+
+    <section id="content"></section>
+
+    <button class="secondary" onclick="resetData()">
+      Reset Demo Data / Reiniciar datos
+    </button>
+  </main>
+
+  <footer>
+    ReBox MVP Version 2 | NEGOTIUM 2026
+  </footer>
+
+</body>
+</html>
