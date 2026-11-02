@@ -15,19 +15,10 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
           colors: {
             brand: {
-              50: '#ecfdf5',
-              100: '#d1fae5',
-              500: '#10b981',
-              600: '#059669',
-              700: '#047857',
-              800: '#065f46',
-              900: '#064e3b',
-              dark: '#0f172a'
+              50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669', 700: '#047857', 800: '#065f46', 900: '#064e3b', dark: '#0f172a'
             }
           },
           boxShadow: {
@@ -39,41 +30,16 @@
     }
   </script>
   <style>
-    .glass-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(226, 232, 240, 0.8);
-    }
-    .glass-dark {
-      background: rgba(15, 23, 42, 0.92);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(51, 65, 85, 0.6);
-    }
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f1f5f9;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
-    }
-    .pulse-glow {
-      animation: pulseGlow 2.5s infinite;
-    }
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
-      50% { box-shadow: 0 0 25px rgba(16, 185, 129, 0.8); }
-    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .pulse-glow { animation: pulseGlow 2.5s infinite; }
+    @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); } 50% { box-shadow: 0 0 25px rgba(16, 185, 129, 0.8); } }
   </style>
 </head>
 <body class="h-full font-sans antialiased text-slate-800 bg-slate-50 flex flex-col">
 
+  <!-- HEADER -->
   <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-40 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 sm:h-20">
@@ -81,51 +47,32 @@
         <!-- Brand Logo -->
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/30">
-            <i class="fa-solid fa-arrows-spin text-white text-xl sm:text-2xl animate-spin-slow"></i>
+            <i class="fa-solid fa-arrows-spin text-white text-xl sm:text-2xl"></i>
           </div>
           <div>
             <div class="flex items-center gap-2">
               <span class="font-extrabold text-xl sm:text-2xl tracking-tight bg-gradient-to-r from-white via-slate-100 to-emerald-400 bg-clip-text text-transparent">ReBox</span>
-              <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">B2B Circular</span>
+              <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Sotol Circular Hub</span>
             </div>
-            <p class="text-xs text-slate-400 hidden sm:block" data-i18n="subtitle">Plataforma de Materiales y Economía Circular</p>
+            <p class="text-xs text-slate-400 hidden sm:block" data-i18n="subtitle">Plataforma de Valorización y Economía Circular</p>
           </div>
         </div>
 
-        <!-- LANGUAGE SWITCHER -->
+        <!-- LANGUAGE SWITCHER & RESET BUTTON -->
         <div class="flex items-center gap-2 sm:gap-4">
-          <div class="bg-slate-800/90 p-1 sm:p-1.5 rounded-full border-2 border-emerald-500/60 pulse-glow flex items-center shadow-lg transition-all duration-300">
-            <span class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider px-2 hidden md:inline-block" data-i18n="lang_label">
-              <i class="fa-solid fa-language mr-1"></i>Idioma / Lang:
-            </span>
+          <div class="bg-slate-800/90 p-1 sm:p-1.5 rounded-full border-2 border-emerald-500/60 pulse-glow flex items-center shadow-lg">
             <div class="flex items-center bg-slate-950 rounded-full p-0.5 border border-slate-700">
-              <button id="btn-lang-es" onclick="setLanguage('es')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-300 bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md">
-                <span class="text-sm">🇲🇽</span>
-                <span>ES</span>
+              <button id="btn-lang-es" onclick="setLanguage('es')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md">
+                <span>🇲🇽 ES</span>
               </button>
-              <button id="btn-lang-en" onclick="setLanguage('en')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-300 text-slate-400 hover:text-white">
-                <span class="text-sm">🇺🇸</span>
-                <span>EN</span>
+              <button id="btn-lang-en" onclick="setLanguage('en')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all text-slate-400 hover:text-white">
+                <span>🇺🇸 EN</span>
               </button>
             </div>
           </div>
-
-          <div class="flex items-center gap-2">
-            <button onclick="openResetModal()" class="p-2 text-slate-400 hover:text-red-400 hover:bg-slate-800 rounded-lg transition" title="Reiniciar Datos / Reset Demo">
-              <i class="fa-solid fa-rotate-left"></i>
-            </button>
-            <div class="h-8 w-px bg-slate-800 hidden sm:block"></div>
-            <div class="hidden lg:flex items-center gap-2 pl-2">
-              <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-emerald-400 border border-slate-600">
-                JA
-              </div>
-              <div class="text-left leading-tight">
-                <p class="text-xs font-semibold text-slate-200">Juárez Agro-Hub</p>
-                <p class="text-[10px] text-emerald-400" data-i18n="user_role">Planta Industrial</p>
-              </div>
-            </div>
-          </div>
-
+          <button onclick="resetData()" class="p-2 text-slate-400 hover:text-red-400 hover:bg-slate-800 rounded-lg transition" title="Reiniciar Demo / Reset Data">
+            <i class="fa-solid fa-rotate-left"></i>
+          </button>
         </div>
 
       </div>
@@ -143,47 +90,41 @@
         </div>
         <nav class="space-y-1">
           <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-            <i class="fa-solid fa-chart-pie text-base w-5 text-center"></i>
+            <i class="fa-solid fa-chart-pie w-5 text-center"></i>
             <span data-i18n="nav_dashboard">Panel Principal</span>
           </button>
           <button onclick="switchTab('supplier')" id="nav-supplier" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-            <i class="fa-solid fa-seedling text-base w-5 text-center"></i>
+            <i class="fa-solid fa-seedling w-5 text-center"></i>
             <span data-i18n="nav_supplier">Proveedor (Publicar)</span>
           </button>
-          <button onclick="switchTab('admin')" id="nav-admin" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all relative">
-            <i class="fa-solid fa-[#059669] fa-clipboard-check text-base w-5 text-center"></i>
+          <button onclick="switchTab('admin')" id="nav-admin" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all">
+            <i class="fa-solid fa-clipboard-check w-5 text-center"></i>
             <span data-i18n="nav_admin">Revisión Admin</span>
-            <span id="badge-pending-count" class="ml-auto bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">2</span>
+            <span id="badge-pending-count" class="ml-auto bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">1</span>
           </button>
           <button onclick="switchTab('logistics')" id="nav-logistics" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-            <i class="fa-solid fa-truck-ramp-box text-base w-5 text-center"></i>
+            <i class="fa-solid fa-truck-ramp-box w-5 text-center"></i>
             <span data-i18n="nav_logistics">Logística y Recolección</span>
+            <span id="badge-logistics-count" class="ml-auto bg-blue-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">1</span>
           </button>
           <button onclick="switchTab('warehouse')" id="nav-warehouse" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-            <i class="fa-solid fa-warehouse text-base w-5 text-center"></i>
-            <span data-i18n="nav_warehouse">Almacén e Inventario QC</span>
+            <i class="fa-solid fa-warehouse w-5 text-center"></i>
+            <span data-i18n="nav_warehouse">Almacén e Inventario</span>
           </button>
           <button onclick="switchTab('catalog')" id="nav-catalog" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-            <i class="fa-solid fa-boxes-packing text-base w-5 text-center"></i>
-            <span data-i18n="nav_catalog">Catálogo B2B y Cotizaciones</span>
+            <i class="fa-solid fa-boxes-packing w-5 text-center"></i>
+            <span data-i18n="nav_catalog">Catálogo B2B Sotol</span>
           </button>
         </nav>
 
-        <!-- Eco Impact Sidebar Widget -->
+        <!-- Sotol Disclosure Sidebar Widget -->
         <div class="mt-6 p-4 rounded-xl bg-gradient-to-br from-emerald-900 to-slate-900 text-white shadow-md relative overflow-hidden">
-          <div class="absolute -right-4 -bottom-4 opacity-10 text-emerald-300">
-            <i class="fa-solid fa-recycle text-8xl"></i>
-          </div>
-          <div class="relative z-10">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 block mb-1" data-i18n="sidebar_impact_title">Impacto Circular Activo</span>
-            <p class="text-2xl font-extrabold text-white">84.2%</p>
-            <p class="text-xs text-slate-300 mt-0.5" data-i18n="sidebar_impact_desc">Tasa de Desvío de Relleno Sanitario</p>
-            <div class="w-full bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
-              <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full" style="width: 84.2%"></div>
-            </div>
-          </div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 block mb-1" data-i18n="active_raw_mat">Materia Prima Actual</span>
+          <p class="text-sm font-bold text-white"><i class="fa-solid fa-plant-wilt text-emerald-400 mr-1.5"></i>100% Sotol Fiber</p>
+          <p class="text-[11px] text-slate-300 mt-2 bg-slate-800/80 p-2 rounded border border-slate-700 italic">
+            "We are going to be utilizing other plants in the future"
+          </p>
         </div>
-
       </div>
     </aside>
 
@@ -192,398 +133,297 @@
 
       <!-- 1. DASHBOARD MODULE -->
       <section id="module-dashboard" class="space-y-6 tab-content">
-        <!-- Header banner -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
           <div>
-            <h1 class="text-xl sm:text-2xl font-bold text-slate-900" data-i18n="dash_title">Resumen Ejecutivo de Economía Circular</h1>
-            <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="dash_subtitle">Monitoreo en tiempo real de desperdicio industrial revalorizado y reducción de huella de carbono.</p>
+            <h1 class="text-xl sm:text-2xl font-bold text-slate-900" data-i18n="dash_title">Resumen Ejecutivo: Recuperación de Sotol</h1>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="dash_subtitle">Monitoreo de biomasa de Sotol revalorizada y huella de carbono.</p>
           </div>
-          <div class="flex items-center gap-2">
-            <button onclick="switchTab('supplier')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md shadow-emerald-600/20 transition flex items-center gap-2">
-              <i class="fa-solid fa-plus"></i>
-              <span data-i18n="btn_new_waste">Publicar Residuo</span>
-            </button>
-          </div>
+          <button onclick="switchTab('supplier')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+            <i class="fa-solid fa-plus"></i>
+            <span data-i18n="btn_pub_sotol">Publicar Sotol Residual</span>
+          </button>
         </div>
 
-        <!-- Metric KPI Cards Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <!-- KPI 1 -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-slate-500" data-i18n="kpi_revalorized">Material Revalorizado</span>
-              <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                <i class="fa-solid fa-weight-hanging"></i>
-              </div>
-            </div>
-            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2" id="kpi-total-tons">1,482.5</p>
-            <div class="flex items-center gap-1 text-xs text-emerald-600 mt-2 font-medium">
-              <i class="fa-solid fa-arrow-trend-up"></i>
-              <span>+14.2% <span class="text-slate-400 font-normal" data-i18n="kpi_vs_last">vs mes anterior</span></span>
-            </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+            <span class="text-xs font-semibold text-slate-500" data-i18n="kpi_revalorized">Sotol Revalorizado</span>
+            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2" id="kpi-total-tons">148.5 Tons</p>
+            <span class="text-xs text-emerald-600 font-medium" data-i18n="kpi_sub1">+100% Biomasa Orgánica</span>
           </div>
-
-          <!-- KPI 2 -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-slate-500" data-i18n="kpi_co2">CO2e Evitado Estimado</span>
-              <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center">
-                <i class="fa-solid fa-leaf"></i>
-              </div>
-            </div>
-            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2" id="kpi-total-co2">3,558 t</p>
-            <div class="flex items-center gap-1 text-xs text-teal-600 mt-2 font-medium">
-              <i class="fa-solid fa-shield-halved"></i>
-              <span data-i18n="kpi_cert_ver">Certificado GHG Protocol</span>
-            </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+            <span class="text-xs font-semibold text-slate-500" data-i18n="kpi_co2">CO2e Evitado Estimado</span>
+            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2" id="kpi-total-co2">356.4 t</p>
+            <span class="text-xs text-teal-600 font-medium" data-i18n="kpi_sub2">Factor: 2.4 tCO2e / Ton</span>
           </div>
-
-          <!-- KPI 3 -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-slate-500" data-i18n="kpi_pickups">Recolecciones Activas</span>
-              <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
-                <i class="fa-solid fa-truck"></i>
-              </div>
-            </div>
-            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2" id="kpi-active-pickups">5</p>
-            <div class="flex items-center gap-1 text-xs text-blue-600 mt-2 font-medium">
-              <i class="fa-solid fa-clock"></i>
-              <span id="kpi-scheduled-text">3 Programadas para hoy</span>
-            </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+            <span class="text-xs font-semibold text-slate-500" data-i18n="kpi_pickups">Recolecciones Activas</span>
+            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2" id="kpi-active-pickups">1</p>
+            <span class="text-xs text-blue-600 font-medium" data-i18n="kpi_sub3">Logística en Campo</span>
           </div>
-
-          <!-- KPI 4 -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-slate-500" data-i18n="kpi_quotes">Cotizaciones B2B</span>
-              <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
-                <i class="fa-solid fa-file-invoice-dollar"></i>
-              </div>
-            </div>
-            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2" id="kpi-quotes-count">8</p>
-            <div class="flex items-center gap-1 text-xs text-purple-600 mt-2 font-medium">
-              <i class="fa-solid fa-building text-[10px]"></i>
-              <span data-i18n="kpi_b2b_partners">Demanda Industrial</span>
-            </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+            <span class="text-xs font-semibold text-slate-500" data-i18n="kpi_batches">Lotes en Almacén</span>
+            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2" id="kpi-quotes-count">1</p>
+            <span class="text-xs text-purple-600 font-medium" data-i18n="kpi_sub4">Listo para Transformación</span>
           </div>
         </div>
 
-        <!-- Analytics Charts Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <!-- Chart 1: Material Mix -->
           <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm lg:col-span-2">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-sm font-bold text-slate-900" data-i18n="chart_material_title">Composición de Residuos Recalificados</h3>
-              <span class="text-xs text-slate-400 font-medium" data-i18n="chart_units_tons">Toneladas Métrica (t)</span>
-            </div>
+            <h3 class="text-sm font-bold text-slate-900 mb-4" data-i18n="chart_mat_mix">Composición de Material Procesado</h3>
             <div class="h-64 relative">
               <canvas id="chartMaterialMix"></canvas>
             </div>
           </div>
-
-          <!-- Chart 2: Circular Flow Status -->
           <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
             <div>
-              <h3 class="text-sm font-bold text-slate-900 mb-2" data-i18n="chart_status_title">Estado de la Cadena de Suministro</h3>
-              <p class="text-xs text-slate-500 mb-4" data-i18n="chart_status_desc">Distribución por fase logística y control de calidad</p>
+              <h3 class="text-sm font-bold text-slate-900 mb-2" data-i18n="chart_supply_chain">Estado de la Cadena de Suministro</h3>
+              <p class="text-xs text-slate-500 mb-4" data-i18n="chart_supply_sub">Etapas de procesamiento de Sotol</p>
             </div>
             <div class="h-52 relative flex items-center justify-center">
               <canvas id="chartStatusPie"></canvas>
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between text-xs text-slate-500">
-              <span data-i18n="chart_efficiency">Eficiencia de Procesamiento:</span>
-              <span class="font-bold text-emerald-600">96.4%</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Recent Platform Activity Feed -->
-        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-          <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-            <h3 class="text-sm font-bold text-slate-900" data-i18n="recent_activity_title">Últimas Transacciones Circulares</h3>
-            <span class="text-xs text-slate-400" data-i18n="live_feed">Sincronizado en Vivo</span>
-          </div>
-          <div class="divide-y divide-slate-100" id="activity-feed-container">
-            <!-- Dynamic Feed Items Rendered Here -->
           </div>
         </div>
       </section>
 
-
       <!-- 2. SUPPLIER MODULE -->
       <section id="module-supplier" class="space-y-6 tab-content hidden">
         <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-          <h1 class="text-xl font-bold text-slate-900" data-i18n="supp_title">Módulo de Proveedor: Publicar Desperdicio Residual</h1>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="supp_subtitle">Registre residuos orgánicos e industriales para su recolección y reintegración a la cadena productiva.</p>
+          <h1 class="text-xl font-bold text-slate-900" data-i18n="supp_title">Módulo de Proveedor: Registrar Residuos de Sotol</h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="supp_subtitle">Registre bagazo o fibra de Sotol para recolección y reciclaje.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <!-- Waste Publication Form -->
           <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm lg:col-span-2">
             <form id="form-publish-waste" onsubmit="handlePublishWaste(event)" class="space-y-4">
+              
+              <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-between text-xs text-emerald-900">
+                <span class="font-medium"><i class="fa-solid fa-leaf text-emerald-600 mr-2"></i><span data-i18n="plant_active">Planta activa actual:</span> <strong>Sotol (Dasylirion wheeleri)</strong></span>
+                <span class="text-[11px] text-emerald-700 font-semibold bg-emerald-100 px-2 py-0.5 rounded" data-i18n="plant_plan">*Otras plantas planificadas</span>
+              </div>
+
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_material_type">Tipo de Material Residual</label>
-                  <select id="input-material" onchange="calculateCo2Estimate()" class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-                    <option value="Sotol Fiber / Fibra de Sotol">Fibra de Sotol (Sotol Fiber Waste)</option>
-                    <option value="Agave Bagasse / Bagazo de Agave">Bagazo de Agave (Agave Bagasse)</option>
-                    <option value="Cardboard Scrap / Cartón Industrial">Cartón Corrugado Industrial (Cardboard)</option>
-                    <option value="Wood Pallets / Tarimas de Madera">Tarimas de Madera Dobladas (Wood Pallets)</option>
-                    <option value="Polypropylene Shred / Plástico PP">Plástico Polipropileno Triturado (PP Plastic)</option>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_material">Tipo de Material</label>
+                  <select id="input-material" class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:ring-2 focus:ring-emerald-500">
+                    <option value="sotol_fiber" data-i18n="opt_fiber">Fibra de Sotol (Sotol Fiber)</option>
+                    <option value="sotol_bagasse" data-i18n="opt_bagasse">Bagazo de Sotol (Sotol Bagasse)</option>
                   </select>
+                  <p class="text-[10px] text-slate-400 mt-1 italic">When asked about other plants: "We are going to be utilizing other plants in the future"</p>
                 </div>
 
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_quantity">Cantidad Estimada</label>
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_qty">Cantidad Estimada</label>
                   <div class="flex gap-2">
-                    <input type="number" step="0.1" min="0.1" id="input-quantity" value="12.5" oninput="calculateCo2Estimate()" required class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:outline-none" />
+                    <input type="number" step="0.1" min="0.1" id="input-quantity" value="12.5" oninput="calculateCo2Estimate()" required class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:ring-2 focus:ring-emerald-500" />
                     <select id="input-unit" class="text-xs rounded-xl border-slate-300 border p-2.5 bg-slate-100 font-bold">
                       <option value="Tons">Tons</option>
-                      <option value="Kg">Kg</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
                   <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_location">Ubicación / Planta Origen</label>
-                  <input type="text" id="input-location" placeholder="Ej: Planta 2 - Juárez Industrial Park" required class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:outline-none" value="Planta Norte - Juárez" />
+                  <input type="text" id="input-location" required class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:ring-2 focus:ring-emerald-500" value="Planta Sotol - Juárez" />
                 </div>
 
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_avail_date">Fecha de Disponibilidad</label>
-                  <input type="date" id="input-date" required class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:outline-none" />
+                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_date">Fecha de Disponibilidad</label>
+                  <input type="date" id="input-date" required class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:ring-2 focus:ring-emerald-500" />
                 </div>
-
               </div>
 
               <div>
                 <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_notes">Especificaciones Técnicas / Humedad</label>
-                <textarea id="input-notes" rows="2" placeholder="Humedad estimada < 15%, libre de metales pesados..." class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:outline-none">Humedad promedio 12%, empacado en pacas de 500kg.</textarea>
+                <textarea id="input-notes" rows="2" class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:ring-2 focus:ring-emerald-500">Humedad promedio 12%, pacas compactadas de fibra de Sotol.</textarea>
               </div>
 
               <div class="pt-2 flex justify-end">
-                <button type="submit" class="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2">
-                  <i class="fa-solid fa-paper-plane"></i>
-                  <span data-i18n="btn_publish_now">Publicar Oferta de Residuo</span>
+                <button type="submit" class="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg hover:from-emerald-700 transition">
+                  <i class="fa-solid fa-paper-plane mr-2"></i><span data-i18n="btn_pub_now">Publicar Oferta</span>
                 </button>
               </div>
             </form>
           </div>
 
-          <!-- Live CO2 Offset Preview Widget -->
-          <div class="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl relative overflow-hidden">
-            <div class="absolute -right-6 -top-6 text-slate-800 opacity-20">
-              <i class="fa-solid fa-leaf text-9xl"></i>
-            </div>
+          <!-- CO2 Calculator Widget -->
+          <div class="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
             <div>
-              <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">
+              <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase mb-2">
                 <i class="fa-solid fa-calculator"></i>
-                <span data-i18n="co2_sim_title">Calculadora Ambiental en Tiempo Real</span>
+                <span data-i18n="sim_title">Calculadora Sotol Eco-Impact</span>
               </div>
-              <h3 class="text-lg font-bold text-white mb-4" data-i18n="co2_sim_heading">Ahorro Estimado de Carbono</h3>
-
-              <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700/80 space-y-3">
+              <h3 class="text-lg font-bold text-white mb-4" data-i18n="sim_heading">Ahorro Estimado de Carbono</h3>
+              <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700 space-y-3">
                 <div class="flex justify-between items-center text-xs">
-                  <span class="text-slate-400" data-i18n="sim_factor">Factor de Conversión:</span>
-                  <span class="font-bold text-emerald-400" id="sim-factor-display">2.4 tCO2e / Ton</span>
+                  <span class="text-slate-400" data-i18n="sim_factor">Factor Sotol:</span>
+                  <span class="font-bold text-emerald-400">2.4 tCO2e / Ton</span>
                 </div>
                 <div class="border-t border-slate-700 pt-3">
-                  <span class="text-xs text-slate-400 block" data-i18n="sim_co2_total">Emisiones Evitadas Totales:</span>
+                  <span class="text-xs text-slate-400 block" data-i18n="sim_avoided">Emisiones Evitadas Totales:</span>
                   <p class="text-3xl font-extrabold text-emerald-400 mt-1" id="sim-co2-result">30.0 tCO2e</p>
                 </div>
               </div>
             </div>
-
-            <div class="mt-6 pt-4 border-t border-slate-800 text-[11px] text-slate-400 space-y-1">
-              <p>✔ <span data-i18n="sim_rule1">Evita metano en vertedero abierto.</span></p>
-              <p>✔ <span data-i18n="sim_rule2">Genera créditos de sustentabilidad Scope 3.</span></p>
-            </div>
+            <p class="text-[11px] text-slate-400 mt-4" data-i18n="sim_cert">✔ Certificación circular para biomasa de Sotol.</p>
           </div>
         </div>
 
-        <!-- My Waste Listings Table -->
         <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-          <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-            <h3 class="text-sm font-bold text-slate-900" data-i18n="my_listings_title">Mis Publicaciones de Residuo Registradas</h3>
-            <span class="text-xs text-slate-400" id="my-listings-count">3 Publicaciones</span>
-          </div>
+          <div class="px-6 py-4 border-b border-slate-100 font-bold text-sm text-slate-900" data-i18n="my_pub_title">Mis Publicaciones Registradas</div>
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs sm:text-sm">
-              <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-[10px] tracking-wider border-b border-slate-100">
+              <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-[10px]">
                 <tr>
                   <th class="py-3 px-4" data-i18n="th_id">ID Ref</th>
                   <th class="py-3 px-4" data-i18n="th_material">Material</th>
-                  <th class="py-3 px-4" data-i18n="th_quantity">Cantidad</th>
+                  <th class="py-3 px-4" data-i18n="th_qty">Cantidad</th>
                   <th class="py-3 px-4" data-i18n="th_location">Ubicación</th>
-                  <th class="py-3 px-4" data-i18n="th_co2_saved">CO2 Evitado</th>
+                  <th class="py-3 px-4" data-i18n="th_co2">CO2 Evitado</th>
                   <th class="py-3 px-4" data-i18n="th_status">Estado</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-slate-100" id="supplier-table-body">
-                <!-- Dynamic Content -->
-              </tbody>
+              <tbody class="divide-y divide-slate-100" id="supplier-table-body"></tbody>
             </table>
           </div>
         </div>
       </section>
 
-
       <!-- 3. ADMIN REVIEW MODULE -->
       <section id="module-admin" class="space-y-6 tab-content hidden">
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex justify-between items-center">
           <div>
-            <h1 class="text-xl font-bold text-slate-900" data-i18n="admin_title">Administración y Control de Calidad Inicial</h1>
-            <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="admin_subtitle">Revise las ofertas de residuo entrantes, apruebe especificaciones y asigne rutas de recolección.</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-bold px-3 py-1.5 rounded-xl bg-amber-50 text-amber-700 border border-amber-200">
-              <i class="fa-solid fa-hourglass-half mr-1"></i> <span id="admin-pending-badge">2 Pendientes</span>
-            </span>
+            <h1 class="text-xl font-bold text-slate-900" data-i18n="admin_title">Aprobación y Asignación de Sotol</h1>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="admin_subtitle">Revise solicitudes de Sotol entrante y autorice rutas de recolección.</p>
           </div>
         </div>
 
         <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs sm:text-sm">
-              <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-[10px] tracking-wider border-b border-slate-100">
+              <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-[10px]">
                 <tr>
                   <th class="py-3 px-4" data-i18n="th_id">ID</th>
                   <th class="py-3 px-4" data-i18n="th_material">Material Residual</th>
                   <th class="py-3 px-4" data-i18n="th_supplier">Proveedor</th>
-                  <th class="py-3 px-4" data-i18n="th_quantity">Cantidad</th>
+                  <th class="py-3 px-4" data-i18n="th_qty_est">Cantidad Est.</th>
                   <th class="py-3 px-4" data-i18n="th_date">Fecha Disp.</th>
                   <th class="py-3 px-4" data-i18n="th_status">Estado</th>
-                  <th class="py-3 px-4 text-right" data-i18n="th_actions">Acciones Admin</th>
+                  <th class="py-3 px-4 text-right" data-i18n="th_action">Acción Admin</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-slate-100" id="admin-table-body">
-                <!-- Dynamic Rows -->
-              </tbody>
+              <tbody class="divide-y divide-slate-100" id="admin-table-body"></tbody>
             </table>
           </div>
         </div>
       </section>
 
-
       <!-- 4. LOGISTICS & PICKUPS MODULE -->
       <section id="module-logistics" class="space-y-6 tab-content hidden">
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-          <h1 class="text-xl font-bold text-slate-900" data-i18n="logistics_title">Logística y Recolecciones en Campo</h1>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="logistics_subtitle">Interfaz para operadores y transporte. Registre pesajes reales en báscula digital.</p>
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+          <div>
+            <h1 class="text-xl font-bold text-slate-900" data-i18n="log_title">Logística, Transporte y Pesaje en Báscula</h1>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="log_subtitle">Gestión de unidades en tránsito y validación de peso bruto/neto de Sotol.</p>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-xs font-bold px-3 py-1.5 rounded-xl bg-blue-50 text-blue-700 border border-blue-200">
+              <i class="fa-solid fa-truck-moving mr-1"></i> <span data-i18n="log_live">Monitoreo en Vivo</span>
+            </span>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-4" id="logistics-cards-container">
-          <!-- Dynamic Logistics Cards -->
-        </div>
+        <div class="grid grid-cols-1 gap-4" id="logistics-cards-container"></div>
       </section>
-
 
       <!-- 5. WAREHOUSE & INVENTORY MODULE -->
       <section id="module-warehouse" class="space-y-6 tab-content hidden">
         <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-          <h1 class="text-xl font-bold text-slate-900" data-i18n="wh_title">Almacén e Inventario de Materia Prima Circular</h1>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="wh_subtitle">Inspección de recibo, separación de mermas e imputación de lotes normalizados (RB-Batch).</p>
+          <h1 class="text-xl font-bold text-slate-900" data-i18n="wh_title">Almacén e Inventario de Sotol (Lotes RB)</h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="wh_subtitle">Lotes verificados con control de calidad y mermas de humedad.</p>
         </div>
 
-        <!-- Inventory Summary Badges -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div class="bg-white p-4 rounded-xl border border-slate-200/80 flex items-center gap-4">
-            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg font-bold">
+            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
               <i class="fa-solid fa-boxes-stacked"></i>
             </div>
             <div>
-              <p class="text-xs text-slate-400 font-semibold uppercase" data-i18n="wh_stock_total">Stock Bruto en Planta</p>
-              <p class="text-xl font-extrabold text-slate-900" id="wh-stock-total">184.2 Tons</p>
+              <p class="text-xs text-slate-400 font-semibold uppercase" data-i18n="wh_total_stock">Stock Total Sotol</p>
+              <p class="text-xl font-extrabold text-slate-900" id="wh-stock-total">0.0 Tons</p>
             </div>
           </div>
-
           <div class="bg-white p-4 rounded-xl border border-slate-200/80 flex items-center gap-4">
-            <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg font-bold">
+            <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center font-bold">
               <i class="fa-solid fa-circle-check"></i>
             </div>
             <div>
-              <p class="text-xs text-slate-400 font-semibold uppercase" data-i18n="wh_qc_approved">Conforme para Proceso</p>
-              <p class="text-xl font-extrabold text-slate-900" id="wh-stock-conforme">176.8 Tons</p>
+              <p class="text-xs text-slate-400 font-semibold uppercase" data-i18n="wh_qc_pass">Aceptado QC</p>
+              <p class="text-xl font-extrabold text-slate-900" id="wh-stock-conforme">0.0 Tons</p>
             </div>
           </div>
-
           <div class="bg-white p-4 rounded-xl border border-slate-200/80 flex items-center gap-4">
-            <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-lg font-bold">
+            <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold">
               <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
             <div>
-              <p class="text-xs text-slate-400 font-semibold uppercase" data-i18n="wh_mermas">Mermas / Descarte Impurezas</p>
-              <p class="text-xl font-extrabold text-slate-900" id="wh-stock-mermas">7.4 Tons</p>
+              <p class="text-xs text-slate-400 font-semibold uppercase" data-i18n="wh_shrinkage">Mermas / Humedad</p>
+              <p class="text-xl font-extrabold text-slate-900" id="wh-stock-mermas">0.0 Tons</p>
             </div>
           </div>
         </div>
 
-        <!-- Batch Inventory Table -->
         <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-          <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-            <h3 class="text-sm font-bold text-slate-900" data-i18n="wh_table_title">Lotes de Material Clasificado (Lotes RB)</h3>
-            <span class="text-xs text-slate-400" data-i18n="wh_system_id">Sistema Trazable ISO-14021</span>
-          </div>
+          <div class="px-6 py-4 border-b border-slate-100 font-bold text-sm text-slate-900" data-i18n="wh_tbl_title">Lotes de Sotol Clasificado</div>
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs sm:text-sm">
-              <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-[10px] tracking-wider border-b border-slate-100">
+              <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-[10px]">
                 <tr>
                   <th class="py-3 px-4" data-i18n="th_batch_id">ID Lote</th>
-                  <th class="py-3 px-4" data-i18n="th_material">Materia Prima</th>
-                  <th class="py-3 px-4" data-i18n="th_qty_accepted">Cant. Aceptada</th>
-                  <th class="py-3 px-4" data-i18n="th_qty_mermas">Mermas (Rechazo)</th>
-                  <th class="py-3 px-4" data-i18n="th_quality_grade">Grado Calidad</th>
-                  <th class="py-3 px-4" data-i18n="th_location">Ubicación Silo/Sombra</th>
-                  <th class="py-3 px-4 text-right" data-i18n="th_qc_action">Acción QC</th>
+                  <th class="py-3 px-4" data-i18n="th_raw_mat">Materia Prima</th>
+                  <th class="py-3 px-4" data-i18n="th_scale_weight">Pesaje Báscula</th>
+                  <th class="py-3 px-4" data-i18n="th_moisture">Humedad %</th>
+                  <th class="py-3 px-4" data-i18n="th_qc_grade">Grado QC</th>
+                  <th class="py-3 px-4" data-i18n="th_silo">Ubicación Silo</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-slate-100" id="warehouse-table-body">
-                <!-- Dynamic Batch Rows -->
-              </tbody>
+              <tbody class="divide-y divide-slate-100" id="warehouse-table-body"></tbody>
             </table>
           </div>
         </div>
       </section>
 
-
-      <!-- 6. B2B CATALOG & QUOTES MODULE -->
+      <!-- 6. CATALOG MODULE -->
       <section id="module-catalog" class="space-y-6 tab-content hidden">
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4">
-          <div>
-            <h1 class="text-xl font-bold text-slate-900" data-i18n="cat_title">Catálogo de Productos Transformados y Cotizaciones B2B</h1>
-            <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="cat_subtitle">Productos industriales manufacturados a partir de biomasa y materiales revalorizados.</p>
-          </div>
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <h1 class="text-xl font-bold text-slate-900" data-i18n="cat_title">Catálogo B2B: Bioproductos de Sotol</h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="cat_subtitle">Materias primas circulares derivadas del procesamiento de Sotol.</p>
         </div>
 
-        <!-- Products Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="products-grid-container">
-          <!-- Rendered dynamically -->
-        </div>
-
-        <!-- B2B Quote Tracking Table -->
-        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-          <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-            <h3 class="text-sm font-bold text-slate-900" data-i18n="quote_queue_title">Solicitudes de Cotización B2B</h3>
-            <span class="text-xs text-slate-400" id="quotes-count-badge">3 Solicitudes</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm space-y-3">
+            <div class="w-full h-36 bg-emerald-900/10 rounded-xl flex items-center justify-center text-emerald-700 font-bold text-3xl">
+              <i class="fa-solid fa-box-open"></i>
+            </div>
+            <span class="text-[10px] uppercase font-extrabold tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded" data-i18n="cat_item1_badge">Grado A Industrial</span>
+            <h3 class="font-bold text-slate-900 text-base" data-i18n="cat_item1_name">Pacas de Fibra de Sotol Refinada</h3>
+            <p class="text-xs text-slate-500" data-i18n="cat_item1_desc">Fibra vegetal deshidratada ideal para empaques termoformados, aglomerados y bioplásticos.</p>
+            <div class="pt-2 border-t border-slate-100 flex justify-between items-center">
+              <span class="text-xs font-bold text-slate-700">$180 USD / Ton</span>
+              <button onclick="quoteAlert()" class="bg-slate-900 hover:bg-emerald-600 text-white text-xs font-bold px-3 py-2 rounded-lg transition" data-i18n="btn_quote">Solicitar Cotización</button>
+            </div>
           </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs sm:text-sm">
-              <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-[10px] tracking-wider border-b border-slate-100">
-                <tr>
-                  <th class="py-3 px-4" data-i18n="th_quote_id">Folio</th>
-                  <th class="py-3 px-4" data-i18n="th_client">Cliente B2B</th>
-                  <th class="py-3 px-4" data-i18n="th_product">Producto</th>
-                  <th class="py-3 px-4" data-i18n="th_volume">Volumen</th>
-                  <th class="py-3 px-4" data-i18n="th_est_total">Monto Estimado</th>
-                  <th class="py-3 px-4" data-i18n="th_status">Estado</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100" id="quotes-table-body">
-                <!-- Dynamic Quote Rows -->
-              </tbody>
-            </table>
+
+          <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm space-y-3">
+            <div class="w-full h-36 bg-teal-900/10 rounded-xl flex items-center justify-center text-teal-700 font-bold text-3xl">
+              <i class="fa-solid fa-recycle"></i>
+            </div>
+            <span class="text-[10px] uppercase font-extrabold tracking-wider bg-teal-100 text-teal-800 px-2 py-0.5 rounded" data-i18n="cat_item2_badge">Biomasa Térmica</span>
+            <h3 class="font-bold text-slate-900 text-base" data-i18n="cat_item2_name">Bagazo Pelletizado de Sotol</h3>
+            <p class="text-xs text-slate-500" data-i18n="cat_item2_desc">Pellets biocombustibles de alto poder calorífico fabricados con residuos de Sotol.</p>
+            <div class="pt-2 border-t border-slate-100 flex justify-between items-center">
+              <span class="text-xs font-bold text-slate-700">$110 USD / Ton</span>
+              <button onclick="quoteAlert()" class="bg-slate-900 hover:bg-emerald-600 text-white text-xs font-bold px-3 py-2 rounded-lg transition" data-i18n="btn_quote">Solicitar Cotización</button>
+            </div>
           </div>
         </div>
       </section>
@@ -591,1002 +431,552 @@
     </main>
   </div>
 
-
-  <!-- MODALS & DIALOGS -->
-
-  <!-- 1. Schedule Pickup Modal (Admin) -->
-  <div id="modal-schedule" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <h3 class="font-bold text-slate-900 text-base" data-i18n="modal_sched_title">Programar Recolección Logística</h3>
-        <button onclick="closeModal('modal-schedule')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+  <!-- WEIGH SCALE MODAL -->
+  <div id="modal-scale" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl space-y-4">
+      <div class="flex justify-between items-center border-b pb-3">
+        <h3 class="font-bold text-slate-900 text-base"><i class="fa-solid fa-scale-balanced text-emerald-600 mr-2"></i><span data-i18n="modal_scale_title">Báscula Digital de Campo</span></h3>
+        <button onclick="closeScaleModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
 
-      <form onsubmit="confirmSchedulePickup(event)" class="space-y-3">
-        <input type="hidden" id="sched-item-id" />
-        
-        <div>
-          <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_material">Material</label>
-          <input type="text" id="sched-material-name" disabled class="w-full text-xs rounded-xl bg-slate-100 border p-2.5 font-bold text-slate-600" />
-        </div>
+      <input type="hidden" id="modal-scale-item-id" />
 
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1" data-i18n="modal_driver_lbl">Conductor / Chofer de Unidad</label>
+          <input type="text" id="modal-driver" class="w-full border rounded-xl p-2.5 bg-slate-50" value="Roberto M. (Unidad TR-20)" />
+        </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_assign_driver">Chofer Asignado</label>
-            <select id="sched-driver" class="w-full text-xs rounded-xl border p-2.5 bg-slate-50 focus:ring-2 focus:ring-emerald-500">
-              <option value="Carlos Mendoza (Unidad T-04)">Carlos Mendoza (Unidad T-04)</option>
-              <option value="Roberto Garza (Unidad T-09)">Roberto Garza (Unidad T-09)</option>
-              <option value="Marta Silva (Unidad T-12)">Marta Silva (Unidad T-12)</option>
-            </select>
+            <label class="block font-bold text-slate-700 mb-1" data-i18n="modal_weight_lbl">Peso Verificado (Tons)</label>
+            <input type="number" step="0.1" id="modal-weight-scale" class="w-full border rounded-xl p-2.5 font-bold text-emerald-700 bg-slate-50" value="12.2" />
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_pickup_time">Hora Programada</label>
-            <input type="time" id="sched-time" value="09:00" required class="w-full text-xs rounded-xl border p-2.5 bg-slate-50" />
+            <label class="block font-bold text-slate-700 mb-1" data-i18n="modal_moist_lbl">Humedad Medida (%)</label>
+            <input type="number" id="modal-moisture" class="w-full border rounded-xl p-2.5 font-bold bg-slate-50" value="11" />
           </div>
         </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_notes">Instrucciones de Ruta</label>
-          <input type="text" id="sched-notes" placeholder="Ingreso por Portón 3, báscula B..." value="Ingreso por portón industrial norte con EPP completo" class="w-full text-xs rounded-xl border p-2.5 bg-slate-50" />
-        </div>
-
-        <div class="pt-3 flex gap-2 justify-end">
-          <button type="button" onclick="closeModal('modal-schedule')" class="px-4 py-2 text-xs font-bold text-slate-500 hover:bg-slate-100 rounded-xl" data-i18n="btn_cancel">Cancelar</button>
-          <button type="submit" class="px-5 py-2 text-xs font-bold bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 shadow-md" data-i18n="btn_confirm_sched">Confirmar Recolección</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-
-  <!-- 2. Weighing & Driver Digital Confirmation Modal -->
-  <div id="modal-weighing" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <h3 class="font-bold text-slate-900 text-base" data-i18n="modal_weigh_title">Registro Digital de Báscula y Entrada</h3>
-        <button onclick="closeModal('modal-weighing')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
 
-      <form onsubmit="confirmDriverWeighing(event)" class="space-y-3">
-        <input type="hidden" id="weigh-item-id" />
-
-        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-1">
-          <p class="font-bold text-slate-800" id="weigh-item-title">Sotol Fiber Waste</p>
-          <p class="text-slate-500" data-i18n="weigh_booked_qty">Cantidad Estimada en Orden: <span id="weigh-booked-qty" class="font-bold">12.5 Tons</span></p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_actual_weight">Peso Neto Real (Tons)</label>
-            <input type="number" step="0.01" id="weigh-actual" required class="w-full text-sm font-bold rounded-xl border p-2.5 bg-emerald-50 text-emerald-900 border-emerald-300" />
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_quality_grade">Grado de Calidad</label>
-            <select id="weigh-grade" class="w-full text-xs rounded-xl border p-2.5 bg-slate-50">
-              <option value="Grado A (Alta Pureza)">Grado A (Alta Pureza)</option>
-              <option value="Grado B (Estándar)">Grado B (Estándar)</option>
-              <option value="Grado C (Con Humedad)">Grado C (Con Humedad)</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_mermas_est">Mermas / Impurezas (Tons)</label>
-          <input type="number" step="0.01" id="weigh-mermas" value="0.2" required class="w-full text-xs rounded-xl border p-2.5 bg-slate-50" />
-        </div>
-
-        <div class="pt-3 flex gap-2 justify-end">
-          <button type="button" onclick="closeModal('modal-weighing')" class="px-4 py-2 text-xs font-bold text-slate-500 hover:bg-slate-100 rounded-xl" data-i18n="btn_cancel">Cancelar</button>
-          <button type="submit" class="px-5 py-2 text-xs font-bold bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 shadow-md" data-i18n="btn_save_entry">Ingresar a Almacén</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-
-  <!-- 3. B2B Quote Modal -->
-  <div id="modal-quote" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <h3 class="font-bold text-slate-900 text-base" data-i18n="modal_quote_title">Solicitar Cotización B2B</h3>
-        <button onclick="closeModal('modal-quote')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
-      </div>
-
-      <form onsubmit="submitB2BQuote(event)" class="space-y-3">
-        <input type="hidden" id="quote-product-id" />
-
-        <div>
-          <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_product">Producto Seleccionado</label>
-          <input type="text" id="quote-product-name" readonly class="w-full text-xs font-bold rounded-xl bg-slate-100 border p-2.5 text-slate-700" />
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_company">Empresa / Razón Social</label>
-            <input type="text" id="quote-company" required placeholder="Ej: AutoParts Global" class="w-full text-xs rounded-xl border p-2.5 bg-slate-50" />
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_volume">Volumen Requerido</label>
-            <input type="text" id="quote-volume" required placeholder="Ej: 5,000 Unidades" class="w-full text-xs rounded-xl border p-2.5 bg-slate-50" />
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_target_date">Fecha de Entrega Requerida</label>
-          <input type="date" id="quote-date" required class="w-full text-xs rounded-xl border p-2.5 bg-slate-50" />
-        </div>
-
-        <div class="pt-3 flex gap-2 justify-end">
-          <button type="button" onclick="closeModal('modal-quote')" class="px-4 py-2 text-xs font-bold text-slate-500 hover:bg-slate-100 rounded-xl" data-i18n="btn_cancel">Cancelar</button>
-          <button type="submit" class="px-5 py-2 text-xs font-bold bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 shadow-md" data-i18n="btn_send_quote">Enviar Solicitud</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-
-  <!-- 4. Reset Confirmation Dialog Modal -->
-  <div id="modal-reset" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 text-center space-y-4">
-      <div class="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center mx-auto text-xl">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-      </div>
-      <div>
-        <h3 class="font-bold text-slate-900 text-base" data-i18n="reset_modal_title">¿Reiniciar Datos Demo?</h3>
-        <p class="text-xs text-slate-500 mt-1" data-i18n="reset_modal_desc">Esta acción restaurará todas las publicaciones, lotes de almacén y cotizaciones a su estado inicial.</p>
-      </div>
-      <div class="flex gap-2 justify-center pt-2">
-        <button onclick="closeModal('modal-reset')" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl" data-i18n="btn_cancel">Cancelar</button>
-        <button onclick="confirmResetDemoData()" class="px-5 py-2 text-xs font-bold bg-red-600 text-white rounded-xl hover:bg-red-700 shadow-md" data-i18n="btn_confirm_reset">Sí, Reiniciar</button>
+      <div class="pt-3 border-t flex justify-end gap-2">
+        <button onclick="closeScaleModal()" class="px-4 py-2 text-xs font-bold text-slate-600 bg-slate-100 rounded-xl" data-i18n="btn_cancel">Cancelar</button>
+        <button onclick="confirmScaleWeighIn()" class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-md" data-i18n="btn_confirm_scale">Confirmar Pesaje y Enviar a Almacén</button>
       </div>
     </div>
   </div>
 
-
-  <!-- TOAST NOTIFICATION CONTAINER -->
-  <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
-
-
-  <!-- APPLICATION ENGINE JS -->
+  <!-- APPLICATION SCRIPT & COMPLETE BILINGUAL SYSTEM -->
   <script>
-    /* BILINGUAL TRANSLATION DICTIONARY (100% COVERAGE) */
-    const i18n = {
+    let currentLang = 'es';
+
+    const translations = {
       es: {
-        subtitle: "Plataforma de Materiales y Economía Circular",
-        lang_label: "Idioma:",
-        user_role: "Planta Industrial",
-        nav_title: "Navegación Módulos",
-        nav_dashboard: "Panel Principal",
-        nav_supplier: "Proveedor (Publicar)",
-        nav_admin: "Revisión Admin",
-        nav_logistics: "Logística y Recolección",
-        nav_warehouse: "Almacén e Inventario QC",
-        nav_catalog: "Catálogo B2B y Cotizaciones",
-        sidebar_impact_title: "Impacto Circular Activo",
-        sidebar_impact_desc: "Tasa de Desvío de Relleno Sanitario",
-        dash_title: "Resumen Ejecutivo de Economía Circular",
-        dash_subtitle: "Monitoreo en tiempo real de desperdicio industrial revalorizado y reducción de huella de carbono.",
-        btn_new_waste: "Publicar Residuo",
-        kpi_revalorized: "Material Revalorizado",
-        kpi_co2: "CO2e Evitado Estimado",
-        kpi_pickups: "Recolecciones Activas",
-        kpi_quotes: "Cotizaciones B2B",
-        kpi_vs_last: "vs mes anterior",
-        kpi_cert_ver: "Certificado GHG Protocol",
-        kpi_b2b_partners: "Demanda Industrial",
-        chart_material_title: "Composición de Residuos Recalificados",
-        chart_units_tons: "Toneladas Métrica (t)",
-        chart_status_title: "Estado de la Cadena de Suministro",
-        chart_status_desc: "Distribución por fase logística y control de calidad",
-        chart_efficiency: "Eficiencia de Procesamiento:",
-        recent_activity_title: "Últimas Transacciones Circulares",
-        live_feed: "Sincronizado en Vivo",
-        supp_title: "Módulo de Proveedor: Publicar Desperdicio Residual",
-        supp_subtitle: "Registre residuos orgánicos e industriales para su recolección y reintegración a la cadena productiva.",
-        lbl_material_type: "Tipo de Material Residual",
-        lbl_quantity: "Cantidad Estimada",
-        lbl_location: "Ubicación / Planta Origen",
-        lbl_avail_date: "Fecha de Disponibilidad",
-        lbl_notes: "Especificaciones Técnicas / Humedad",
-        btn_publish_now: "Publicar Oferta de Residuo",
-        co2_sim_title: "Calculadora Ambiental en Tiempo Real",
-        co2_sim_heading: "Ahorro Estimado de Carbono",
-        sim_factor: "Factor de Conversión:",
-        sim_co2_total: "Emisiones Evitadas Totales:",
-        sim_rule1: "Evita metano en vertedero abierto.",
-        sim_rule2: "Genera créditos de sustentabilidad Scope 3.",
-        my_listings_title: "Mis Publicaciones de Residuo Registradas",
-        th_id: "ID Ref",
-        th_material: "Material",
-        th_quantity: "Cantidad",
-        th_location: "Ubicación",
-        th_co2_saved: "CO2 Evitado",
-        th_status: "Estado",
-        th_actions: "Acciones Admin",
-        th_supplier: "Proveedor",
-        th_date: "Fecha Disp.",
-        admin_title: "Administración y Control de Calidad Inicial",
-        admin_subtitle: "Revise las ofertas de residuo entrantes, apruebe especificaciones y asigne rutas de recolección.",
-        logistics_title: "Logística y Recolecciones en Campo",
-        logistics_subtitle: "Interfaz para operadores y transporte. Registre pesajes reales en báscula digital.",
-        wh_title: "Almacén e Inventario de Materia Prima Circular",
-        wh_subtitle: "Inspección de recibo, separación de mermas e imputación de lotes normalizados (RB-Batch).",
-        wh_stock_total: "Stock Bruto en Planta",
-        wh_qc_approved: "Conforme para Proceso",
-        wh_mermas: "Mermas / Descarte Impurezas",
-        wh_table_title: "Lotes de Material Clasificado (Lotes RB)",
-        wh_system_id: "Sistema Trazable ISO-14021",
-        th_batch_id: "ID Lote",
-        th_qty_accepted: "Cant. Aceptada",
-        th_qty_mermas: "Mermas (Rechazo)",
-        th_quality_grade: "Grado Calidad",
-        th_qc_action: "Acción QC",
-        cat_title: "Catálogo de Productos Transformados y Cotizaciones B2B",
-        cat_subtitle: "Productos industriales manufacturados a partir de biomasa y materiales revalorizados.",
-        quote_queue_title: "Solicitudes de Cotización B2B",
-        th_quote_id: "Folio",
-        th_client: "Cliente B2B",
-        th_product: "Producto",
-        th_volume: "Volumen",
-        th_est_total: "Monto Estimado",
-        modal_sched_title: "Programar Recolección Logística",
-        lbl_assign_driver: "Chofer Asignado",
-        lbl_pickup_time: "Hora Programada",
-        btn_cancel: "Cancelar",
-        btn_confirm_sched: "Confirmar Recolección",
-        modal_weigh_title: "Registro Digital de Báscula y Entrada",
-        weigh_booked_qty: "Cantidad Estimada en Orden:",
-        lbl_actual_weight: "Peso Neto Real (Tons)",
-        lbl_mermas_est: "Mermas / Impurezas (Tons)",
-        btn_save_entry: "Ingresar a Almacén",
-        modal_quote_title: "Solicitar Cotización B2B",
-        lbl_company: "Empresa / Razón Social",
-        lbl_volume: "Volumen Requerido",
-        lbl_target_date: "Fecha de Entrega Requerida",
-        btn_send_quote: "Enviar Solicitud",
-        reset_modal_title: "¿Reiniciar Datos Demo?",
-        reset_modal_desc: "Esta acción restaurará todas las publicaciones, lotes de almacén y cotizaciones a su estado inicial.",
-        btn_confirm_reset: "Sí, Reiniciar",
-        btn_approve: "Aprobar y Programar",
-        btn_reject: "Rechazar",
-        btn_log_weight: "Registrar Pesaje",
-        btn_quote_req: "Solicitar Cotización",
-        badge_pending: "Pendiente",
-        badge_scheduled: "Programado",
-        badge_received: "En Almacén",
-        badge_rejected: "Rechazado",
-        badge_quoted: "En Cotización",
-        badge_confirmed: "Confirmado"
+        subtitle: 'Plataforma de Valorización y Economía Circular',
+        nav_title: 'Navegación Módulos',
+        nav_dashboard: 'Panel Principal',
+        nav_supplier: 'Proveedor (Publicar)',
+        nav_admin: 'Revisión Admin',
+        nav_logistics: 'Logística y Recolección',
+        nav_warehouse: 'Almacén e Inventario',
+        nav_catalog: 'Catálogo B2B Sotol',
+        active_raw_mat: 'Materia Prima Actual',
+        dash_title: 'Resumen Ejecutivo: Recuperación de Sotol',
+        dash_subtitle: 'Monitoreo de biomasa de Sotol revalorizada y huella de carbono.',
+        btn_pub_sotol: 'Publicar Sotol Residual',
+        kpi_revalorized: 'Sotol Revalorizado',
+        kpi_sub1: '+100% Biomasa Orgánica',
+        kpi_co2: 'CO2e Evitado Estimado',
+        kpi_sub2: 'Factor: 2.4 tCO2e / Ton',
+        kpi_pickups: 'Recolecciones Activas',
+        kpi_sub3: 'Logística en Campo',
+        kpi_batches: 'Lotes en Almacén',
+        kpi_sub4: 'Listo para Transformación',
+        chart_mat_mix: 'Composición de Material Procesado',
+        chart_supply_chain: 'Estado de la Cadena de Suministro',
+        chart_supply_sub: 'Etapas de procesamiento de Sotol',
+        supp_title: 'Módulo de Proveedor: Registrar Residuos de Sotol',
+        supp_subtitle: 'Registre bagazo o fibra de Sotol para recolección y reciclaje.',
+        plant_active: 'Planta activa actual:',
+        plant_plan: '*Otras plantas planificadas',
+        lbl_material: 'Tipo de Material',
+        opt_fiber: 'Fibra de Sotol (Sotol Fiber)',
+        opt_bagasse: 'Bagazo de Sotol (Sotol Bagasse)',
+        lbl_qty: 'Cantidad Estimada',
+        lbl_location: 'Ubicación / Planta Origen',
+        lbl_date: 'Fecha de Disponibilidad',
+        lbl_notes: 'Especificaciones Técnicas / Humedad',
+        btn_pub_now: 'Publicar Oferta',
+        sim_title: 'Calculadora Sotol Eco-Impact',
+        sim_heading: 'Ahorro Estimado de Carbono',
+        sim_factor: 'Factor Sotol:',
+        sim_avoided: 'Emisiones Evitadas Totales:',
+        sim_cert: '✔ Certificación circular para biomasa de Sotol.',
+        my_pub_title: 'Mis Publicaciones Registradas',
+        th_id: 'ID Ref',
+        th_material: 'Material',
+        th_qty: 'Cantidad',
+        th_location: 'Ubicación',
+        th_co2: 'CO2 Evitado',
+        th_status: 'Estado',
+        admin_title: 'Aprobación y Asignación de Sotol',
+        admin_subtitle: 'Revise solicitudes de Sotol entrante y autorice rutas de recolección.',
+        th_supplier: 'Proveedor',
+        th_qty_est: 'Cantidad Est.',
+        th_date: 'Fecha Disp.',
+        th_action: 'Acción Admin',
+        log_title: 'Logística, Transporte y Pesaje en Báscula',
+        log_subtitle: 'Gestión de unidades en tránsito y validación de peso bruto/neto de Sotol.',
+        log_live: 'Monitoreo en Vivo',
+        wh_title: 'Almacén e Inventario de Sotol (Lotes RB)',
+        wh_subtitle: 'Lotes verificados con control de calidad y mermas de humedad.',
+        wh_total_stock: 'Stock Total Sotol',
+        wh_qc_pass: 'Aceptado QC',
+        wh_shrinkage: 'Mermas / Humedad',
+        wh_tbl_title: 'Lotes de Sotol Clasificado',
+        th_batch_id: 'ID Lote',
+        th_raw_mat: 'Materia Prima',
+        th_scale_weight: 'Pesaje Báscula',
+        th_moisture: 'Humedad %',
+        th_qc_grade: 'Grado QC',
+        th_silo: 'Ubicación Silo',
+        cat_title: 'Catálogo B2B: Bioproductos de Sotol',
+        cat_subtitle: 'Materias primas circulares derivadas del procesamiento de Sotol.',
+        cat_item1_badge: 'Grado A Industrial',
+        cat_item1_name: 'Pacas de Fibra de Sotol Refinada',
+        cat_item1_desc: 'Fibra vegetal deshidratada ideal para empaques termoformados, aglomerados y bioplásticos.',
+        cat_item2_badge: 'Biomasa Térmica',
+        cat_item2_name: 'Bagazo Pelletizado de Sotol',
+        cat_item2_desc: 'Pellets biocombustibles de alto poder calorífico fabricados con residuos de Sotol.',
+        btn_quote: 'Solicitar Cotización',
+        modal_scale_title: 'Báscula Digital de Campo',
+        modal_driver_lbl: 'Conductor / Chofer de Unidad',
+        modal_weight_lbl: 'Peso Verificado (Tons)',
+        modal_moist_lbl: 'Humedad Medida (%)',
+        btn_cancel: 'Cancelar',
+        btn_confirm_scale: 'Confirmar Pesaje y Enviar a Almacén'
       },
       en: {
-        subtitle: "Circular Materials & Waste Platform",
-        lang_label: "Language:",
-        user_role: "Industrial Hub",
-        nav_title: "Module Navigation",
-        nav_dashboard: "Executive Dashboard",
-        nav_supplier: "Supplier (Post Waste)",
-        nav_admin: "Admin Review Queue",
-        nav_logistics: "Logistics & Pickups",
-        nav_warehouse: "Warehouse & QC Inventory",
-        nav_catalog: "B2B Catalog & Quotes",
-        sidebar_impact_title: "Active Circular Impact",
-        sidebar_impact_desc: "Landfill Diversion Rate",
-        dash_title: "Circular Economy Executive Overview",
-        dash_subtitle: "Real-time tracking of revalorized industrial waste and carbon footprint reduction.",
-        btn_new_waste: "Publish Waste",
-        kpi_revalorized: "Revalorized Material",
-        kpi_co2: "Est. Avoided CO2e",
-        kpi_pickups: "Active Pickups",
-        kpi_quotes: "B2B Quotes",
-        kpi_vs_last: "vs last month",
-        kpi_cert_ver: "GHG Protocol Certified",
-        kpi_b2b_partners: "Industrial Demand",
-        chart_material_title: "Reclaimed Materials Composition",
-        chart_units_tons: "Metric Tons (t)",
-        chart_status_title: "Supply Chain Phase Breakdown",
-        chart_status_desc: "Distribution across logistics and quality control gates",
-        chart_efficiency: "Processing Efficiency:",
-        recent_activity_title: "Recent Circular Transactions",
-        live_feed: "Live Sync",
-        supp_title: "Supplier Module: Publish Waste Stream",
-        supp_subtitle: "Register organic and industrial byproducts for collection and circular manufacturing.",
-        lbl_material_type: "Residual Material Type",
-        lbl_quantity: "Estimated Quantity",
-        lbl_location: "Origin Plant / Location",
-        lbl_avail_date: "Availability Date",
-        lbl_notes: "Technical Specs / Moisture",
-        btn_publish_now: "Publish Waste Stream",
-        co2_sim_title: "Real-Time Environmental Estimator",
-        co2_sim_heading: "Estimated Carbon Offset",
-        sim_factor: "Conversion Factor:",
-        sim_co2_total: "Total Avoided Emissions:",
-        sim_rule1: "Prevents methane generation in landfills.",
-        sim_rule2: "Generates Scope 3 sustainability credits.",
-        my_listings_title: "My Waste Stream Listings",
-        th_id: "Ref ID",
-        th_material: "Material",
-        th_quantity: "Quantity",
-        th_location: "Location",
-        th_co2_saved: "CO2 Avoided",
-        th_status: "Status",
-        th_actions: "Admin Actions",
-        th_supplier: "Supplier",
-        th_date: "Avail. Date",
-        admin_title: "Admin Review & Initial Quality Gate",
-        admin_subtitle: "Review incoming waste offers, validate specifications, and dispatch logistics routes.",
-        logistics_title: "Field Logistics & Pickups",
-        logistics_subtitle: "Interface for logistics drivers and operators. Log verified scale measurements.",
-        wh_title: "Circular Raw Material Warehouse & QC",
-        wh_subtitle: "Inbound inspection, impurity loss splitting, and RB-Batch ID generation.",
-        wh_stock_total: "Gross Plant Stock",
-        wh_qc_approved: "QC Passed / Ready",
-        wh_mermas: "Losses / Impurities",
-        wh_table_title: "Classified Material Batches (RB Batches)",
-        wh_system_id: "ISO-14021 Traceable System",
-        th_batch_id: "Batch ID",
-        th_qty_accepted: "Accepted Qty",
-        th_qty_mermas: "Losses (Rejected)",
-        th_quality_grade: "Quality Grade",
-        th_qc_action: "QC Action",
-        cat_title: "Upcycled B2B Products & Quotes",
-        cat_subtitle: "Engineered industrial packaging and materials converted from circular biomass.",
-        quote_queue_title: "B2B Quote Request Queue",
-        th_quote_id: "Quote ID",
-        th_client: "B2B Client",
-        th_product: "Product",
-        th_volume: "Volume",
-        th_est_total: "Est. Total Value",
-        modal_sched_title: "Schedule Logistics Pickup",
-        lbl_assign_driver: "Assigned Driver",
-        lbl_pickup_time: "Scheduled Time",
-        btn_cancel: "Cancel",
-        btn_confirm_sched: "Confirm Pickup",
-        modal_weigh_title: "Digital Weighing & Warehouse Gate Entry",
-        weigh_booked_qty: "Estimated Order Quantity:",
-        lbl_actual_weight: "Actual Net Weight (Tons)",
-        lbl_mermas_est: "Losses / Impurities (Tons)",
-        btn_save_entry: "Commit to Warehouse",
-        modal_quote_title: "Request B2B Quote",
-        lbl_company: "Company Name",
-        lbl_volume: "Required Volume",
-        lbl_target_date: "Target Delivery Date",
-        btn_send_quote: "Submit Request",
-        reset_modal_title: "Reset Demo Data?",
-        reset_modal_desc: "This will restore all listings, warehouse batches, and quotes to default initial state.",
-        btn_confirm_reset: "Yes, Reset",
-        btn_approve: "Approve & Schedule",
-        btn_reject: "Reject",
-        btn_log_weight: "Log Scale Weight",
-        btn_quote_req: "Request Quote",
-        badge_pending: "Pending",
-        badge_scheduled: "Scheduled",
-        badge_received: "In Warehouse",
-        badge_rejected: "Rejected",
-        badge_quoted: "In Quote",
-        badge_confirmed: "Confirmed"
+        subtitle: 'Sotol Valorization & Circular Platform',
+        nav_title: 'Module Navigation',
+        nav_dashboard: 'Main Dashboard',
+        nav_supplier: 'Supplier (Publish)',
+        nav_admin: 'Admin Review',
+        nav_logistics: 'Logistics & Pickups',
+        nav_warehouse: 'Warehouse & Inventory',
+        nav_catalog: 'B2B Sotol Catalog',
+        active_raw_mat: 'Current Active Plant',
+        dash_title: 'Executive Summary: Sotol Recovery',
+        dash_subtitle: 'Real-time monitoring of revalorized Sotol biomass and carbon footprint.',
+        btn_pub_sotol: 'Publish Sotol Waste',
+        kpi_revalorized: 'Revalorized Sotol',
+        kpi_sub1: '+100% Organic Biomass',
+        kpi_co2: 'Estimated Avoided CO2e',
+        kpi_sub2: 'Factor: 2.4 tCO2e / Ton',
+        kpi_pickups: 'Active Pickups',
+        kpi_sub3: 'In-Field Logistics',
+        kpi_batches: 'Warehouse Batches',
+        kpi_sub4: 'Ready for Processing',
+        chart_mat_mix: 'Processed Material Composition',
+        chart_supply_chain: 'Supply Chain Status',
+        chart_supply_sub: 'Sotol processing stages',
+        supp_title: 'Supplier Module: Register Sotol Residue',
+        supp_subtitle: 'Register Sotol bagasse or fiber for pickup and circular recycling.',
+        plant_active: 'Current active plant:',
+        plant_plan: '*Other plants planned',
+        lbl_material: 'Material Type',
+        opt_fiber: 'Sotol Fiber Waste',
+        opt_bagasse: 'Sotol Bagasse Waste',
+        lbl_qty: 'Estimated Quantity',
+        lbl_location: 'Location / Plant Origin',
+        lbl_date: 'Availability Date',
+        lbl_notes: 'Technical Specs / Moisture',
+        btn_pub_now: 'Publish Waste Offer',
+        sim_title: 'Sotol Eco-Impact Calculator',
+        sim_heading: 'Estimated Carbon Savings',
+        sim_factor: 'Sotol Factor:',
+        sim_avoided: 'Total Avoided Emissions:',
+        sim_cert: '✔ Circular certification for Sotol biomass.',
+        my_pub_title: 'My Registered Publications',
+        th_id: 'Ref ID',
+        th_material: 'Material',
+        th_qty: 'Quantity',
+        th_location: 'Location',
+        th_co2: 'Avoided CO2',
+        th_status: 'Status',
+        admin_title: 'Sotol Review & Dispatch Approval',
+        admin_subtitle: 'Review incoming Sotol submissions and authorize pickup routes.',
+        th_supplier: 'Supplier',
+        th_qty_est: 'Est. Qty',
+        th_date: 'Avail. Date',
+        th_action: 'Admin Action',
+        log_title: 'Logistics, Transport & Digital Scale Weigh-in',
+        log_subtitle: 'Fleet management in transit and gross/net Sotol weight verification.',
+        log_live: 'Live Monitoring',
+        wh_title: 'Warehouse & Sotol Inventory (RB Batches)',
+        wh_subtitle: 'Verified batches with quality control and moisture shrinkage.',
+        wh_total_stock: 'Total Sotol Stock',
+        wh_qc_pass: 'QC Approved',
+        wh_shrinkage: 'Shrinkage / Moisture',
+        wh_tbl_title: 'Classified Sotol Batches',
+        th_batch_id: 'Batch ID',
+        th_raw_mat: 'Raw Material',
+        th_scale_weight: 'Scale Weight',
+        th_moisture: 'Moisture %',
+        th_qc_grade: 'QC Grade',
+        th_silo: 'Silo Location',
+        cat_title: 'B2B Catalog: Sotol Bioproducts',
+        cat_subtitle: 'Circular raw materials derived from processed Sotol.',
+        cat_item1_badge: 'Industrial Grade A',
+        cat_item1_name: 'Refined Sotol Fiber Bales',
+        cat_item1_desc: 'Dehydrated plant fiber ideal for thermoformed packaging, composites, and bioplastics.',
+        cat_item2_badge: 'Thermal Biomass',
+        cat_item2_name: 'Pelletized Sotol Bagasse',
+        cat_item2_desc: 'High calorific biofuel pellets manufactured from reclaimed Sotol waste.',
+        btn_quote: 'Request Quote',
+        modal_scale_title: 'In-Field Digital Scale',
+        modal_driver_lbl: 'Assigned Driver / Truck',
+        modal_weight_lbl: 'Verified Scale Weight (Tons)',
+        modal_moist_lbl: 'Measured Moisture (%)',
+        btn_cancel: 'Cancel',
+        btn_confirm_scale: 'Confirm Weigh-in & Send to Warehouse'
       }
     };
 
-    /* CO2 FACTORS PER TON */
-    const CO2_FACTORS = {
-      'Sotol Fiber / Fibra de Sotol': 2.4,
-      'Agave Bagasse / Bagazo de Agave': 2.1,
-      'Cardboard Scrap / Cartón Industrial': 1.8,
-      'Wood Pallets / Tarimas de Madera': 1.2,
-      'Polypropylene Shred / Plástico PP': 3.1
-    };
-
-    /* INITIAL DEMO STATE */
-    const DEFAULT_STATE = {
-      lang: 'es',
-      activeTab: 'dashboard',
-      listings: [
-        { id: 'RB-1001', material: 'Sotol Fiber / Fibra de Sotol', qty: 14.5, unit: 'Tons', location: 'Planta Juárez Norte', date: '2026-10-22', status: 'Pending', co2: 34.8, supplier: 'Destilería Sotol Real' },
-        { id: 'RB-1002', material: 'Agave Bagasse / Bagazo de Agave', qty: 28.0, unit: 'Tons', location: 'Planta Chihuahua Sur', date: '2026-10-20', status: 'Scheduled', co2: 58.8, driver: 'Carlos Mendoza (Unidad T-04)', time: '09:00', supplier: 'Agave Bio-Industrias' },
-        { id: 'RB-1003', material: 'Cardboard Scrap / Cartón Industrial', qty: 8.2, unit: 'Tons', location: 'Parque Industrial Bermúdez', date: '2026-10-18', status: 'Received', co2: 14.76, supplier: 'Empaques del Norte' },
-        { id: 'RB-1004', material: 'Polypropylene Shred / Plástico PP', qty: 5.0, unit: 'Tons', location: 'Planta Juárez Oeste', date: '2026-10-25', status: 'Pending', co2: 15.5, supplier: 'Polímeros Reciclados MX' }
-      ],
-      warehouseBatches: [
-        { batchId: 'RB-B201', material: 'Sotol Fiber / Fibra de Sotol', qtyAccepted: 42.0, qtyLoss: 1.8, grade: 'Grado A (Alta Pureza)', bay: 'Silo Bio-01' },
-        { batchId: 'RB-B202', material: 'Agave Bagasse / Bagazo de Agave', qtyAccepted: 85.5, qtyLoss: 4.2, grade: 'Grado B (Estándar)', bay: 'Nave B - Bahía 4' },
-        { batchId: 'RB-B203', material: 'Cardboard Scrap / Cartón Industrial', qtyAccepted: 49.3, qtyLoss: 1.4, grade: 'Grado A (Alta Pureza)', bay: 'Nave C - Prensas' }
-      ],
-      catalogProducts: [
-        { id: 'PROD-01', name_es: 'Insertos Protectores Bio-Sotol', name_en: 'Bio-Sotol Molded Packaging Inserts', eco_es: 'Sustituye unicel/EPS. 100% Biodegradable.', eco_en: 'Replaces EPS foam. 100% Biodegradable.', price: '$1.85 USD / unit', icon: 'fa-cube' },
-        { id: 'PROD-02', name_es: 'Tarimas Industriales Bio-Compuestas', name_en: 'Bio-Composite Industrial Pallets', eco_es: 'Fabricadas con 70% fibra de agave y PP reciclado.', eco_en: 'Made with 70% agave fiber & recycled PP.', price: '$18.50 USD / unit', icon: 'fa-pallet' },
-        { id: 'PROD-03', name_es: 'Pellets Termoplásticos de Biomasa', name_en: 'Biomass Thermoplastic Pellets', eco_es: 'Resina para moldeo por inyección de grado técnico.', eco_en: 'Injection molding technical grade resin.', price: '$1,120 USD / Ton', icon: 'fa-boxes-stacked' },
-        { id: 'PROD-04', name_es: 'Contenedores Reciclados Heavy-Duty', name_en: 'Heavy-Duty Reusable Containers', eco_es: 'Para logística interna en plantas automotrices.', eco_en: 'For internal automotive plant logistics.', price: '$45.00 USD / unit', icon: 'fa-box-tissue' }
-      ],
-      quotes: [
-        { id: 'QT-801', company: 'AutoParts Assembly MX', product: 'Insertos Protectores Bio-Sotol', volume: '10,000 unidades', estimated: '$18,500 USD', status: 'In Quote' },
-        { id: 'QT-802', company: 'Logística Global Chihuahua', product: 'Tarimas Industriales Bio-Compuestas', volume: '500 tarimas', estimated: '$9,250 USD', status: 'Confirmed' }
-      ],
-      activities: [
-        { icon: 'fa-check-circle', color: 'text-emerald-500', title_es: 'Lote RB-B203 ingresado a Almacén', title_en: 'Batch RB-B203 committed to Warehouse', time: 'Hace 10 min' },
-        { icon: 'fa-truck-moving', color: 'text-blue-500', title_es: 'Recolección RB-1002 en ruta', title_en: 'Pickup RB-1002 in transit', time: 'Hace 45 min' },
-        { icon: 'fa-leaf', color: 'text-teal-500', title_es: 'Nueva oferta: 14.5t Fibra de Sotol', title_en: 'New offer: 14.5t Sotol Fiber', time: 'Hace 2 horas' }
-      ]
-    };
-
-    let appState = {};
-    let chartMixInstance = null;
-    let chartStatusInstance = null;
-
-    /* INITIALIZATION */
-    window.onload = function() {
-      loadState();
-      calculateCo2Estimate();
-      updateUI();
-      // Set default available date in form to today
-      const today = new Date().toISOString().split('T')[0];
-      document.getElementById('input-date').value = today;
-    };
-
-    function loadState() {
-      const saved = localStorage.getItem('REBOX_APP_STATE');
-      if (saved) {
-        try {
-          appState = JSON.parse(saved);
-        } catch (e) {
-          appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
-        }
-      } else {
-        appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+    const initialState = [
+      {
+        id: 'RB-ST01',
+        materialType: 'sotol_fiber',
+        supplier: 'Destilería Juárez',
+        quantity: 14.5,
+        unit: 'Tons',
+        location: 'Planta Industrial Juárez',
+        date: '2026-11-02',
+        co2: 34.8,
+        status: 'pending',
+        weightScale: null,
+        moisture: 12,
+        driver: 'Carlos V. (Camión 04)'
+      },
+      {
+        id: 'RB-ST02',
+        materialType: 'sotol_bagasse',
+        supplier: 'Procesadora Chihuahuense',
+        quantity: 28.0,
+        unit: 'Tons',
+        location: 'Silo 2 - Delicias',
+        date: '2026-11-01',
+        co2: 67.2,
+        status: 'in_transit',
+        weightScale: 27.5,
+        moisture: 14,
+        driver: 'Roberto M. (Unidad TR-20)'
+      },
+      {
+        id: 'RB-ST03',
+        materialType: 'sotol_fiber',
+        supplier: 'Agro-Sotol Norte',
+        quantity: 106.0,
+        unit: 'Tons',
+        location: 'Almacén Central - Juárez',
+        date: '2026-10-28',
+        co2: 254.4,
+        status: 'warehouse',
+        weightScale: 106.0,
+        moisture: 10,
+        driver: 'Entregado'
       }
+    ];
+
+    let items = JSON.parse(localStorage.getItem('rebox_sotol_data')) || initialState;
+    let chartMaterial, chartStatus;
+
+    function getMaterialLabel(key) {
+      if (key === 'sotol_fiber') return currentLang === 'es' ? 'Fibra de Sotol (Sotol Fiber)' : 'Sotol Fiber';
+      if (key === 'sotol_bagasse') return currentLang === 'es' ? 'Bagazo de Sotol (Sotol Bagasse)' : 'Sotol Bagasse';
+      return key;
     }
 
-    function saveState() {
-      localStorage.setItem('REBOX_APP_STATE', JSON.stringify(appState));
-    }
-
-    /* LANGUAGE SWITCHING ENGINE */
     function setLanguage(lang) {
-      appState.lang = lang;
-      saveState();
-
-      // Switch language
-      const btnEs = document.getElementById('btn-lang-es');
-      const btnEn = document.getElementById('btn-lang-en');
-
-      if (lang === 'es') {
-        btnEs.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-300 bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md scale-105";
-        btnEn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-300 text-slate-400 hover:text-white";
-      } else {
-        btnEn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-300 bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md scale-105";
-        btnEs.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-300 text-slate-400 hover:text-white";
-      }
-
-      // Translate all static DOM elements with data-i18n
-      const elements = document.querySelectorAll('[data-i18n]');
-      elements.forEach(el => {
+      currentLang = lang;
+      document.getElementById('btn-lang-es').className = lang === 'es' ? 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' : 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-slate-400 hover:text-white';
+      document.getElementById('btn-lang-en').className = lang === 'en' ? 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' : 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-slate-400 hover:text-white';
+      
+      // Update DOM Elements with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (i18n[lang] && i18n[lang][key]) {
-          el.innerText = i18n[lang][key];
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
         }
       });
 
-      // Re-render dynamic lists & charts
-      renderAllModules();
-      showToast(lang === 'es' ? 'Idioma cambiado a Español 🇲🇽' : 'Language switched to English 🇺🇸');
+      renderAll();
     }
 
-    /* NAVIGATION SWITCHER */
-    function switchTab(tabId) {
-      appState.activeTab = tabId;
-      saveState();
-
-      // Hide all tabs
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-      document.getElementById(`module-${tabId}`).classList.remove('hidden');
-
-      // Update Nav Link Styles
-      document.querySelectorAll('.nav-link').forEach(btn => {
-        btn.classList.remove('bg-emerald-50', 'text-emerald-700', 'border-r-4', 'border-emerald-600');
-        btn.classList.add('text-slate-600', 'hover:bg-slate-100');
-      });
-
-      const activeNav = document.getElementById(`nav-${tabId}`);
-      if (activeNav) {
-        activeNav.classList.remove('text-slate-600', 'hover:bg-slate-100');
-        activeNav.classList.add('bg-emerald-50', 'text-emerald-700', 'border-r-4', 'border-emerald-600');
-      }
-
-      if (tabId === 'dashboard') {
-        renderCharts();
-      }
+    function saveData() {
+      localStorage.setItem('rebox_sotol_data', JSON.stringify(items));
+      renderAll();
     }
 
-    /* MAIN UI RENDER DISPATCHER */
-    function updateUI() {
-      setLanguage(appState.lang || 'es');
-      switchTab(appState.activeTab || 'dashboard');
+    function resetData() {
+      items = JSON.parse(JSON.stringify(initialState));
+      saveData();
     }
 
-    function renderAllModules() {
-      renderDashboard();
-      renderSupplier();
-      renderAdmin();
-      renderLogistics();
-      renderWarehouse();
-      renderCatalog();
-    }
-
-    /* 1. DASHBOARD MODULE RENDER */
-    function renderDashboard() {
-      // Calculate KPIs
-      const totalTons = appState.listings.reduce((acc, item) => acc + (item.status !== 'Rejected' ? parseFloat(item.qty) : 0), 0) +
-                        appState.warehouseBatches.reduce((acc, item) => acc + parseFloat(item.qtyAccepted), 0);
-
-      const totalCo2 = appState.listings.reduce((acc, item) => acc + (item.status !== 'Rejected' ? parseFloat(item.co2) : 0), 0);
-
-      const activePickups = appState.listings.filter(i => i.status === 'Scheduled').length;
-      const openQuotes = appState.quotes.length;
-
-      document.getElementById('kpi-total-tons').innerText = totalTons.toFixed(1) + ' t';
-      document.getElementById('kpi-total-co2').innerText = totalCo2.toFixed(1) + ' t';
-      document.getElementById('kpi-active-pickups').innerText = activePickups;
-      document.getElementById('kpi-quotes-count').innerText = openQuotes;
-
-      // Activity Feed
-      const feedContainer = document.getElementById('activity-feed-container');
-      const lang = appState.lang;
-      feedContainer.innerHTML = appState.activities.map(act => `
-        <div class="px-6 py-3 flex items-center justify-between hover:bg-slate-50 transition">
-          <div class="flex items-center gap-3">
-            <i class="fa-solid ${act.icon} ${act.color} text-lg"></i>
-            <span class="text-xs sm:text-sm font-semibold text-slate-800">${lang === 'es' ? act.title_es : act.title_en}</span>
-          </div>
-          <span class="text-[11px] text-slate-400 font-medium">${act.time}</span>
-        </div>
-      `).join('');
-
-      renderCharts();
-    }
-
-    /* CHART.JS RENDERER */
-    function renderCharts() {
-      const isEs = appState.lang === 'es';
-
-      // Chart 1: Material Mix
-      const ctxMix = document.getElementById('chartMaterialMix').getContext('2d');
-      if (chartMixInstance) chartMixInstance.destroy();
-
-      chartMixInstance = new Chart(ctxMix, {
-        type: 'bar',
-        data: {
-          labels: isEs 
-            ? ['Fibra Sotol', 'Bagazo Agave', 'Cartón Ind.', 'Plástico PP', 'Madera'] 
-            : ['Sotol Fiber', 'Agave Bagasse', 'Cardboard', 'PP Plastic', 'Wood Pallets'],
-          datasets: [{
-            label: isEs ? 'Toneladas Recalificadas' : 'Reclaimed Tons',
-            data: [56.5, 113.5, 57.5, 5.0, 12.0],
-            backgroundColor: ['#059669', '#10b981', '#3b82f6', '#8b5cf6', '#f59e0b'],
-            borderRadius: 8
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: {
-            y: { grid: { color: '#f1f5f9' }, ticks: { font: { size: 10 } } },
-            x: { grid: { display: false }, ticks: { font: { size: 10 } } }
-          }
-        }
-      });
-
-      // Chart 2: Status Pie
-      const ctxStatus = document.getElementById('chartStatusPie').getContext('2d');
-      if (chartStatusInstance) chartStatusInstance.destroy();
-
-      const pendingCount = appState.listings.filter(i => i.status === 'Pending').length;
-      const schedCount = appState.listings.filter(i => i.status === 'Scheduled').length;
-      const recvCount = appState.listings.filter(i => i.status === 'Received').length + appState.warehouseBatches.length;
-
-      chartStatusInstance = new Chart(ctxStatus, {
-        type: 'doughnut',
-        data: {
-          labels: [
-            i18n[appState.lang].badge_pending,
-            i18n[appState.lang].badge_scheduled,
-            i18n[appState.lang].badge_received
-          ],
-          datasets: [{
-            data: [pendingCount, schedCount, recvCount],
-            backgroundColor: ['#f59e0b', '#3b82f6', '#10b981'],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12 } }
-          },
-          cutout: '70%'
-        }
-      });
-    }
-
-
-    /* 2. SUPPLIER MODULE RENDER & LOGIC */
     function calculateCo2Estimate() {
-      const mat = document.getElementById('input-material').value;
-      const qty = parseFloat(document.getElementById('input-quantity').value) || 0;
-      const factor = CO2_FACTORS[mat] || 2.0;
-
-      document.getElementById('sim-factor-display').innerText = `${factor.toFixed(1)} tCO2e / Ton`;
-      document.getElementById('sim-co2-result').innerText = `${(qty * factor).toFixed(1)} tCO2e`;
+      const q = parseFloat(document.getElementById('input-quantity').value) || 0;
+      const co2 = (q * 2.4).toFixed(1);
+      document.getElementById('sim-co2-result').innerText = co2 + ' tCO2e';
     }
 
     function handlePublishWaste(e) {
       e.preventDefault();
-      const mat = document.getElementById('input-material').value;
-      const qty = parseFloat(document.getElementById('input-quantity').value);
+      const materialType = document.getElementById('input-material').value;
+      const quantity = parseFloat(document.getElementById('input-quantity').value);
       const unit = document.getElementById('input-unit').value;
       const location = document.getElementById('input-location').value;
-      const date = document.getElementById('input-date').value;
-      const factor = CO2_FACTORS[mat] || 2.0;
+      const date = document.getElementById('input-date').value || new Date().toISOString().split('T')[0];
+      const co2 = parseFloat((quantity * 2.4).toFixed(1));
 
-      const newListing = {
-        id: `RB-${Math.floor(1000 + Math.random() * 9000)}`,
-        material: mat,
-        qty: qty,
-        unit: unit,
-        location: location,
-        date: date,
-        status: 'Pending',
-        co2: parseFloat((qty * factor).toFixed(2)),
-        supplier: 'Planta Industrial Juárez'
+      const newItem = {
+        id: 'RB-ST' + Math.floor(100 + Math.random() * 900),
+        materialType,
+        supplier: 'Juárez Agro-Hub',
+        quantity,
+        unit,
+        location,
+        date,
+        co2,
+        status: 'pending',
+        weightScale: null,
+        moisture: 12,
+        driver: currentLang === 'es' ? 'Por Asignar' : 'Unassigned'
       };
 
-      appState.listings.unshift(newListing);
-      
-      // Add Activity
-      appState.activities.unshift({
-        icon: 'fa-plus-circle',
-        color: 'text-emerald-500',
-        title_es: `Nueva publicación: ${qty}t de ${mat.split('/')[0]}`,
-        title_en: `New listing: ${qty}t of ${mat.split('/')[1] || mat}`,
-        time: 'Justo ahora'
+      items.unshift(newItem);
+      saveData();
+      alert(currentLang === 'es' ? '¡Oferta de residuo de Sotol publicada con éxito!' : 'Sotol waste offer published successfully!');
+      switchTab('admin');
+    }
+
+    function approveItem(id) {
+      const item = items.find(i => i.id === id);
+      if (item) {
+        item.status = 'in_transit';
+        saveData();
+      }
+    }
+
+    function openScaleModal(id) {
+      const item = items.find(i => i.id === id);
+      if (!item) return;
+      document.getElementById('modal-scale-item-id').value = id;
+      document.getElementById('modal-weight-scale').value = item.weightScale || item.quantity;
+      document.getElementById('modal-scale').classList.remove('hidden');
+    }
+
+    function closeScaleModal() {
+      document.getElementById('modal-scale').classList.add('hidden');
+    }
+
+    function confirmScaleWeighIn() {
+      const id = document.getElementById('modal-scale-item-id').value;
+      const verifiedWeight = parseFloat(document.getElementById('modal-weight-scale').value);
+      const moisture = parseInt(document.getElementById('modal-moisture').value);
+      const driver = document.getElementById('modal-driver').value;
+
+      const item = items.find(i => i.id === id);
+      if (item) {
+        item.weightScale = verifiedWeight;
+        item.moisture = moisture;
+        item.driver = driver;
+        item.status = 'warehouse';
+        saveData();
+      }
+      closeScaleModal();
+    }
+
+    function quoteAlert() {
+      alert(currentLang === 'es' ? 'Solicitud de cotización de Sotol enviada con éxito' : 'Sotol quote request submitted successfully');
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-link').forEach(el => {
+        el.classList.remove('bg-emerald-50', 'text-emerald-700', 'font-bold');
+        el.classList.add('text-slate-600');
       });
 
-      saveState();
-      renderAllModules();
-      showToast(appState.lang === 'es' ? 'Oferta de residuo publicada con éxito' : 'Waste offer successfully published');
+      const activeTab = document.getElementById('module-' + tabId);
+      const activeNav = document.getElementById('nav-' + tabId);
+
+      if (activeTab) activeTab.classList.remove('hidden');
+      if (activeNav) {
+        activeNav.classList.add('bg-emerald-50', 'text-emerald-700', 'font-bold');
+        activeNav.classList.remove('text-slate-600');
+      }
     }
 
-    function renderSupplier() {
-      const body = document.getElementById('supplier-table-body');
-      document.getElementById('my-listings-count').innerText = `${appState.listings.length} ${appState.lang === 'es' ? 'Publicaciones' : 'Listings'}`;
-
-      body.innerHTML = appState.listings.map(item => `
-        <tr class="hover:bg-slate-50 transition">
-          <td class="py-3 px-4 font-mono font-bold text-slate-700">${item.id}</td>
-          <td class="py-3 px-4 font-semibold text-slate-800">${item.material}</td>
-          <td class="py-3 px-4 font-bold">${item.qty} ${item.unit}</td>
+    function renderAll() {
+      // 1. Supplier Table
+      const suppBody = document.getElementById('supplier-table-body');
+      suppBody.innerHTML = items.map(item => `
+        <tr class="hover:bg-slate-50">
+          <td class="py-3 px-4 font-bold text-slate-800">${item.id}</td>
+          <td class="py-3 px-4"><i class="fa-solid fa-plant-wilt text-emerald-600 mr-1.5"></i>${getMaterialLabel(item.materialType)}</td>
+          <td class="py-3 px-4 font-semibold">${item.quantity} ${item.unit}</td>
           <td class="py-3 px-4 text-slate-500">${item.location}</td>
-          <td class="py-3 px-4 text-emerald-600 font-bold">+${item.co2} tCO2e</td>
-          <td class="py-3 px-4">${renderStatusBadge(item.status)}</td>
+          <td class="py-3 px-4 text-emerald-600 font-bold">${item.co2} tCO2e</td>
+          <td class="py-3 px-4">${getStatusBadge(item.status)}</td>
         </tr>
       `).join('');
-    }
 
-
-    /* 3. ADMIN MODULE RENDER & ACTIONS */
-    function renderAdmin() {
-      const pendingList = appState.listings.filter(i => i.status === 'Pending');
-      document.getElementById('badge-pending-count').innerText = pendingList.length;
-      document.getElementById('admin-pending-badge').innerText = `${pendingList.length} ${appState.lang === 'es' ? 'Pendientes' : 'Pending'}`;
-
-      const body = document.getElementById('admin-table-body');
-      body.innerHTML = appState.listings.map(item => `
-        <tr class="hover:bg-slate-50 transition">
-          <td class="py-3 px-4 font-mono font-bold text-slate-700">${item.id}</td>
-          <td class="py-3 px-4 font-semibold text-slate-800">${item.material}</td>
-          <td class="py-3 px-4 text-slate-600">${item.supplier}</td>
-          <td class="py-3 px-4 font-bold">${item.qty} ${item.unit}</td>
+      // 2. Admin Table
+      const pendingItems = items.filter(i => i.status === 'pending');
+      document.getElementById('badge-pending-count').innerText = pendingItems.length;
+      const adminBody = document.getElementById('admin-table-body');
+      adminBody.innerHTML = items.map(item => `
+        <tr class="hover:bg-slate-50">
+          <td class="py-3 px-4 font-bold">${item.id}</td>
+          <td class="py-3 px-4">${getMaterialLabel(item.materialType)}</td>
+          <td class="py-3 px-4">${item.supplier}</td>
+          <td class="py-3 px-4 font-bold">${item.quantity} ${item.unit}</td>
           <td class="py-3 px-4 text-slate-500">${item.date}</td>
-          <td class="py-3 px-4">${renderStatusBadge(item.status)}</td>
-          <td class="py-3 px-4 text-right space-x-1">
-            ${item.status === 'Pending' ? `
-              <button onclick="openScheduleModal('${item.id}')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-3 py-1.5 rounded-lg shadow-sm">
-                <i class="fa-solid fa-calendar-check mr-1"></i> ${i18n[appState.lang].btn_approve}
-              </button>
-              <button onclick="rejectListing('${item.id}')" class="bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold text-xs px-2.5 py-1.5 rounded-lg border border-rose-200">
-                ${i18n[appState.lang].btn_reject}
-              </button>
-            ` : `<span class="text-xs text-slate-400 italic">${appState.lang === 'es' ? 'Procesado' : 'Processed'}</span>`}
+          <td class="py-3 px-4">${getStatusBadge(item.status)}</td>
+          <td class="py-3 px-4 text-right">
+            ${item.status === 'pending' 
+              ? `<button onclick="approveItem('${item.id}')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1 rounded-lg text-xs transition">${currentLang === 'es' ? 'Aprobar y Asignar Ruta' : 'Approve & Dispatch'}</button>` 
+              : `<span class="text-xs text-slate-400 italic">${currentLang === 'es' ? 'Procesado' : 'Processed'}</span>`}
           </td>
         </tr>
       `).join('');
-    }
 
-    function openScheduleModal(id) {
-      const item = appState.listings.find(i => i.id === id);
-      if (!item) return;
-
-      document.getElementById('sched-item-id').value = id;
-      document.getElementById('sched-material-name').value = `${item.id} - ${item.material} (${item.qty} ${item.unit})`;
-      openModal('modal-schedule');
-    }
-
-    function confirmSchedulePickup(e) {
-      e.preventDefault();
-      const id = document.getElementById('sched-item-id').value;
-      const driver = document.getElementById('sched-driver').value;
-      const time = document.getElementById('sched-time').value;
-
-      const item = appState.listings.find(i => i.id === id);
-      if (item) {
-        item.status = 'Scheduled';
-        item.driver = driver;
-        item.time = time;
-      }
-
-      saveState();
-      closeModal('modal-schedule');
-      renderAllModules();
-      showToast(appState.lang === 'es' ? 'Recolección programada correctamente' : 'Pickup scheduled successfully');
-    }
-
-    function rejectListing(id) {
-      const item = appState.listings.find(i => i.id === id);
-      if (item) {
-        item.status = 'Rejected';
-      }
-      saveState();
-      renderAllModules();
-      showToast(appState.lang === 'es' ? 'Oferta de residuo rechazada' : 'Listing rejected', 'error');
-    }
-
-
-    /* 4. LOGISTICS MODULE RENDER */
-    function renderLogistics() {
-      const container = document.getElementById('logistics-cards-container');
-      const scheduled = appState.listings.filter(i => i.status === 'Scheduled');
-
-      if (scheduled.length === 0) {
-        container.innerHTML = `
-          <div class="bg-white p-8 rounded-2xl border text-center text-slate-400">
-            <i class="fa-solid fa-truck text-4xl mb-2 text-slate-300"></i>
-            <p>${appState.lang === 'es' ? 'No hay recolecciones programadas en este momento.' : 'No scheduled pickups at this moment.'}</p>
+      // 3. Logistics Cards
+      const transitItems = items.filter(i => i.status === 'in_transit');
+      document.getElementById('badge-logistics-count').innerText = transitItems.length;
+      const logisticsContainer = document.getElementById('logistics-cards-container');
+      
+      if (transitItems.length === 0) {
+        logisticsContainer.innerHTML = `
+          <div class="bg-white p-8 rounded-2xl text-center border border-slate-200 text-slate-400">
+            <i class="fa-solid fa-truck-fast text-4xl mb-2 text-slate-300"></i>
+            <p class="text-sm font-semibold">${currentLang === 'es' ? 'No hay recolecciones de Sotol en tránsito.' : 'No active Sotol pickups currently in transit.'}</p>
           </div>
         `;
-        return;
+      } else {
+        logisticsContainer.innerHTML = transitItems.map(item => `
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between md:items-center gap-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="font-extrabold text-slate-900 text-base">${item.id}</span>
+                <span class="bg-blue-100 text-blue-800 font-bold text-[10px] px-2 py-0.5 rounded uppercase">${currentLang === 'es' ? 'En Ruta / Báscula' : 'En Route / Scale'}</span>
+              </div>
+              <p class="text-xs font-semibold text-slate-700"><i class="fa-solid fa-leaf text-emerald-600 mr-1"></i>${getMaterialLabel(item.materialType)}</p>
+              <p class="text-xs text-slate-500"><i class="fa-solid fa-location-dot mr-1"></i>${currentLang === 'es' ? 'Origen' : 'Origin'}: ${item.location} | ${currentLang === 'es' ? 'Chofer' : 'Driver'}: ${item.driver}</p>
+            </div>
+
+            <div class="flex items-center gap-3 text-xs text-slate-500 border-t md:border-t-0 pt-3 md:pt-0">
+              <div class="text-center">
+                <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs mx-auto">✓</span>
+                <span class="text-[10px] mt-1 block">${currentLang === 'es' ? 'Aprobado' : 'Approved'}</span>
+              </div>
+              <div class="w-8 h-0.5 bg-emerald-500"></div>
+              <div class="text-center">
+                <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs mx-auto animate-pulse">2</span>
+                <span class="text-[10px] mt-1 block font-bold text-blue-600">${currentLang === 'es' ? 'Báscula' : 'Scale'}</span>
+              </div>
+              <div class="w-8 h-0.5 bg-slate-200"></div>
+              <div class="text-center opacity-40">
+                <span class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center font-bold text-xs mx-auto">3</span>
+                <span class="text-[10px] mt-1 block">${currentLang === 'es' ? 'Almacén' : 'Warehouse'}</span>
+              </div>
+            </div>
+
+            <div>
+              <button onclick="openScaleModal('${item.id}')" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs shadow-md transition flex items-center gap-2">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <span>${currentLang === 'es' ? 'Registrar Báscula Digital' : 'Digital Scale Weigh-in'}</span>
+              </button>
+            </div>
+          </div>
+        `).join('');
       }
 
-      container.innerHTML = scheduled.map(item => `
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div class="space-y-1">
-            <div class="flex items-center gap-2">
-              <span class="font-mono font-bold text-xs bg-slate-100 px-2 py-0.5 rounded text-slate-700">${item.id}</span>
-              <h3 class="font-bold text-slate-900 text-sm sm:text-base">${item.material}</h3>
-            </div>
-            <p class="text-xs text-slate-500"><i class="fa-solid fa-location-dot text-rose-500 mr-1"></i> ${item.location} &bull; <i class="fa-solid fa-user-gear text-slate-400 ml-2 mr-1"></i> ${item.driver || 'Chofer Asignado'}</p>
-            <p class="text-xs font-semibold text-emerald-600"><i class="fa-solid fa-clock mr-1"></i> ${appState.lang === 'es' ? 'Hora programada:' : 'Scheduled time:'} ${item.time || '09:00 AM'}</p>
-          </div>
+      // 4. Warehouse Module
+      const whItems = items.filter(i => i.status === 'warehouse');
+      const totalTons = whItems.reduce((acc, i) => acc + (i.weightScale || i.quantity), 0);
+      document.getElementById('wh-stock-total').innerText = totalTons.toFixed(1) + ' Tons';
+      document.getElementById('wh-stock-conforme').innerText = (totalTons * 0.92).toFixed(1) + ' Tons';
+      document.getElementById('wh-stock-mermas').innerText = (totalTons * 0.08).toFixed(1) + ' Tons';
 
-          <div class="flex items-center gap-3 w-full sm:w-auto justify-end border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100">
-            <div class="text-right hidden sm:block">
-              <p class="text-xs text-slate-400 uppercase font-bold" data-i18n="lbl_quantity">Cantidad</p>
-              <p class="font-extrabold text-slate-800 text-base">${item.qty} ${item.unit}</p>
-            </div>
-            <button onclick="openWeighingModal('${item.id}')" class="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md flex items-center justify-center gap-2">
-              <i class="fa-solid fa-scale-balanced"></i>
-              <span>${i18n[appState.lang].btn_log_weight}</span>
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function openWeighingModal(id) {
-      const item = appState.listings.find(i => i.id === id);
-      if (!item) return;
-
-      document.getElementById('weigh-item-id').value = id;
-      document.getElementById('weigh-item-title').innerText = `${item.id} - ${item.material}`;
-      document.getElementById('weigh-booked-qty').innerText = `${item.qty} ${item.unit}`;
-      document.getElementById('weigh-actual').value = item.qty;
-      openModal('modal-weighing');
-    }
-
-    function confirmDriverWeighing(e) {
-      e.preventDefault();
-      const id = document.getElementById('weigh-item-id').value;
-      const actualQty = parseFloat(document.getElementById('weigh-actual').value);
-      const mermas = parseFloat(document.getElementById('weigh-mermas').value);
-      const grade = document.getElementById('weigh-grade').value;
-
-      const item = appState.listings.find(i => i.id === id);
-      if (item) {
-        item.status = 'Received';
-        item.actualQty = actualQty;
-
-        // Generate batch into warehouse
-        const newBatch = {
-          batchId: `RB-B${Math.floor(200 + Math.random() * 800)}`,
-          material: item.material,
-          qtyAccepted: parseFloat((actualQty - mermas).toFixed(1)),
-          qtyLoss: mermas,
-          grade: grade,
-          bay: 'Nave A - Recepción'
-        };
-        appState.warehouseBatches.unshift(newBatch);
-      }
-
-      saveState();
-      closeModal('modal-weighing');
-      renderAllModules();
-      showToast(appState.lang === 'es' ? 'Entrada de material registrada en almacén' : 'Material entry logged into warehouse inventory');
-    }
-
-
-    /* 5. WAREHOUSE MODULE RENDER */
-    function renderWarehouse() {
-      const totalStock = appState.warehouseBatches.reduce((acc, b) => acc + b.qtyAccepted + b.qtyLoss, 0);
-      const totalConforme = appState.warehouseBatches.reduce((acc, b) => acc + b.qtyAccepted, 0);
-      const totalMermas = appState.warehouseBatches.reduce((acc, b) => acc + b.qtyLoss, 0);
-
-      document.getElementById('wh-stock-total').innerText = `${totalStock.toFixed(1)} Tons`;
-      document.getElementById('wh-stock-conforme').innerText = `${totalConforme.toFixed(1)} Tons`;
-      document.getElementById('wh-stock-mermas').innerText = `${totalMermas.toFixed(1)} Tons`;
-
-      const body = document.getElementById('warehouse-table-body');
-      body.innerHTML = appState.warehouseBatches.map(b => `
-        <tr class="hover:bg-slate-50 transition">
-          <td class="py-3 px-4 font-mono font-bold text-emerald-700">${b.batchId}</td>
-          <td class="py-3 px-4 font-semibold text-slate-800">${b.material}</td>
-          <td class="py-3 px-4 font-extrabold text-slate-900">${b.qtyAccepted} Tons</td>
-          <td class="py-3 px-4 text-rose-600 font-bold">${b.qtyLoss} Tons</td>
-          <td class="py-3 px-4"><span class="bg-slate-100 text-slate-700 text-[11px] font-bold px-2 py-0.5 rounded">${b.grade}</span></td>
-          <td class="py-3 px-4 text-slate-500 text-xs">${b.bay}</td>
-          <td class="py-3 px-4 text-right">
-            <span class="text-xs font-bold text-emerald-600 border border-emerald-200 bg-emerald-50 px-2.5 py-1 rounded-lg">
-              <i class="fa-solid fa-check mr-1"></i> ISO QC Passed
-            </span>
-          </td>
+      const whBody = document.getElementById('warehouse-table-body');
+      whBody.innerHTML = whItems.map(item => `
+        <tr class="hover:bg-slate-50">
+          <td class="py-3 px-4 font-bold text-slate-800">${item.id}-WH</td>
+          <td class="py-3 px-4"><i class="fa-solid fa-plant-wilt text-emerald-600 mr-1.5"></i>${getMaterialLabel(item.materialType)}</td>
+          <td class="py-3 px-4 font-bold text-emerald-700">${item.weightScale || item.quantity} Tons</td>
+          <td class="py-3 px-4">${item.moisture || 12}%</td>
+          <td class="py-3 px-4"><span class="bg-emerald-100 text-emerald-800 font-bold text-[10px] px-2 py-0.5 rounded">${currentLang === 'es' ? 'Grado A Conforme' : 'Grade A Pass'}</span></td>
+          <td class="py-3 px-4 text-slate-500">Silo 1 - Juárez</td>
         </tr>
       `).join('');
+
+      // Dashboard KPIs
+      document.getElementById('kpi-total-tons').innerText = totalTons.toFixed(1) + ' Tons';
+      document.getElementById('kpi-total-co2').innerText = (totalTons * 2.4).toFixed(1) + ' t';
+      document.getElementById('kpi-active-pickups').innerText = transitItems.length;
+
+      updateCharts(totalTons);
     }
 
-
-    /* 6. CATALOG & B2B QUOTES RENDER */
-    function renderCatalog() {
-      const grid = document.getElementById('products-grid-container');
-      const lang = appState.lang;
-
-      grid.innerHTML = appState.catalogProducts.map(p => `
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold mb-4">
-              <i class="fa-solid ${p.icon}"></i>
-            </div>
-            <h3 class="font-bold text-slate-900 text-base mb-1">${lang === 'es' ? p.name_es : p.name_en}</h3>
-            <p class="text-xs text-slate-500 mb-4">${lang === 'es' ? p.eco_es : p.eco_en}</p>
-          </div>
-          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-            <span class="font-extrabold text-slate-900 text-sm">${p.price}</span>
-            <button onclick="openQuoteModal('${p.id}')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2 rounded-xl transition">
-              <i class="fa-solid fa-paper-plane mr-1"></i> ${i18n[lang].btn_quote_req}
-            </button>
-          </div>
-        </div>
-      `).join('');
-
-      // Quotes Table
-      const quotesBody = document.getElementById('quotes-table-body');
-      document.getElementById('quotes-count-badge').innerText = `${appState.quotes.length} ${lang === 'es' ? 'Solicitudes' : 'Requests'}`;
-
-      quotesBody.innerHTML = appState.quotes.map(q => `
-        <tr class="hover:bg-slate-50 transition">
-          <td class="py-3 px-4 font-mono font-bold text-slate-700">${q.id}</td>
-          <td class="py-3 px-4 font-semibold text-slate-800">${q.company}</td>
-          <td class="py-3 px-4 text-slate-600">${q.product}</td>
-          <td class="py-3 px-4 font-bold">${q.volume}</td>
-          <td class="py-3 px-4 text-emerald-600 font-extrabold">${q.estimated}</td>
-          <td class="py-3 px-4">${renderStatusBadge(q.status)}</td>
-        </tr>
-      `).join('');
+    function getStatusBadge(status) {
+      if (status === 'pending') return `<span class="bg-amber-100 text-amber-800 font-bold text-[10px] px-2.5 py-1 rounded-full">${currentLang === 'es' ? 'Pendiente Revisión' : 'Pending Review'}</span>`;
+      if (status === 'in_transit') return `<span class="bg-blue-100 text-blue-800 font-bold text-[10px] px-2.5 py-1 rounded-full"><i class="fa-solid fa-truck mr-1"></i>${currentLang === 'es' ? 'En Báscula / Ruta' : 'In Transit / Scale'}</span>`;
+      if (status === 'warehouse') return `<span class="bg-emerald-100 text-emerald-800 font-bold text-[10px] px-2.5 py-1 rounded-full"><i class="fa-solid fa-check mr-1"></i>${currentLang === 'es' ? 'En Almacén QC' : 'In Warehouse QC'}</span>`;
+      return '';
     }
 
-    function openQuoteModal(prodId) {
-      const prod = appState.catalogProducts.find(p => p.id === prodId);
-      if (!prod) return;
+    function updateCharts(totalTons) {
+      if (chartMaterial) chartMaterial.destroy();
+      if (chartStatus) chartStatus.destroy();
 
-      document.getElementById('quote-product-id').value = prodId;
-      document.getElementById('quote-product-name').value = appState.lang === 'es' ? prod.name_es : prod.name_en;
-      openModal('modal-quote');
+      const ctx1 = document.getElementById('chartMaterialMix').getContext('2d');
+      chartMaterial = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: currentLang === 'es' ? ['Fibra de Sotol', 'Bagazo de Sotol'] : ['Sotol Fiber', 'Sotol Bagasse'],
+          datasets: [{
+            label: currentLang === 'es' ? 'Toneladas Procesadas' : 'Processed Tons',
+            data: [totalTons * 0.7, totalTons * 0.3],
+            backgroundColor: ['#059669', '#0d9488']
+          }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+
+      const ctx2 = document.getElementById('chartStatusPie').getContext('2d');
+      chartStatus = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+          labels: currentLang === 'es' ? ['Almacén', 'En Tránsito', 'Pendiente'] : ['Warehouse', 'In Transit', 'Pending'],
+          datasets: [{
+            data: [
+              items.filter(i => i.status === 'warehouse').length,
+              items.filter(i => i.status === 'in_transit').length,
+              items.filter(i => i.status === 'pending').length
+            ],
+            backgroundColor: ['#10b981', '#3b82f6', '#f59e0b']
+          }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
     }
 
-    function submitB2BQuote(e) {
-      e.preventDefault();
-      const prodName = document.getElementById('quote-product-name').value;
-      const company = document.getElementById('quote-company').value;
-      const volume = document.getElementById('quote-volume').value;
-
-      const newQuote = {
-        id: `QT-${Math.floor(800 + Math.random() * 100)}`,
-        company: company,
-        product: prodName,
-        volume: volume,
-        estimated: '$12,400 USD',
-        status: 'In Quote'
-      };
-
-      appState.quotes.unshift(newQuote);
-      saveState();
-      closeModal('modal-quote');
-      renderAllModules();
-      showToast(appState.lang === 'es' ? 'Solicitud de cotización enviada a Ventas B2B' : 'B2B quote request submitted to Sales');
-    }
-
-
-    /* STATUS BADGE HELPER */
-    function renderStatusBadge(status) {
-      const isEs = appState.lang === 'es';
-      switch (status) {
-        case 'Pending':
-        case 'In Quote':
-          return `<span class="bg-amber-50 text-amber-700 border border-amber-200 text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1"><i class="fa-solid fa-clock"></i> ${isEs ? 'Pendiente' : 'Pending'}</span>`;
-        case 'Scheduled':
-          return `<span class="bg-blue-50 text-blue-700 border border-blue-200 text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1"><i class="fa-solid fa-calendar"></i> ${isEs ? 'Programado' : 'Scheduled'}</span>`;
-        case 'Received':
-        case 'Confirmed':
-          return `<span class="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> ${isEs ? 'En Almacén' : 'In Warehouse'}</span>`;
-        case 'Rejected':
-          return `<span class="bg-rose-50 text-rose-700 border border-rose-200 text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1"><i class="fa-solid fa-circle-xmark"></i> ${isEs ? 'Rechazado' : 'Rejected'}</span>`;
-        default:
-          return `<span class="bg-slate-100 text-slate-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full">${status}</span>`;
-      }
-    }
-
-
-    /* MODAL HELPERS */
-    function openModal(id) {
-      document.getElementById(id).classList.remove('hidden');
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).classList.add('hidden');
-    }
-
-    function openResetModal() {
-      openModal('modal-reset');
-    }
-
-    function confirmResetDemoData() {
-      localStorage.removeItem('REBOX_APP_STATE');
-      appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
-      closeModal('modal-reset');
-      updateUI();
-      showToast(appState.lang === 'es' ? 'Datos restablecidos a la configuración inicial' : 'Demo data reset to initial state');
-    }
-
-
-    /* TOAST SYSTEM */
-    function showToast(message, type = 'success') {
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      
-      const bgColor = type === 'error' ? 'bg-slate-900 border-rose-500 text-white' : 'bg-slate-900 border-emerald-500 text-white';
-      const icon = type === 'error' ? 'fa-triangle-exclamation text-rose-400' : 'fa-circle-check text-emerald-400';
-
-      toast.className = `p-4 rounded-xl border-l-4 ${bgColor} shadow-2xl text-xs font-bold flex items-center gap-3 transition-all transform translate-y-2 opacity-0 pointer-events-auto max-w-xs`;
-      toast.innerHTML = `<i class="fa-solid ${icon} text-base"></i><span>${message}</span>`;
-
-      container.appendChild(toast);
-
-      setTimeout(() => {
-        toast.classList.remove('translate-y-2', 'opacity-0');
-      }, 50);
-
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'translate-y-2');
-        setTimeout(() => toast.remove(), 300);
-      }, 3500);
-    }
+    window.onload = function() {
+      switchTab('dashboard');
+      setLanguage('es');
+      calculateCo2Estimate();
+      document.getElementById('input-date').valueAsDate = new Date();
+    };
   </script>
 </body>
 </html>
