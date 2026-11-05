@@ -39,7 +39,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .brand-sub { font: 8px var(--mono); color: var(--muted); letter-spacing: 1px; margin-top: 9px; }
 .nav-label { color: #647785; display: flex; justify-content: space-between; font: 10px var(--mono); padding: 0 13px 15px; }
 nav { display: grid; gap: 5px; }
-.nav-item { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; background: transparent; border: 1px solid transparent; border-radius: 4px; color: #94a2ad; padding: 14px 12px; font-size: 13px; transition: .2s; }
+.nav-item { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; background: transparent; border: 1px solid transparent; border-radius: 4px; color: #94a2ad; padding: 14px 12px; font-size: 18px; transition: .2s; }
 .nav-item:hover { background: #192630; color: white; }
 .nav-item.active { background: #142b2b; color: var(--cyan); border-color: #305651; }
 .nav-symbol { width: 21px; font: 21px var(--display); text-align: center; }
