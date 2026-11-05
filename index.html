@@ -1,982 +1,334 @@
+
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-slate-50">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ReBox | Circular Materials Platform</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080c12">
+  <title>ReBox — Circular Intelligence</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          colors: {
-            brand: {
-              50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669', 700: '#047857', 800: '#065f46', 900: '#064e3b', dark: '#0f172a'
-            }
-          },
-          boxShadow: {
-            glow: '0 0 20px rgba(16, 185, 129, 0.35)',
-            'glow-lg': '0 0 30px rgba(16, 185, 129, 0.5)'
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #f1f5f9; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-    .pulse-glow { animation: pulseGlow 2.5s infinite; }
-    @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); } 50% { box-shadow: 0 0 25px rgba(16, 185, 129, 0.8); } }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
-<body class="h-full font-sans antialiased text-slate-800 bg-slate-50 flex flex-col">
+<body>
 
-  <!-- HEADER -->
-  <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-40 shadow-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 sm:h-20">
-        
-        <!-- Brand Logo -->
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/30">
-            <i class="fa-solid fa-arrows-spin text-white text-xl sm:text-2xl"></i>
-          </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="font-extrabold text-xl sm:text-2xl tracking-tight bg-gradient-to-r from-white via-slate-100 to-emerald-400 bg-clip-text text-transparent">ReBox</span>
-              <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Sotol Circular Hub</span>
-            </div>
-            <p class="text-xs text-slate-400 hidden sm:block" data-i18n="subtitle">Plataforma de Valorización y Economía Circular</p>
-          </div>
-        </div>
+<div class="app">
 
-        <!-- LANGUAGE SWITCHER & RESET BUTTON -->
-        <div class="flex items-center gap-2 sm:gap-4">
-          <div class="bg-slate-800/90 p-1 sm:p-1.5 rounded-full border-2 border-emerald-500/60 pulse-glow flex items-center shadow-lg">
-            <div class="flex items-center bg-slate-950 rounded-full p-0.5 border border-slate-700">
-              <button id="btn-lang-es" onclick="setLanguage('es')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md">
-                <span>🇲🇽 ES</span>
-              </button>
-              <button id="btn-lang-en" onclick="setLanguage('en')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all text-slate-400 hover:text-white">
-                <span>🇺🇸 EN</span>
-              </button>
-            </div>
-          </div>
-          <button onclick="resetData()" class="p-2 text-slate-400 hover:text-red-400 hover:bg-slate-800 rounded-lg transition" title="Reiniciar Demo / Reset Data">
-            <i class="fa-solid fa-rotate-left"></i>
-          </button>
-        </div>
-
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">R<span>↗</span></div>
+      <div>
+        <div class="brand-name">rebox<span>.</span></div>
+        <div class="brand-sub">CIRCULAR INTELLIGENCE</div>
       </div>
     </div>
-  </header>
 
-  <!-- MAIN APP CONTAINER -->
-  <div class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row gap-6">
+    <div class="nav-label">WORKSPACE <span>01 — 06</span></div>
 
-    <!-- NAVIGATION SIDEBAR -->
-    <aside class="w-full md:w-64 flex-shrink-0">
-      <div class="bg-white rounded-2xl p-3 shadow-sm border border-slate-200/80 sticky top-24">
-        <div class="px-3 py-2 mb-2 border-b border-slate-100">
-          <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="nav_title">Navegación Módulos</p>
-        </div>
-        <nav class="space-y-1">
-          <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-            <i class="fa-solid fa-chart-pie w-5 text-center"></i>
-            <span data-i18n="nav_dashboard">Panel Principal</span>
-          </button>
-          <button onclick="switchTab('supplier')" id="nav-supplier" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-            <i class="fa-solid fa-seedling w-5 text-center"></i>
-            <span data-i18n="nav_supplier">Proveedor (Publicar)</span>
-          </button>
-          <button onclick="switchTab('admin')" id="nav-admin" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-            <i class="fa-solid fa-clipboard-check w-5 text-center"></i>
-            <span data-i18n="nav_admin">Revisión Admin</span>
-            <span id="badge-pending-count" class="ml-auto bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">1</span>
-          </button>
-          <button onclick="switchTab('logistics')" id="nav-logistics" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-            <i class="fa-solid fa-truck-ramp-box w-5 text-center"></i>
-            <span data-i18n="nav_logistics">Logística y Recolección</span>
-            <span id="badge-logistics-count" class="ml-auto bg-blue-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">1</span>
-          </button>
-          <button onclick="switchTab('warehouse')" id="nav-warehouse" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-            <i class="fa-solid fa-warehouse w-5 text-center"></i>
-            <span data-i18n="nav_warehouse">Almacén e Inventario</span>
-          </button>
-          <button onclick="switchTab('catalog')" id="nav-catalog" class="nav-link w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-            <i class="fa-solid fa-boxes-packing w-5 text-center"></i>
-            <span data-i18n="nav_catalog">Catálogo B2B Sotol</span>
-          </button>
-        </nav>
+    <nav>
+      <button class="nav-item active" data-page="dashboard">
+        <span class="nav-symbol">◫</span>
+        <span data-t="navDashboard">Resumen general</span>
+      </button>
+      <button class="nav-item" data-page="supplier">
+        <span class="nav-symbol">⊕</span>
+        <span data-t="navSupplier">Registrar material</span>
+      </button>
+      <button class="nav-item" data-page="admin">
+        <span class="nav-symbol">◎</span>
+        <span data-t="navAdmin">Aprobaciones</span>
+        <span class="count" id="pendingBadge">0</span>
+      </button>
+      <button class="nav-item" data-page="logistics">
+        <span class="nav-symbol">⇢</span>
+        <span data-t="navLogistics">Logística</span>
+        <span class="count" id="transitBadge">0</span>
+      </button>
+      <button class="nav-item" data-page="warehouse">
+        <span class="nav-symbol">▤</span>
+        <span data-t="navWarehouse">Almacén</span>
+      </button>
+      <button class="nav-item" data-page="catalog">
+        <span class="nav-symbol">▦</span>
+        <span data-t="navCatalog">Catálogo B2B</span>
+      </button>
+    </nav>
 
-        <!-- Sotol Disclosure Sidebar Widget -->
-        <div class="mt-6 p-4 rounded-xl bg-gradient-to-br from-emerald-900 to-slate-900 text-white shadow-md relative overflow-hidden">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 block mb-1" data-i18n="active_raw_mat">Materia Prima Actual</span>
-          <p class="text-sm font-bold text-white"><i class="fa-solid fa-plant-wilt text-emerald-400 mr-1.5"></i>100% Sotol Fiber</p>
-          <p class="text-[11px] text-slate-300 mt-2 bg-slate-800/80 p-2 rounded border border-slate-700 italic">
-            "We are going to be utilizing other plants in the future"
-          </p>
-        </div>
+    <div class="sidebar-bottom">
+      <div class="orb-panel">
+        <div class="orb"></div>
+        <span>RB / SYSTEM 001</span>
       </div>
-    </aside>
+      <div class="connection">
+        <span class="live-dot"></span>
+        <span data-t="demoStatus">DEMO LOCAL · ACTIVO</span>
+      </div>
+      <div class="sidebar-foot">REBOX SYSTEMS <span>V 1.0</span></div>
+    </div>
+  </aside>
 
-    <!-- MAIN DYNAMIC CONTENT WORKSPACE -->
-    <main class="flex-1 min-w-0">
+  <!-- WORKSPACE -->
+  <div class="workspace">
 
-      <!-- 1. DASHBOARD MODULE -->
-      <section id="module-dashboard" class="space-y-6 tab-content">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+    <header class="topbar">
+      <div class="top-left">
+        <button class="menu-button" id="menuButton">☰</button>
+        <span>REBOX</span>
+        <span class="slash">/</span>
+        <strong id="breadcrumb">OVERVIEW</strong>
+      </div>
+
+      <div class="top-right">
+        <div class="online"><span class="live-dot"></span><span data-t="online">SISTEMA ACTIVO</span></div>
+        <div class="language">
+          <button data-lang="es" class="selected">ES</button>
+          <button data-lang="en">EN</button>
+        </div>
+        <button class="reset" id="resetButton" title="Reiniciar demo">↺</button>
+        <div class="avatar">RB</div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- DASHBOARD -->
+      <section class="page active" id="dashboard">
+
+        <div class="section-kicker">
+          <span class="accent-line"></span>
+          <span data-t="dashboardKicker">INTELIGENCIA CIRCULAR / RESUMEN</span>
+          <span class="section-index">01 / 06</span>
+        </div>
+
+        <div class="hero">
           <div>
-            <h1 class="text-xl sm:text-2xl font-bold text-slate-900" data-i18n="dash_title">Resumen Ejecutivo: Recuperación de Sotol</h1>
-            <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="dash_subtitle">Monitoreo de biomasa de Sotol revalorizada y huella de carbono.</p>
+            <h1 data-t-html="heroTitle">Materiales circulares.<br><em>Control total.</em></h1>
+            <p data-t="heroDescription">Una plataforma para gestionar la recuperación, trazabilidad y transformación de residuos de sotol.</p>
           </div>
-          <button onclick="switchTab('supplier')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
-            <i class="fa-solid fa-plus"></i>
-            <span data-i18n="btn_pub_sotol">Publicar Sotol Residual</span>
+          <button class="primary-button" data-page="supplier">
+            <span data-t="newBatch">+ NUEVO LOTE</span> ↗
           </button>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-            <span class="text-xs font-semibold text-slate-500" data-i18n="kpi_revalorized">Sotol Revalorizado</span>
-            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2" id="kpi-total-tons">148.5 Tons</p>
-            <span class="text-xs text-emerald-600 font-medium" data-i18n="kpi_sub1">+100% Biomasa Orgánica</span>
-          </div>
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-            <span class="text-xs font-semibold text-slate-500" data-i18n="kpi_co2">CO2e Evitado Estimado</span>
-            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2" id="kpi-total-co2">356.4 t</p>
-            <span class="text-xs text-teal-600 font-medium" data-i18n="kpi_sub2">Factor: 2.4 tCO2e / Ton</span>
-          </div>
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-            <span class="text-xs font-semibold text-slate-500" data-i18n="kpi_pickups">Recolecciones Activas</span>
-            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2" id="kpi-active-pickups">1</p>
-            <span class="text-xs text-blue-600 font-medium" data-i18n="kpi_sub3">Logística en Campo</span>
-          </div>
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-            <span class="text-xs font-semibold text-slate-500" data-i18n="kpi_batches">Lotes en Almacén</span>
-            <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2" id="kpi-quotes-count">1</p>
-            <span class="text-xs text-purple-600 font-medium" data-i18n="kpi_sub4">Listo para Transformación</span>
-          </div>
+        <div class="metrics four">
+          <article class="metric">
+            <div class="metric-heading"><span data-t="recovered">BIOMASA RECUPERADA</span><span>↗</span></div>
+            <div class="metric-value" id="kpiTons">0.0 <small>t</small></div>
+            <div class="metric-description"><i></i><span data-t="recoveredSub">Peso registrado en almacén</span></div>
+          </article>
+          <article class="metric">
+            <div class="metric-heading"><span data-t="carbon">CO₂e EVITADO ESTIMADO</span><span>◌</span></div>
+            <div class="metric-value" id="kpiCarbon">0.0 <small>t</small></div>
+            <div class="metric-description"><i></i><span data-t="carbonSub">Cálculo ilustrativo, factor 2.4</span></div>
+          </article>
+          <article class="metric">
+            <div class="metric-heading"><span data-t="transit">EN TRÁNSITO</span><span>⇢</span></div>
+            <div class="metric-value" id="kpiTransit">0</div>
+            <div class="metric-description"><i></i><span data-t="transitSub">Recolecciones activas</span></div>
+          </article>
+          <article class="metric">
+            <div class="metric-heading"><span data-t="lots">LOTES EN ALMACÉN</span><span>▤</span></div>
+            <div class="metric-value" id="kpiLots">0</div>
+            <div class="metric-description"><i></i><span data-t="lotsSub">Inventario registrado</span></div>
+          </article>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm lg:col-span-2">
-            <h3 class="text-sm font-bold text-slate-900 mb-4" data-i18n="chart_mat_mix">Composición de Material Procesado</h3>
-            <div class="h-64 relative">
-              <canvas id="chartMaterialMix"></canvas>
+        <div class="dashboard-grid">
+          <article class="panel">
+            <div class="panel-heading">
+              <div><div class="eyebrow">MATERIAL ANALYTICS / 01</div><h2 data-t="distribution">Distribución de materiales</h2></div>
+              <span class="outline-label">LIVE DATA</span>
             </div>
-          </div>
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
-            <div>
-              <h3 class="text-sm font-bold text-slate-900 mb-2" data-i18n="chart_supply_chain">Estado de la Cadena de Suministro</h3>
-              <p class="text-xs text-slate-500 mb-4" data-i18n="chart_supply_sub">Etapas de procesamiento de Sotol</p>
+            <div class="chart-container"><canvas id="materialChart"></canvas></div>
+          </article>
+          <article class="panel">
+            <div class="panel-heading">
+              <div><div class="eyebrow">PIPELINE / 02</div><h2 data-t="pipeline">Estado de los lotes</h2></div>
+              <span class="panel-icon">◎</span>
             </div>
-            <div class="h-52 relative flex items-center justify-center">
-              <canvas id="chartStatusPie"></canvas>
+            <div class="donut-container">
+              <canvas id="statusChart"></canvas>
+              <div class="donut-center"><strong id="donutTotal">0</strong><small>TOTAL LOTS</small></div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2. SUPPLIER MODULE -->
-      <section id="module-supplier" class="space-y-6 tab-content hidden">
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-          <h1 class="text-xl font-bold text-slate-900" data-i18n="supp_title">Módulo de Proveedor: Registrar Residuos de Sotol</h1>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="supp_subtitle">Registre bagazo o fibra de Sotol para recolección y reciclaje.</p>
+            <div class="legend" id="statusLegend"></div>
+          </article>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm lg:col-span-2">
-            <form id="form-publish-waste" onsubmit="handlePublishWaste(event)" class="space-y-4">
-              
-              <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-between text-xs text-emerald-900">
-                <span class="font-medium"><i class="fa-solid fa-leaf text-emerald-600 mr-2"></i><span data-i18n="plant_active">Planta activa actual:</span> <strong>Sotol (Dasylirion wheeleri)</strong></span>
-                <span class="text-[11px] text-emerald-700 font-semibold bg-emerald-100 px-2 py-0.5 rounded" data-i18n="plant_plan">*Otras plantas planificadas</span>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_material">Tipo de Material</label>
-                  <select id="input-material" class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:ring-2 focus:ring-emerald-500">
-                    <option value="sotol_fiber" data-i18n="opt_fiber">Fibra de Sotol (Sotol Fiber)</option>
-                    <option value="sotol_bagasse" data-i18n="opt_bagasse">Bagazo de Sotol (Sotol Bagasse)</option>
-                  </select>
-                  <p class="text-[10px] text-slate-400 mt-1 italic">When asked about other plants: "We are going to be utilizing other plants in the future"</p>
-                </div>
-
-                <div>
-                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_qty">Cantidad Estimada</label>
-                  <div class="flex gap-2">
-                    <input type="number" step="0.1" min="0.1" id="input-quantity" value="12.5" oninput="calculateCo2Estimate()" required class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:ring-2 focus:ring-emerald-500" />
-                    <select id="input-unit" class="text-xs rounded-xl border-slate-300 border p-2.5 bg-slate-100 font-bold">
-                      <option value="Tons">Tons</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_location">Ubicación / Planta Origen</label>
-                  <input type="text" id="input-location" required class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:ring-2 focus:ring-emerald-500" value="Planta Sotol - Juárez" />
-                </div>
-
-                <div>
-                  <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_date">Fecha de Disponibilidad</label>
-                  <input type="date" id="input-date" required class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:ring-2 focus:ring-emerald-500" />
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-i18n="lbl_notes">Especificaciones Técnicas / Humedad</label>
-                <textarea id="input-notes" rows="2" class="w-full text-xs sm:text-sm rounded-xl border-slate-300 border p-2.5 bg-slate-50 focus:ring-2 focus:ring-emerald-500">Humedad promedio 12%, pacas compactadas de fibra de Sotol.</textarea>
-              </div>
-
-              <div class="pt-2 flex justify-end">
-                <button type="submit" class="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg hover:from-emerald-700 transition">
-                  <i class="fa-solid fa-paper-plane mr-2"></i><span data-i18n="btn_pub_now">Publicar Oferta</span>
-                </button>
-              </div>
-            </form>
+        <article class="panel table-panel">
+          <div class="panel-heading">
+            <div><div class="eyebrow">OPERATIONS / 03</div><h2 data-t="recent">Lotes recientes</h2></div>
+            <button class="text-button" data-page="admin"><span data-t="viewAll">VER TODOS</span> ↗</button>
           </div>
-
-          <!-- CO2 Calculator Widget -->
-          <div class="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-            <div>
-              <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase mb-2">
-                <i class="fa-solid fa-calculator"></i>
-                <span data-i18n="sim_title">Calculadora Sotol Eco-Impact</span>
-              </div>
-              <h3 class="text-lg font-bold text-white mb-4" data-i18n="sim_heading">Ahorro Estimado de Carbono</h3>
-              <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700 space-y-3">
-                <div class="flex justify-between items-center text-xs">
-                  <span class="text-slate-400" data-i18n="sim_factor">Factor Sotol:</span>
-                  <span class="font-bold text-emerald-400">2.4 tCO2e / Ton</span>
-                </div>
-                <div class="border-t border-slate-700 pt-3">
-                  <span class="text-xs text-slate-400 block" data-i18n="sim_avoided">Emisiones Evitadas Totales:</span>
-                  <p class="text-3xl font-extrabold text-emerald-400 mt-1" id="sim-co2-result">30.0 tCO2e</p>
-                </div>
-              </div>
-            </div>
-            <p class="text-[11px] text-slate-400 mt-4" data-i18n="sim_cert">✔ Certificación circular para biomasa de Sotol.</p>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-          <div class="px-6 py-4 border-b border-slate-100 font-bold text-sm text-slate-900" data-i18n="my_pub_title">Mis Publicaciones Registradas</div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs sm:text-sm">
-              <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-[10px]">
-                <tr>
-                  <th class="py-3 px-4" data-i18n="th_id">ID Ref</th>
-                  <th class="py-3 px-4" data-i18n="th_material">Material</th>
-                  <th class="py-3 px-4" data-i18n="th_qty">Cantidad</th>
-                  <th class="py-3 px-4" data-i18n="th_location">Ubicación</th>
-                  <th class="py-3 px-4" data-i18n="th_co2">CO2 Evitado</th>
-                  <th class="py-3 px-4" data-i18n="th_status">Estado</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100" id="supplier-table-body"></tbody>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr>
+                <th data-t="batch">LOTE</th><th data-t="material">MATERIAL</th>
+                <th data-t="origin">ORIGEN</th><th data-t="quantity">CANTIDAD</th><th data-t="status">ESTADO</th>
+              </tr></thead>
+              <tbody id="recentRows"></tbody>
             </table>
           </div>
-        </div>
+        </article>
       </section>
 
-      <!-- 3. ADMIN REVIEW MODULE -->
-      <section id="module-admin" class="space-y-6 tab-content hidden">
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex justify-between items-center">
-          <div>
-            <h1 class="text-xl font-bold text-slate-900" data-i18n="admin_title">Aprobación y Asignación de Sotol</h1>
-            <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="admin_subtitle">Revise solicitudes de Sotol entrante y autorice rutas de recolección.</p>
-          </div>
+      <!-- SUPPLIER -->
+      <section class="page" id="supplier">
+        <div class="section-kicker"><span class="accent-line"></span>MATERIAL INTAKE / 02<span class="section-index">02 / 06</span></div>
+        <div class="page-heading">
+          <h1 data-t="supplierTitle">Registrar material<span>.</span></h1>
+          <p data-t="supplierDescription">Publica residuos de sotol para su revisión y recolección.</p>
         </div>
 
-        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs sm:text-sm">
-              <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-[10px]">
-                <tr>
-                  <th class="py-3 px-4" data-i18n="th_id">ID</th>
-                  <th class="py-3 px-4" data-i18n="th_material">Material Residual</th>
-                  <th class="py-3 px-4" data-i18n="th_supplier">Proveedor</th>
-                  <th class="py-3 px-4" data-i18n="th_qty_est">Cantidad Est.</th>
-                  <th class="py-3 px-4" data-i18n="th_date">Fecha Disp.</th>
-                  <th class="py-3 px-4" data-i18n="th_status">Estado</th>
-                  <th class="py-3 px-4 text-right" data-i18n="th_action">Acción Admin</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100" id="admin-table-body"></tbody>
-            </table>
-          </div>
+        <div class="flow-bar">
+          <span>01 / INPUT</span><b>→</b><span>02 / APPROVAL</span><b>→</b><span>03 / LOGISTICS</span><b>→</b><span>04 / WAREHOUSE</span>
         </div>
+
+        <div class="form-layout">
+          <form id="batchForm" class="panel">
+            <div class="panel-heading"><div><div class="eyebrow">INPUT TERMINAL / 01</div><h2 data-t="batchDetails">Información del lote</h2></div><span class="outline-label">SOTOL / ACTIVE</span></div>
+
+            <div class="form-grid">
+              <label><span data-t="materialType">TIPO DE MATERIAL</span>
+                <select id="materialInput">
+                  <option value="sotol_fiber" data-t="fiber">Fibra de sotol</option>
+                  <option value="sotol_bagasse" data-t="bagasse">Bagazo de sotol</option>
+                </select>
+              </label>
+              <label><span data-t="amount">CANTIDAD / TONELADAS</span><input type="number" id="quantityInput" value="12.5" min="0.1" step="0.1" required></label>
+              <label><span data-t="facility">ORIGEN / PLANTA</span><input type="text" id="originInput" placeholder="Nombre de la planta" required maxlength="120"></label>
+              <label><span data-t="date">FECHA DISPONIBLE</span><input type="date" id="dateInput" required></label>
+              <label class="full"><span data-t="notes">NOTAS TÉCNICAS / HUMEDAD</span><textarea id="notesInput" rows="4" placeholder="Condición del material, humedad, embalaje..."></textarea></label>
+            </div>
+
+            <div class="form-footer">
+              <span data-t="localNotice">Los datos se guardan en este navegador.</span>
+              <button class="primary-button" type="submit"><span data-t="publish">PUBLICAR LOTE</span> ↗</button>
+            </div>
+          </form>
+
+          <article class="panel impact">
+            <div class="eyebrow">IMPACT SIMULATION / LIVE</div>
+            <div class="impact-graphic"><span>CO₂</span></div>
+            <div class="impact-label" data-t="avoided">EMISIONES EVITADAS ESTIMADAS</div>
+            <div class="impact-value" id="co2Preview">30.0 <small>tCO₂e</small></div>
+            <div class="impact-factor"><span>ILLUSTRATIVE FACTOR</span><strong>2.4 tCO₂e/t</strong></div>
+            <p data-t="carbonWarning">Estimación de demostración, no certificada ni validada.</p>
+          </article>
+        </div>
+
+        <article class="panel table-panel">
+          <div class="panel-heading"><div><div class="eyebrow">SUPPLIER / RECORDS</div><h2 data-t="registered">Lotes registrados</h2></div></div>
+          <div class="table-wrapper"><table><thead><tr><th data-t="batch">LOTE</th><th data-t="material">MATERIAL</th><th data-t="origin">ORIGEN</th><th data-t="quantity">CANTIDAD</th><th data-t="status">ESTADO</th></tr></thead><tbody id="supplierRows"></tbody></table></div>
+        </article>
       </section>
 
-      <!-- 4. LOGISTICS & PICKUPS MODULE -->
-      <section id="module-logistics" class="space-y-6 tab-content hidden">
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4">
-          <div>
-            <h1 class="text-xl font-bold text-slate-900" data-i18n="log_title">Logística, Transporte y Pesaje en Báscula</h1>
-            <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="log_subtitle">Gestión de unidades en tránsito y validación de peso bruto/neto de Sotol.</p>
-          </div>
-          <div class="flex gap-2">
-            <span class="text-xs font-bold px-3 py-1.5 rounded-xl bg-blue-50 text-blue-700 border border-blue-200">
-              <i class="fa-solid fa-truck-moving mr-1"></i> <span data-i18n="log_live">Monitoreo en Vivo</span>
-            </span>
-          </div>
+      <!-- ADMIN -->
+      <section class="page" id="admin">
+        <div class="section-kicker"><span class="accent-line"></span>OPERATIONS / APPROVALS<span class="section-index">03 / 06</span></div>
+        <div class="page-heading heading-flex">
+          <div><h1 data-t="adminTitle">Aprobaciones<span>.</span></h1><p data-t="adminDescription">Revisa los registros y autoriza las recolecciones.</p></div>
+          <div class="pending-counter"><strong id="queueCount">0</strong><small data-t="pendingLabel">PENDIENTES</small></div>
         </div>
-
-        <div class="grid grid-cols-1 gap-4" id="logistics-cards-container"></div>
+        <article class="panel table-panel">
+          <div class="panel-heading"><div><div class="eyebrow">INBOUND / ALL RECORDS</div><h2 data-t="registry">Registro de lotes</h2></div>
+            <div class="filters" id="filters">
+              <button class="active" data-filter="all" data-t="all">TODOS</button>
+              <button data-filter="pending" data-t="pending">PENDIENTES</button>
+              <button data-filter="in_transit" data-t="inTransit">EN TRÁNSITO</button>
+              <button data-filter="warehouse" data-t="inWarehouse">ALMACÉN</button>
+            </div>
+          </div>
+          <div class="table-wrapper"><table><thead><tr><th data-t="batch">LOTE</th><th data-t="supplier">PROVEEDOR</th><th data-t="material">MATERIAL</th><th data-t="quantity">CANTIDAD</th><th data-t="date">FECHA</th><th data-t="status">ESTADO</th><th data-t="action">ACCIÓN</th></tr></thead><tbody id="adminRows"></tbody></table></div>
+        </article>
       </section>
 
-      <!-- 5. WAREHOUSE & INVENTORY MODULE -->
-      <section id="module-warehouse" class="space-y-6 tab-content hidden">
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-          <h1 class="text-xl font-bold text-slate-900" data-i18n="wh_title">Almacén e Inventario de Sotol (Lotes RB)</h1>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="wh_subtitle">Lotes verificados con control de calidad y mermas de humedad.</p>
+      <!-- LOGISTICS -->
+      <section class="page" id="logistics">
+        <div class="section-kicker"><span class="accent-line"></span>SUPPLY CHAIN / LOGISTICS<span class="section-index">04 / 06</span></div>
+        <div class="page-heading"><h1 data-t="logisticsTitle">En movimiento<span>.</span></h1><p data-t="logisticsDescription">Coordina el transporte y registra el pesaje de los materiales.</p></div>
+        <div class="metrics two">
+          <article class="metric"><div class="metric-heading"><span data-t="collections">RECOLECCIONES ACTIVAS</span><span>↗</span></div><div class="metric-value" id="activeCollections">0</div></article>
+          <article class="metric"><div class="metric-heading"><span data-t="transportWeight">CARGA ESTIMADA EN TRÁNSITO</span><span>⇢</span></div><div class="metric-value" id="transitWeight">0.0 <small>t</small></div></article>
         </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="bg-white p-4 rounded-xl border border-slate-200/80 flex items-center gap-4">
-            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
-              <i class="fa-solid fa-boxes-stacked"></i>
-            </div>
-            <div>
-              <p class="text-xs text-slate-400 font-semibold uppercase" data-i18n="wh_total_stock">Stock Total Sotol</p>
-              <p class="text-xl font-extrabold text-slate-900" id="wh-stock-total">0.0 Tons</p>
-            </div>
-          </div>
-          <div class="bg-white p-4 rounded-xl border border-slate-200/80 flex items-center gap-4">
-            <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center font-bold">
-              <i class="fa-solid fa-circle-check"></i>
-            </div>
-            <div>
-              <p class="text-xs text-slate-400 font-semibold uppercase" data-i18n="wh_qc_pass">Aceptado QC</p>
-              <p class="text-xl font-extrabold text-slate-900" id="wh-stock-conforme">0.0 Tons</p>
-            </div>
-          </div>
-          <div class="bg-white p-4 rounded-xl border border-slate-200/80 flex items-center gap-4">
-            <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-            </div>
-            <div>
-              <p class="text-xs text-slate-400 font-semibold uppercase" data-i18n="wh_shrinkage">Mermas / Humedad</p>
-              <p class="text-xl font-extrabold text-slate-900" id="wh-stock-mermas">0.0 Tons</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-          <div class="px-6 py-4 border-b border-slate-100 font-bold text-sm text-slate-900" data-i18n="wh_tbl_title">Lotes de Sotol Clasificado</div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs sm:text-sm">
-              <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-[10px]">
-                <tr>
-                  <th class="py-3 px-4" data-i18n="th_batch_id">ID Lote</th>
-                  <th class="py-3 px-4" data-i18n="th_raw_mat">Materia Prima</th>
-                  <th class="py-3 px-4" data-i18n="th_scale_weight">Pesaje Báscula</th>
-                  <th class="py-3 px-4" data-i18n="th_moisture">Humedad %</th>
-                  <th class="py-3 px-4" data-i18n="th_qc_grade">Grado QC</th>
-                  <th class="py-3 px-4" data-i18n="th_silo">Ubicación Silo</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100" id="warehouse-table-body"></tbody>
-            </table>
-          </div>
-        </div>
+        <div id="logisticsCards" class="logistics-cards"></div>
       </section>
 
-      <!-- 6. CATALOG MODULE -->
-      <section id="module-catalog" class="space-y-6 tab-content hidden">
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-          <h1 class="text-xl font-bold text-slate-900" data-i18n="cat_title">Catálogo B2B: Bioproductos de Sotol</h1>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="cat_subtitle">Materias primas circulares derivadas del procesamiento de Sotol.</p>
+      <!-- WAREHOUSE -->
+      <section class="page" id="warehouse">
+        <div class="section-kicker"><span class="accent-line"></span>INVENTORY / MATERIAL CONTROL<span class="section-index">05 / 06</span></div>
+        <div class="page-heading"><h1 data-t="warehouseTitle">Control de almacén<span>.</span></h1><p data-t="warehouseDescription">Inventario, peso verificado y condiciones de los materiales.</p></div>
+        <div class="metrics three">
+          <article class="metric"><div class="metric-heading"><span data-t="stock">INVENTARIO TOTAL</span><span>▤</span></div><div class="metric-value" id="stockTotal">0.0 <small>t</small></div></article>
+          <article class="metric"><div class="metric-heading"><span data-t="recordedLots">LOTES REGISTRADOS</span><span>◫</span></div><div class="metric-value" id="stockLots">0</div></article>
+          <article class="metric"><div class="metric-heading"><span data-t="moisture">HUMEDAD PROMEDIO</span><span>◌</span></div><div class="metric-value" id="avgMoisture">—</div></article>
         </div>
+        <article class="panel table-panel">
+          <div class="panel-heading"><div><div class="eyebrow">WAREHOUSE / INVENTORY</div><h2 data-t="ledger">Inventario por lote</h2></div><span class="outline-label">RECORDED WEIGH-IN</span></div>
+          <div class="table-wrapper"><table><thead><tr><th data-t="batch">LOTE</th><th data-t="material">MATERIAL</th><th data-t="weight">PESO VERIFICADO</th><th data-t="moisture">HUMEDAD</th><th data-t="driver">CONDUCTOR</th><th data-t="status">ESTADO</th></tr></thead><tbody id="warehouseRows"></tbody></table></div>
+        </article>
+      </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm space-y-3">
-            <div class="w-full h-36 bg-emerald-900/10 rounded-xl flex items-center justify-center text-emerald-700 font-bold text-3xl">
-              <i class="fa-solid fa-box-open"></i>
+      <!-- CATALOG -->
+      <section class="page" id="catalog">
+        <div class="section-kicker"><span class="accent-line"></span>MATERIALS / B2B CATALOG<span class="section-index">06 / 06</span></div>
+        <div class="page-heading"><h1 data-t="catalogTitle">Segunda vida<span>.</span></h1><p data-t="catalogDescription">Explora posibles aplicaciones industriales de los materiales recuperados.</p></div>
+        <div class="catalog-grid">
+          <article class="product-card">
+            <div class="product-visual fiber-visual"><div class="fiber-shape"></div><span>01 / FIBER</span></div>
+            <div class="product-content">
+              <div class="eyebrow">RECLAIMED PLANT FIBER</div>
+              <h2 data-t="fiberProduct">Fibra refinada de sotol</h2>
+              <p data-t="fiberDescription">Materia prima potencial para empaques moldeados y materiales compuestos, sujeta a pruebas técnicas.</p>
+              <div class="product-price"><span>INDICATIVE DEMO PRICE</span><strong>$180 <small>USD/t</small></strong></div>
+              <button class="outline-button quote-button"><span data-t="quote">SOLICITAR COTIZACIÓN</span> ↗</button>
             </div>
-            <span class="text-[10px] uppercase font-extrabold tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded" data-i18n="cat_item1_badge">Grado A Industrial</span>
-            <h3 class="font-bold text-slate-900 text-base" data-i18n="cat_item1_name">Pacas de Fibra de Sotol Refinada</h3>
-            <p class="text-xs text-slate-500" data-i18n="cat_item1_desc">Fibra vegetal deshidratada ideal para empaques termoformados, aglomerados y bioplásticos.</p>
-            <div class="pt-2 border-t border-slate-100 flex justify-between items-center">
-              <span class="text-xs font-bold text-slate-700">$180 USD / Ton</span>
-              <button onclick="quoteAlert()" class="bg-slate-900 hover:bg-emerald-600 text-white text-xs font-bold px-3 py-2 rounded-lg transition" data-i18n="btn_quote">Solicitar Cotización</button>
+          </article>
+          <article class="product-card">
+            <div class="product-visual bagasse-visual"><div class="pellet-shape"></div><span>02 / BAGASSE</span></div>
+            <div class="product-content">
+              <div class="eyebrow">RECOVERED BIOMASS</div>
+              <h2 data-t="bagasseProduct">Bagazo pelletizado de sotol</h2>
+              <p data-t="bagasseDescription">Biomasa con aplicaciones energéticas potenciales, pendientes de validación técnica.</p>
+              <div class="product-price"><span>INDICATIVE DEMO PRICE</span><strong>$110 <small>USD/t</small></strong></div>
+              <button class="outline-button quote-button"><span data-t="quote">SOLICITAR COTIZACIÓN</span> ↗</button>
             </div>
-          </div>
-
-          <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm space-y-3">
-            <div class="w-full h-36 bg-teal-900/10 rounded-xl flex items-center justify-center text-teal-700 font-bold text-3xl">
-              <i class="fa-solid fa-recycle"></i>
-            </div>
-            <span class="text-[10px] uppercase font-extrabold tracking-wider bg-teal-100 text-teal-800 px-2 py-0.5 rounded" data-i18n="cat_item2_badge">Biomasa Térmica</span>
-            <h3 class="font-bold text-slate-900 text-base" data-i18n="cat_item2_name">Bagazo Pelletizado de Sotol</h3>
-            <p class="text-xs text-slate-500" data-i18n="cat_item2_desc">Pellets biocombustibles de alto poder calorífico fabricados con residuos de Sotol.</p>
-            <div class="pt-2 border-t border-slate-100 flex justify-between items-center">
-              <span class="text-xs font-bold text-slate-700">$110 USD / Ton</span>
-              <button onclick="quoteAlert()" class="bg-slate-900 hover:bg-emerald-600 text-white text-xs font-bold px-3 py-2 rounded-lg transition" data-i18n="btn_quote">Solicitar Cotización</button>
-            </div>
-          </div>
+          </article>
         </div>
+        <p class="catalog-note" data-t="catalogWarning">Los productos y precios son ilustrativos. Las cotizaciones no están conectadas a un servidor.</p>
       </section>
 
     </main>
+
+    <footer>REBOX / CIRCULAR MATERIALS INTELLIGENCE <span data-t="footer">DEMO MODE — LOCAL DATA ONLY</span></footer>
   </div>
+</div>
 
-  <!-- WEIGH SCALE MODAL -->
-  <div id="modal-scale" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl space-y-4">
-      <div class="flex justify-between items-center border-b pb-3">
-        <h3 class="font-bold text-slate-900 text-base"><i class="fa-solid fa-scale-balanced text-emerald-600 mr-2"></i><span data-i18n="modal_scale_title">Báscula Digital de Campo</span></h3>
-        <button onclick="closeScaleModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
-      </div>
-
-      <input type="hidden" id="modal-scale-item-id" />
-
-      <div class="space-y-3 text-xs">
-        <div>
-          <label class="block font-bold text-slate-700 mb-1" data-i18n="modal_driver_lbl">Conductor / Chofer de Unidad</label>
-          <input type="text" id="modal-driver" class="w-full border rounded-xl p-2.5 bg-slate-50" value="Roberto M. (Unidad TR-20)" />
-        </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block font-bold text-slate-700 mb-1" data-i18n="modal_weight_lbl">Peso Verificado (Tons)</label>
-            <input type="number" step="0.1" id="modal-weight-scale" class="w-full border rounded-xl p-2.5 font-bold text-emerald-700 bg-slate-50" value="12.2" />
-          </div>
-          <div>
-            <label class="block font-bold text-slate-700 mb-1" data-i18n="modal_moist_lbl">Humedad Medida (%)</label>
-            <input type="number" id="modal-moisture" class="w-full border rounded-xl p-2.5 font-bold bg-slate-50" value="11" />
-          </div>
-        </div>
-      </div>
-
-      <div class="pt-3 border-t flex justify-end gap-2">
-        <button onclick="closeScaleModal()" class="px-4 py-2 text-xs font-bold text-slate-600 bg-slate-100 rounded-xl" data-i18n="btn_cancel">Cancelar</button>
-        <button onclick="confirmScaleWeighIn()" class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-md" data-i18n="btn_confirm_scale">Confirmar Pesaje y Enviar a Almacén</button>
-      </div>
+<!-- WEIGH-IN MODAL -->
+<div class="modal-backdrop hidden" id="scaleModal">
+  <div class="modal">
+    <div class="panel-heading">
+      <div><div class="eyebrow">LOGISTICS / DIGITAL SCALE</div><h2 data-t="scaleTitle">Registrar peso verificado</h2></div>
+      <button class="close-button" id="closeModal">✕</button>
     </div>
+    <p id="modalBatch" class="modal-batch"></p>
+    <form id="scaleForm">
+      <label><span data-t="driver">CONDUCTOR / UNIDAD</span><input type="text" id="scaleDriver" required></label>
+      <div class="form-grid">
+        <label><span data-t="weight">PESO / TONELADAS</span><input type="number" id="scaleWeight" min="0.01" step="0.01" required></label>
+        <label><span data-t="moisture">HUMEDAD / %</span><input type="number" id="scaleMoisture" min="0" max="100" step="0.1" required></label>
+      </div>
+      <div class="modal-actions"><button class="outline-button" type="button" id="cancelModal" data-t="cancel">CANCELAR</button><button class="primary-button" type="submit"><span data-t="confirmWeight">CONFIRMAR PESAJE</span> ↗</button></div>
+    </form>
   </div>
+</div>
 
-  <!-- APPLICATION SCRIPT & COMPLETE BILINGUAL SYSTEM -->
-  <script>
-    let currentLang = 'es';
+<div class="toast hidden" id="toast"></div>
 
-    const translations = {
-      es: {
-        subtitle: 'Plataforma de Valorización y Economía Circular',
-        nav_title: 'Navegación Módulos',
-        nav_dashboard: 'Panel Principal',
-        nav_supplier: 'Proveedor (Publicar)',
-        nav_admin: 'Revisión Admin',
-        nav_logistics: 'Logística y Recolección',
-        nav_warehouse: 'Almacén e Inventario',
-        nav_catalog: 'Catálogo B2B Sotol',
-        active_raw_mat: 'Materia Prima Actual',
-        dash_title: 'Resumen Ejecutivo: Recuperación de Sotol',
-        dash_subtitle: 'Monitoreo de biomasa de Sotol revalorizada y huella de carbono.',
-        btn_pub_sotol: 'Publicar Sotol Residual',
-        kpi_revalorized: 'Sotol Revalorizado',
-        kpi_sub1: '+100% Biomasa Orgánica',
-        kpi_co2: 'CO2e Evitado Estimado',
-        kpi_sub2: 'Factor: 2.4 tCO2e / Ton',
-        kpi_pickups: 'Recolecciones Activas',
-        kpi_sub3: 'Logística en Campo',
-        kpi_batches: 'Lotes en Almacén',
-        kpi_sub4: 'Listo para Transformación',
-        chart_mat_mix: 'Composición de Material Procesado',
-        chart_supply_chain: 'Estado de la Cadena de Suministro',
-        chart_supply_sub: 'Etapas de procesamiento de Sotol',
-        supp_title: 'Módulo de Proveedor: Registrar Residuos de Sotol',
-        supp_subtitle: 'Registre bagazo o fibra de Sotol para recolección y reciclaje.',
-        plant_active: 'Planta activa actual:',
-        plant_plan: '*Otras plantas planificadas',
-        lbl_material: 'Tipo de Material',
-        opt_fiber: 'Fibra de Sotol (Sotol Fiber)',
-        opt_bagasse: 'Bagazo de Sotol (Sotol Bagasse)',
-        lbl_qty: 'Cantidad Estimada',
-        lbl_location: 'Ubicación / Planta Origen',
-        lbl_date: 'Fecha de Disponibilidad',
-        lbl_notes: 'Especificaciones Técnicas / Humedad',
-        btn_pub_now: 'Publicar Oferta',
-        sim_title: 'Calculadora Sotol Eco-Impact',
-        sim_heading: 'Ahorro Estimado de Carbono',
-        sim_factor: 'Factor Sotol:',
-        sim_avoided: 'Emisiones Evitadas Totales:',
-        sim_cert: '✔ Certificación circular para biomasa de Sotol.',
-        my_pub_title: 'Mis Publicaciones Registradas',
-        th_id: 'ID Ref',
-        th_material: 'Material',
-        th_qty: 'Cantidad',
-        th_location: 'Ubicación',
-        th_co2: 'CO2 Evitado',
-        th_status: 'Estado',
-        admin_title: 'Aprobación y Asignación de Sotol',
-        admin_subtitle: 'Revise solicitudes de Sotol entrante y autorice rutas de recolección.',
-        th_supplier: 'Proveedor',
-        th_qty_est: 'Cantidad Est.',
-        th_date: 'Fecha Disp.',
-        th_action: 'Acción Admin',
-        log_title: 'Logística, Transporte y Pesaje en Báscula',
-        log_subtitle: 'Gestión de unidades en tránsito y validación de peso bruto/neto de Sotol.',
-        log_live: 'Monitoreo en Vivo',
-        wh_title: 'Almacén e Inventario de Sotol (Lotes RB)',
-        wh_subtitle: 'Lotes verificados con control de calidad y mermas de humedad.',
-        wh_total_stock: 'Stock Total Sotol',
-        wh_qc_pass: 'Aceptado QC',
-        wh_shrinkage: 'Mermas / Humedad',
-        wh_tbl_title: 'Lotes de Sotol Clasificado',
-        th_batch_id: 'ID Lote',
-        th_raw_mat: 'Materia Prima',
-        th_scale_weight: 'Pesaje Báscula',
-        th_moisture: 'Humedad %',
-        th_qc_grade: 'Grado QC',
-        th_silo: 'Ubicación Silo',
-        cat_title: 'Catálogo B2B: Bioproductos de Sotol',
-        cat_subtitle: 'Materias primas circulares derivadas del procesamiento de Sotol.',
-        cat_item1_badge: 'Grado A Industrial',
-        cat_item1_name: 'Pacas de Fibra de Sotol Refinada',
-        cat_item1_desc: 'Fibra vegetal deshidratada ideal para empaques termoformados, aglomerados y bioplásticos.',
-        cat_item2_badge: 'Biomasa Térmica',
-        cat_item2_name: 'Bagazo Pelletizado de Sotol',
-        cat_item2_desc: 'Pellets biocombustibles de alto poder calorífico fabricados con residuos de Sotol.',
-        btn_quote: 'Solicitar Cotización',
-        modal_scale_title: 'Báscula Digital de Campo',
-        modal_driver_lbl: 'Conductor / Chofer de Unidad',
-        modal_weight_lbl: 'Peso Verificado (Tons)',
-        modal_moist_lbl: 'Humedad Medida (%)',
-        btn_cancel: 'Cancelar',
-        btn_confirm_scale: 'Confirmar Pesaje y Enviar a Almacén'
-      },
-      en: {
-        subtitle: 'Sotol Valorization & Circular Platform',
-        nav_title: 'Module Navigation',
-        nav_dashboard: 'Main Dashboard',
-        nav_supplier: 'Supplier (Publish)',
-        nav_admin: 'Admin Review',
-        nav_logistics: 'Logistics & Pickups',
-        nav_warehouse: 'Warehouse & Inventory',
-        nav_catalog: 'B2B Sotol Catalog',
-        active_raw_mat: 'Current Active Plant',
-        dash_title: 'Executive Summary: Sotol Recovery',
-        dash_subtitle: 'Real-time monitoring of revalorized Sotol biomass and carbon footprint.',
-        btn_pub_sotol: 'Publish Sotol Waste',
-        kpi_revalorized: 'Revalorized Sotol',
-        kpi_sub1: '+100% Organic Biomass',
-        kpi_co2: 'Estimated Avoided CO2e',
-        kpi_sub2: 'Factor: 2.4 tCO2e / Ton',
-        kpi_pickups: 'Active Pickups',
-        kpi_sub3: 'In-Field Logistics',
-        kpi_batches: 'Warehouse Batches',
-        kpi_sub4: 'Ready for Processing',
-        chart_mat_mix: 'Processed Material Composition',
-        chart_supply_chain: 'Supply Chain Status',
-        chart_supply_sub: 'Sotol processing stages',
-        supp_title: 'Supplier Module: Register Sotol Residue',
-        supp_subtitle: 'Register Sotol bagasse or fiber for pickup and circular recycling.',
-        plant_active: 'Current active plant:',
-        plant_plan: '*Other plants planned',
-        lbl_material: 'Material Type',
-        opt_fiber: 'Sotol Fiber Waste',
-        opt_bagasse: 'Sotol Bagasse Waste',
-        lbl_qty: 'Estimated Quantity',
-        lbl_location: 'Location / Plant Origin',
-        lbl_date: 'Availability Date',
-        lbl_notes: 'Technical Specs / Moisture',
-        btn_pub_now: 'Publish Waste Offer',
-        sim_title: 'Sotol Eco-Impact Calculator',
-        sim_heading: 'Estimated Carbon Savings',
-        sim_factor: 'Sotol Factor:',
-        sim_avoided: 'Total Avoided Emissions:',
-        sim_cert: '✔ Circular certification for Sotol biomass.',
-        my_pub_title: 'My Registered Publications',
-        th_id: 'Ref ID',
-        th_material: 'Material',
-        th_qty: 'Quantity',
-        th_location: 'Location',
-        th_co2: 'Avoided CO2',
-        th_status: 'Status',
-        admin_title: 'Sotol Review & Dispatch Approval',
-        admin_subtitle: 'Review incoming Sotol submissions and authorize pickup routes.',
-        th_supplier: 'Supplier',
-        th_qty_est: 'Est. Qty',
-        th_date: 'Avail. Date',
-        th_action: 'Admin Action',
-        log_title: 'Logistics, Transport & Digital Scale Weigh-in',
-        log_subtitle: 'Fleet management in transit and gross/net Sotol weight verification.',
-        log_live: 'Live Monitoring',
-        wh_title: 'Warehouse & Sotol Inventory (RB Batches)',
-        wh_subtitle: 'Verified batches with quality control and moisture shrinkage.',
-        wh_total_stock: 'Total Sotol Stock',
-        wh_qc_pass: 'QC Approved',
-        wh_shrinkage: 'Shrinkage / Moisture',
-        wh_tbl_title: 'Classified Sotol Batches',
-        th_batch_id: 'Batch ID',
-        th_raw_mat: 'Raw Material',
-        th_scale_weight: 'Scale Weight',
-        th_moisture: 'Moisture %',
-        th_qc_grade: 'QC Grade',
-        th_silo: 'Silo Location',
-        cat_title: 'B2B Catalog: Sotol Bioproducts',
-        cat_subtitle: 'Circular raw materials derived from processed Sotol.',
-        cat_item1_badge: 'Industrial Grade A',
-        cat_item1_name: 'Refined Sotol Fiber Bales',
-        cat_item1_desc: 'Dehydrated plant fiber ideal for thermoformed packaging, composites, and bioplastics.',
-        cat_item2_badge: 'Thermal Biomass',
-        cat_item2_name: 'Pelletized Sotol Bagasse',
-        cat_item2_desc: 'High calorific biofuel pellets manufactured from reclaimed Sotol waste.',
-        btn_quote: 'Request Quote',
-        modal_scale_title: 'In-Field Digital Scale',
-        modal_driver_lbl: 'Assigned Driver / Truck',
-        modal_weight_lbl: 'Verified Scale Weight (Tons)',
-        modal_moist_lbl: 'Measured Moisture (%)',
-        btn_cancel: 'Cancel',
-        btn_confirm_scale: 'Confirm Weigh-in & Send to Warehouse'
-      }
-    };
-
-    const initialState = [
-      {
-        id: 'RB-ST01',
-        materialType: 'sotol_fiber',
-        supplier: 'Destilería Juárez',
-        quantity: 14.5,
-        unit: 'Tons',
-        location: 'Planta Industrial Juárez',
-        date: '2026-11-02',
-        co2: 34.8,
-        status: 'pending',
-        weightScale: null,
-        moisture: 12,
-        driver: 'Carlos V. (Camión 04)'
-      },
-      {
-        id: 'RB-ST02',
-        materialType: 'sotol_bagasse',
-        supplier: 'Procesadora Chihuahuense',
-        quantity: 28.0,
-        unit: 'Tons',
-        location: 'Silo 2 - Delicias',
-        date: '2026-11-01',
-        co2: 67.2,
-        status: 'in_transit',
-        weightScale: 27.5,
-        moisture: 14,
-        driver: 'Roberto M. (Unidad TR-20)'
-      },
-      {
-        id: 'RB-ST03',
-        materialType: 'sotol_fiber',
-        supplier: 'Agro-Sotol Norte',
-        quantity: 106.0,
-        unit: 'Tons',
-        location: 'Almacén Central - Juárez',
-        date: '2026-10-28',
-        co2: 254.4,
-        status: 'warehouse',
-        weightScale: 106.0,
-        moisture: 10,
-        driver: 'Entregado'
-      }
-    ];
-
-    let items = JSON.parse(localStorage.getItem('rebox_sotol_data')) || initialState;
-    let chartMaterial, chartStatus;
-
-    function getMaterialLabel(key) {
-      if (key === 'sotol_fiber') return currentLang === 'es' ? 'Fibra de Sotol (Sotol Fiber)' : 'Sotol Fiber';
-      if (key === 'sotol_bagasse') return currentLang === 'es' ? 'Bagazo de Sotol (Sotol Bagasse)' : 'Sotol Bagasse';
-      return key;
-    }
-
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.getElementById('btn-lang-es').className = lang === 'es' ? 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' : 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-slate-400 hover:text-white';
-      document.getElementById('btn-lang-en').className = lang === 'en' ? 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md' : 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-slate-400 hover:text-white';
-      
-      // Update DOM Elements with data-i18n
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-          el.textContent = translations[lang][key];
-        }
-      });
-
-      renderAll();
-    }
-
-    function saveData() {
-      localStorage.setItem('rebox_sotol_data', JSON.stringify(items));
-      renderAll();
-    }
-
-    function resetData() {
-      items = JSON.parse(JSON.stringify(initialState));
-      saveData();
-    }
-
-    function calculateCo2Estimate() {
-      const q = parseFloat(document.getElementById('input-quantity').value) || 0;
-      const co2 = (q * 2.4).toFixed(1);
-      document.getElementById('sim-co2-result').innerText = co2 + ' tCO2e';
-    }
-
-    function handlePublishWaste(e) {
-      e.preventDefault();
-      const materialType = document.getElementById('input-material').value;
-      const quantity = parseFloat(document.getElementById('input-quantity').value);
-      const unit = document.getElementById('input-unit').value;
-      const location = document.getElementById('input-location').value;
-      const date = document.getElementById('input-date').value || new Date().toISOString().split('T')[0];
-      const co2 = parseFloat((quantity * 2.4).toFixed(1));
-
-      const newItem = {
-        id: 'RB-ST' + Math.floor(100 + Math.random() * 900),
-        materialType,
-        supplier: 'Juárez Agro-Hub',
-        quantity,
-        unit,
-        location,
-        date,
-        co2,
-        status: 'pending',
-        weightScale: null,
-        moisture: 12,
-        driver: currentLang === 'es' ? 'Por Asignar' : 'Unassigned'
-      };
-
-      items.unshift(newItem);
-      saveData();
-      alert(currentLang === 'es' ? '¡Oferta de residuo de Sotol publicada con éxito!' : 'Sotol waste offer published successfully!');
-      switchTab('admin');
-    }
-
-    function approveItem(id) {
-      const item = items.find(i => i.id === id);
-      if (item) {
-        item.status = 'in_transit';
-        saveData();
-      }
-    }
-
-    function openScaleModal(id) {
-      const item = items.find(i => i.id === id);
-      if (!item) return;
-      document.getElementById('modal-scale-item-id').value = id;
-      document.getElementById('modal-weight-scale').value = item.weightScale || item.quantity;
-      document.getElementById('modal-scale').classList.remove('hidden');
-    }
-
-    function closeScaleModal() {
-      document.getElementById('modal-scale').classList.add('hidden');
-    }
-
-    function confirmScaleWeighIn() {
-      const id = document.getElementById('modal-scale-item-id').value;
-      const verifiedWeight = parseFloat(document.getElementById('modal-weight-scale').value);
-      const moisture = parseInt(document.getElementById('modal-moisture').value);
-      const driver = document.getElementById('modal-driver').value;
-
-      const item = items.find(i => i.id === id);
-      if (item) {
-        item.weightScale = verifiedWeight;
-        item.moisture = moisture;
-        item.driver = driver;
-        item.status = 'warehouse';
-        saveData();
-      }
-      closeScaleModal();
-    }
-
-    function quoteAlert() {
-      alert(currentLang === 'es' ? 'Solicitud de cotización de Sotol enviada con éxito' : 'Sotol quote request submitted successfully');
-    }
-
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.nav-link').forEach(el => {
-        el.classList.remove('bg-emerald-50', 'text-emerald-700', 'font-bold');
-        el.classList.add('text-slate-600');
-      });
-
-      const activeTab = document.getElementById('module-' + tabId);
-      const activeNav = document.getElementById('nav-' + tabId);
-
-      if (activeTab) activeTab.classList.remove('hidden');
-      if (activeNav) {
-        activeNav.classList.add('bg-emerald-50', 'text-emerald-700', 'font-bold');
-        activeNav.classList.remove('text-slate-600');
-      }
-    }
-
-    function renderAll() {
-      // 1. Supplier Table
-      const suppBody = document.getElementById('supplier-table-body');
-      suppBody.innerHTML = items.map(item => `
-        <tr class="hover:bg-slate-50">
-          <td class="py-3 px-4 font-bold text-slate-800">${item.id}</td>
-          <td class="py-3 px-4"><i class="fa-solid fa-plant-wilt text-emerald-600 mr-1.5"></i>${getMaterialLabel(item.materialType)}</td>
-          <td class="py-3 px-4 font-semibold">${item.quantity} ${item.unit}</td>
-          <td class="py-3 px-4 text-slate-500">${item.location}</td>
-          <td class="py-3 px-4 text-emerald-600 font-bold">${item.co2} tCO2e</td>
-          <td class="py-3 px-4">${getStatusBadge(item.status)}</td>
-        </tr>
-      `).join('');
-
-      // 2. Admin Table
-      const pendingItems = items.filter(i => i.status === 'pending');
-      document.getElementById('badge-pending-count').innerText = pendingItems.length;
-      const adminBody = document.getElementById('admin-table-body');
-      adminBody.innerHTML = items.map(item => `
-        <tr class="hover:bg-slate-50">
-          <td class="py-3 px-4 font-bold">${item.id}</td>
-          <td class="py-3 px-4">${getMaterialLabel(item.materialType)}</td>
-          <td class="py-3 px-4">${item.supplier}</td>
-          <td class="py-3 px-4 font-bold">${item.quantity} ${item.unit}</td>
-          <td class="py-3 px-4 text-slate-500">${item.date}</td>
-          <td class="py-3 px-4">${getStatusBadge(item.status)}</td>
-          <td class="py-3 px-4 text-right">
-            ${item.status === 'pending' 
-              ? `<button onclick="approveItem('${item.id}')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1 rounded-lg text-xs transition">${currentLang === 'es' ? 'Aprobar y Asignar Ruta' : 'Approve & Dispatch'}</button>` 
-              : `<span class="text-xs text-slate-400 italic">${currentLang === 'es' ? 'Procesado' : 'Processed'}</span>`}
-          </td>
-        </tr>
-      `).join('');
-
-      // 3. Logistics Cards
-      const transitItems = items.filter(i => i.status === 'in_transit');
-      document.getElementById('badge-logistics-count').innerText = transitItems.length;
-      const logisticsContainer = document.getElementById('logistics-cards-container');
-      
-      if (transitItems.length === 0) {
-        logisticsContainer.innerHTML = `
-          <div class="bg-white p-8 rounded-2xl text-center border border-slate-200 text-slate-400">
-            <i class="fa-solid fa-truck-fast text-4xl mb-2 text-slate-300"></i>
-            <p class="text-sm font-semibold">${currentLang === 'es' ? 'No hay recolecciones de Sotol en tránsito.' : 'No active Sotol pickups currently in transit.'}</p>
-          </div>
-        `;
-      } else {
-        logisticsContainer.innerHTML = transitItems.map(item => `
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between md:items-center gap-4">
-            <div class="space-y-1">
-              <div class="flex items-center gap-2">
-                <span class="font-extrabold text-slate-900 text-base">${item.id}</span>
-                <span class="bg-blue-100 text-blue-800 font-bold text-[10px] px-2 py-0.5 rounded uppercase">${currentLang === 'es' ? 'En Ruta / Báscula' : 'En Route / Scale'}</span>
-              </div>
-              <p class="text-xs font-semibold text-slate-700"><i class="fa-solid fa-leaf text-emerald-600 mr-1"></i>${getMaterialLabel(item.materialType)}</p>
-              <p class="text-xs text-slate-500"><i class="fa-solid fa-location-dot mr-1"></i>${currentLang === 'es' ? 'Origen' : 'Origin'}: ${item.location} | ${currentLang === 'es' ? 'Chofer' : 'Driver'}: ${item.driver}</p>
-            </div>
-
-            <div class="flex items-center gap-3 text-xs text-slate-500 border-t md:border-t-0 pt-3 md:pt-0">
-              <div class="text-center">
-                <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs mx-auto">✓</span>
-                <span class="text-[10px] mt-1 block">${currentLang === 'es' ? 'Aprobado' : 'Approved'}</span>
-              </div>
-              <div class="w-8 h-0.5 bg-emerald-500"></div>
-              <div class="text-center">
-                <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs mx-auto animate-pulse">2</span>
-                <span class="text-[10px] mt-1 block font-bold text-blue-600">${currentLang === 'es' ? 'Báscula' : 'Scale'}</span>
-              </div>
-              <div class="w-8 h-0.5 bg-slate-200"></div>
-              <div class="text-center opacity-40">
-                <span class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center font-bold text-xs mx-auto">3</span>
-                <span class="text-[10px] mt-1 block">${currentLang === 'es' ? 'Almacén' : 'Warehouse'}</span>
-              </div>
-            </div>
-
-            <div>
-              <button onclick="openScaleModal('${item.id}')" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs shadow-md transition flex items-center gap-2">
-                <i class="fa-solid fa-scale-balanced"></i>
-                <span>${currentLang === 'es' ? 'Registrar Báscula Digital' : 'Digital Scale Weigh-in'}</span>
-              </button>
-            </div>
-          </div>
-        `).join('');
-      }
-
-      // 4. Warehouse Module
-      const whItems = items.filter(i => i.status === 'warehouse');
-      const totalTons = whItems.reduce((acc, i) => acc + (i.weightScale || i.quantity), 0);
-      document.getElementById('wh-stock-total').innerText = totalTons.toFixed(1) + ' Tons';
-      document.getElementById('wh-stock-conforme').innerText = (totalTons * 0.92).toFixed(1) + ' Tons';
-      document.getElementById('wh-stock-mermas').innerText = (totalTons * 0.08).toFixed(1) + ' Tons';
-
-      const whBody = document.getElementById('warehouse-table-body');
-      whBody.innerHTML = whItems.map(item => `
-        <tr class="hover:bg-slate-50">
-          <td class="py-3 px-4 font-bold text-slate-800">${item.id}-WH</td>
-          <td class="py-3 px-4"><i class="fa-solid fa-plant-wilt text-emerald-600 mr-1.5"></i>${getMaterialLabel(item.materialType)}</td>
-          <td class="py-3 px-4 font-bold text-emerald-700">${item.weightScale || item.quantity} Tons</td>
-          <td class="py-3 px-4">${item.moisture || 12}%</td>
-          <td class="py-3 px-4"><span class="bg-emerald-100 text-emerald-800 font-bold text-[10px] px-2 py-0.5 rounded">${currentLang === 'es' ? 'Grado A Conforme' : 'Grade A Pass'}</span></td>
-          <td class="py-3 px-4 text-slate-500">Silo 1 - Juárez</td>
-        </tr>
-      `).join('');
-
-      // Dashboard KPIs
-      document.getElementById('kpi-total-tons').innerText = totalTons.toFixed(1) + ' Tons';
-      document.getElementById('kpi-total-co2').innerText = (totalTons * 2.4).toFixed(1) + ' t';
-      document.getElementById('kpi-active-pickups').innerText = transitItems.length;
-
-      updateCharts(totalTons);
-    }
-
-    function getStatusBadge(status) {
-      if (status === 'pending') return `<span class="bg-amber-100 text-amber-800 font-bold text-[10px] px-2.5 py-1 rounded-full">${currentLang === 'es' ? 'Pendiente Revisión' : 'Pending Review'}</span>`;
-      if (status === 'in_transit') return `<span class="bg-blue-100 text-blue-800 font-bold text-[10px] px-2.5 py-1 rounded-full"><i class="fa-solid fa-truck mr-1"></i>${currentLang === 'es' ? 'En Báscula / Ruta' : 'In Transit / Scale'}</span>`;
-      if (status === 'warehouse') return `<span class="bg-emerald-100 text-emerald-800 font-bold text-[10px] px-2.5 py-1 rounded-full"><i class="fa-solid fa-check mr-1"></i>${currentLang === 'es' ? 'En Almacén QC' : 'In Warehouse QC'}</span>`;
-      return '';
-    }
-
-    function updateCharts(totalTons) {
-      if (chartMaterial) chartMaterial.destroy();
-      if (chartStatus) chartStatus.destroy();
-
-      const ctx1 = document.getElementById('chartMaterialMix').getContext('2d');
-      chartMaterial = new Chart(ctx1, {
-        type: 'bar',
-        data: {
-          labels: currentLang === 'es' ? ['Fibra de Sotol', 'Bagazo de Sotol'] : ['Sotol Fiber', 'Sotol Bagasse'],
-          datasets: [{
-            label: currentLang === 'es' ? 'Toneladas Procesadas' : 'Processed Tons',
-            data: [totalTons * 0.7, totalTons * 0.3],
-            backgroundColor: ['#059669', '#0d9488']
-          }]
-        },
-        options: { responsive: true, maintainAspectRatio: false }
-      });
-
-      const ctx2 = document.getElementById('chartStatusPie').getContext('2d');
-      chartStatus = new Chart(ctx2, {
-        type: 'doughnut',
-        data: {
-          labels: currentLang === 'es' ? ['Almacén', 'En Tránsito', 'Pendiente'] : ['Warehouse', 'In Transit', 'Pending'],
-          datasets: [{
-            data: [
-              items.filter(i => i.status === 'warehouse').length,
-              items.filter(i => i.status === 'in_transit').length,
-              items.filter(i => i.status === 'pending').length
-            ],
-            backgroundColor: ['#10b981', '#3b82f6', '#f59e0b']
-          }]
-        },
-        options: { responsive: true, maintainAspectRatio: false }
-      });
-    }
-
-    window.onload = function() {
-      switchTab('dashboard');
-      setLanguage('es');
-      calculateCo2Estimate();
-      document.getElementById('input-date').valueAsDate = new Date();
-    };
-  </script>
 </body>
 </html>
