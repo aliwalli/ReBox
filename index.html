@@ -4,331 +4,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080c12">
-  <title>ReBox — Circular Intelligence</title>
-
+  <meta name="theme-color" content="#07170f">
+  <title>ReBox | Circular Materials</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
+<div class="app-shell">
+  <div class="mobile-overlay" id="mobileOverlay"></div>
 
-<div class="app">
-
-  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
+    <button class="close-sidebar" id="closeSidebar" aria-label="Cerrar menú"><i class="fa-solid fa-xmark"></i></button>
     <div class="brand">
-      <div class="brand-icon">R<span>↗</span></div>
-      <div>
-        <div class="brand-name">rebox<span>.</span></div>
-        <div class="brand-sub">CIRCULAR INTELLIGENCE</div>
-      </div>
+      <div class="brand-logo"><i class="fa-solid fa-leaf"></i></div>
+      <div class="brand-title">RE<span>BOX</span></div>
+      <div class="brand-tagline">CIRCULAR MATERIALS</div>
     </div>
 
-    <div class="nav-label">WORKSPACE <span>01 — 06</span></div>
-
-    <nav>
-      <button class="nav-item active" data-page="dashboard">
-        <span class="nav-symbol">◫</span>
-        <span data-t="navDashboard">Resumen general</span>
-      </button>
-      <button class="nav-item" data-page="supplier">
-        <span class="nav-symbol">⊕</span>
-        <span data-t="navSupplier">Registrar material</span>
-      </button>
-      <button class="nav-item" data-page="admin">
-        <span class="nav-symbol">◎</span>
-        <span data-t="navAdmin">Aprobaciones</span>
-        <span class="count" id="pendingBadge">0</span>
-      </button>
-      <button class="nav-item" data-page="logistics">
-        <span class="nav-symbol">⇢</span>
-        <span data-t="navLogistics">Logística</span>
-        <span class="count" id="transitBadge">0</span>
-      </button>
-      <button class="nav-item" data-page="warehouse">
-        <span class="nav-symbol">▤</span>
-        <span data-t="navWarehouse">Almacén</span>
-      </button>
-      <button class="nav-item" data-page="catalog">
-        <span class="nav-symbol">▦</span>
-        <span data-t="navCatalog">Catálogo B2B</span>
-      </button>
+    <nav class="side-nav" aria-label="Navegación principal">
+      <button class="nav-link active" data-page="dashboard"><i class="fa-solid fa-table-cells-large"></i><span data-i18n="navDashboard">Resumen general</span></button>
+      <button class="nav-link" data-page="supplier"><i class="fa-solid fa-plus"></i><span data-i18n="navSupplier">Registrar material</span></button>
+      <button class="nav-link" data-page="admin"><i class="fa-solid fa-circle-check"></i><span data-i18n="navAdmin">Aprobaciones</span><b class="nav-count" id="pendingCount">0</b></button>
+      <button class="nav-link" data-page="logistics"><i class="fa-solid fa-truck"></i><span data-i18n="navLogistics">Logística</span></button>
+      <button class="nav-link" data-page="warehouse"><i class="fa-solid fa-box"></i><span data-i18n="navWarehouse">Almacén</span></button>
+      <button class="nav-link" data-page="catalog"><i class="fa-solid fa-tag"></i><span data-i18n="navCatalog">Catálogo B2B</span></button>
     </nav>
 
-    <div class="sidebar-bottom">
-      <div class="orb-panel">
-        <div class="orb"></div>
-        <span>RB / SYSTEM 001</span>
-      </div>
-      <div class="connection">
-        <span class="live-dot"></span>
-        <span data-t="demoStatus">DEMO LOCAL · ACTIVO</span>
-      </div>
-      <div class="sidebar-foot">REBOX SYSTEMS <span>V 1.0</span></div>
-    </div>
+    <div class="sidebar-decoration" aria-hidden="true"><i class="fa-solid fa-leaf"></i></div>
+    <div class="side-footer"><span class="status-dot"></span><span data-i18n="demoLabel">DEMO LOCAL</span><small>V 2.0</small></div>
   </aside>
 
-  <!-- WORKSPACE -->
   <div class="workspace">
-
     <header class="topbar">
-      <div class="top-left">
-        <button class="menu-button" id="menuButton">☰</button>
-        <span>REBOX</span>
-        <span class="slash">/</span>
-        <strong id="breadcrumb">OVERVIEW</strong>
-      </div>
-
-      <div class="top-right">
-        <div class="online"><span class="live-dot"></span><span data-t="online">SISTEMA ACTIVO</span></div>
-        <div class="language">
-          <button data-lang="es" class="selected">ES</button>
-          <button data-lang="en">EN</button>
+      <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+      <div class="search-field"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearch" type="search" placeholder="Buscar lotes, materiales o reportes..." autocomplete="off" aria-label="Buscar lotes y materiales"></div>
+      <div class="top-actions">
+        <div class="lang-switch" aria-label="Idioma"><button data-lang="es" class="active">ES</button><button data-lang="en">EN</button></div>
+        <div class="notification-wrap">
+          <button class="icon-action" id="notificationButton" aria-label="Ver pendientes" aria-expanded="false"><i class="fa-regular fa-bell"></i><span class="notification-dot" id="notificationDot"></span></button>
+          <div class="notification-popover hidden" id="notificationPopover"><strong data-i18n="notifications">Actividad pendiente</strong><div id="notificationContent"></div></div>
         </div>
-        <button class="reset" id="resetButton" title="Reiniciar demo">↺</button>
-        <div class="avatar">RB</div>
+        <div class="user-avatar" title="ReBox demo">RB</div>
+        <button class="icon-action reset-button" id="resetButton" aria-label="Restablecer datos" title="Restablecer demo"><i class="fa-solid fa-rotate-left"></i></button>
       </div>
     </header>
 
-    <main>
-
+    <main class="main-content">
       <!-- DASHBOARD -->
-      <section class="page active" id="dashboard">
-
-        <div class="section-kicker">
-          <span class="accent-line"></span>
-          <span data-t="dashboardKicker">INTELIGENCIA CIRCULAR / RESUMEN</span>
-          <span class="section-index">01 / 06</span>
-        </div>
-
-        <div class="hero">
-          <div>
-            <h1 data-t-html="heroTitle">Materiales circulares.<br><em>Control total.</em></h1>
-            <p data-t="heroDescription">Una plataforma para gestionar la recuperación, trazabilidad y transformación de residuos de sotol.</p>
-          </div>
-          <button class="primary-button" data-page="supplier">
-            <span data-t="newBatch">+ NUEVO LOTE</span> ↗
-          </button>
-        </div>
-
-        <div class="metrics four">
-          <article class="metric">
-            <div class="metric-heading"><span data-t="recovered">BIOMASA RECUPERADA</span><span>↗</span></div>
-            <div class="metric-value" id="kpiTons">0.0 <small>t</small></div>
-            <div class="metric-description"><i></i><span data-t="recoveredSub">Peso registrado en almacén</span></div>
-          </article>
-          <article class="metric">
-            <div class="metric-heading"><span data-t="carbon">CO₂e EVITADO ESTIMADO</span><span>◌</span></div>
-            <div class="metric-value" id="kpiCarbon">0.0 <small>t</small></div>
-            <div class="metric-description"><i></i><span data-t="carbonSub">Cálculo ilustrativo, factor 2.4</span></div>
-          </article>
-          <article class="metric">
-            <div class="metric-heading"><span data-t="transit">EN TRÁNSITO</span><span>⇢</span></div>
-            <div class="metric-value" id="kpiTransit">0</div>
-            <div class="metric-description"><i></i><span data-t="transitSub">Recolecciones activas</span></div>
-          </article>
-          <article class="metric">
-            <div class="metric-heading"><span data-t="lots">LOTES EN ALMACÉN</span><span>▤</span></div>
-            <div class="metric-value" id="kpiLots">0</div>
-            <div class="metric-description"><i></i><span data-t="lotsSub">Inventario registrado</span></div>
-          </article>
-        </div>
-
+      <section class="page active" id="page-dashboard">
         <div class="dashboard-grid">
-          <article class="panel">
-            <div class="panel-heading">
-              <div><div class="eyebrow">MATERIAL ANALYTICS / 01</div><h2 data-t="distribution">Distribución de materiales</h2></div>
-              <span class="outline-label">LIVE DATA</span>
+          <article class="chart-card material-card">
+            <div class="material-card-top"><div class="section-title light"><i class="fa-solid fa-chart-simple"></i><div><small>MATERIAL ANALYTICS / 01</small><h2 data-i18n="distribution">Distribución de materiales</h2></div></div>
+              <select id="chartPeriod" class="period-select" aria-label="Periodo"><option value="all" data-i18n="allPeriods">Todos los periodos</option><option value="30" data-i18n="last30">Últimos 30 días</option><option value="90" data-i18n="last90">Últimos 90 días</option></select>
             </div>
-            <div class="chart-container"><canvas id="materialChart"></canvas></div>
+            <div class="material-chart-body"><canvas id="materialChart" aria-label="Gráfica de materiales en almacén"></canvas></div>
           </article>
-          <article class="panel">
-            <div class="panel-heading">
-              <div><div class="eyebrow">PIPELINE / 02</div><h2 data-t="pipeline">Estado de los lotes</h2></div>
-              <span class="panel-icon">◎</span>
-            </div>
-            <div class="donut-container">
-              <canvas id="statusChart"></canvas>
-              <div class="donut-center"><strong id="donutTotal">0</strong><small>TOTAL LOTS</small></div>
-            </div>
-            <div class="legend" id="statusLegend"></div>
+          <article class="chart-card status-card">
+            <div class="section-title"><i class="fa-solid fa-leaf section-leaf"></i><div><small>PIPELINE / 02</small><h2 data-i18n="statusTitle">Estado de los lotes</h2></div></div>
+            <div class="status-chart-row"><div class="donut-area"><canvas id="statusChart" aria-label="Estados de los lotes"></canvas><div class="donut-center"><strong id="donutTotal">0</strong><span data-i18n="totalLots">TOTAL LOTES</span></div></div><div class="chart-legend" id="chartLegend"></div></div>
           </article>
         </div>
 
-        <article class="panel table-panel">
-          <div class="panel-heading">
-            <div><div class="eyebrow">OPERATIONS / 03</div><h2 data-t="recent">Lotes recientes</h2></div>
-            <button class="text-button" data-page="admin"><span data-t="viewAll">VER TODOS</span> ↗</button>
-          </div>
-          <div class="table-wrapper">
-            <table>
-              <thead><tr>
-                <th data-t="batch">LOTE</th><th data-t="material">MATERIAL</th>
-                <th data-t="origin">ORIGEN</th><th data-t="quantity">CANTIDAD</th><th data-t="status">ESTADO</th>
-              </tr></thead>
-              <tbody id="recentRows"></tbody>
-            </table>
-          </div>
+        <article class="table-card">
+          <div class="table-heading"><div class="section-title"><i class="fa-solid fa-cube"></i><div><small>OPERATIVO / 03</small><h2 data-i18n="recentLots">Lotes recientes</h2></div></div><button class="soft-button" data-page="admin"><span data-i18n="viewAll">Ver todos</span> <i class="fa-solid fa-arrow-right"></i></button></div>
+          <div class="table-scroll"><table><thead><tr><th data-i18n="thBatch">Lote</th><th data-i18n="thMaterial">Material</th><th data-i18n="thOrigin">Origen</th><th data-i18n="thQuantity">Cantidad</th><th data-i18n="thStatus">Estado</th></tr></thead><tbody id="recentRows"></tbody></table></div>
         </article>
+
+        <div class="mini-stats">
+          <div class="mini-stat"><span data-i18n="statBiomass">Biomasa en almacén</span><strong id="totalTons">0 t</strong></div>
+          <div class="mini-stat"><span data-i18n="statCO2">CO₂e estimado*</span><strong id="totalCO2">0 t</strong></div>
+          <div class="mini-stat"><span data-i18n="statTransit">En tránsito</span><strong id="totalTransit">0</strong></div>
+          <div class="mini-stat"><span data-i18n="statQuotes">Cotizaciones (demo)</span><strong id="totalQuotes">0</strong></div>
+        </div>
+        <p class="disclaimer" data-i18n="carbonDisclaimer">*El factor de CO₂e es ilustrativo y no representa una certificación ambiental.</p>
       </section>
 
       <!-- SUPPLIER -->
-      <section class="page" id="supplier">
-        <div class="section-kicker"><span class="accent-line"></span>MATERIAL INTAKE / 02<span class="section-index">02 / 06</span></div>
-        <div class="page-heading">
-          <h1 data-t="supplierTitle">Registrar material<span>.</span></h1>
-          <p data-t="supplierDescription">Publica residuos de sotol para su revisión y recolección.</p>
-        </div>
-
-        <div class="flow-bar">
-          <span>01 / INPUT</span><b>→</b><span>02 / APPROVAL</span><b>→</b><span>03 / LOGISTICS</span><b>→</b><span>04 / WAREHOUSE</span>
-        </div>
-
+      <section class="page" id="page-supplier">
+        <div class="page-header"><div><small>REBOX / MATERIAL INTAKE</small><h1><span data-i18n="supplierTitle">Registrar material</span><em>.</em></h1><p data-i18n="supplierSub">Publica residuos de sotol para su revisión y recolección.</p></div><span class="header-chip">01 / INTAKE</span></div>
         <div class="form-layout">
-          <form id="batchForm" class="panel">
-            <div class="panel-heading"><div><div class="eyebrow">INPUT TERMINAL / 01</div><h2 data-t="batchDetails">Información del lote</h2></div><span class="outline-label">SOTOL / ACTIVE</span></div>
-
-            <div class="form-grid">
-              <label><span data-t="materialType">TIPO DE MATERIAL</span>
-                <select id="materialInput">
-                  <option value="sotol_fiber" data-t="fiber">Fibra de sotol</option>
-                  <option value="sotol_bagasse" data-t="bagasse">Bagazo de sotol</option>
-                </select>
-              </label>
-              <label><span data-t="amount">CANTIDAD / TONELADAS</span><input type="number" id="quantityInput" value="12.5" min="0.1" step="0.1" required></label>
-              <label><span data-t="facility">ORIGEN / PLANTA</span><input type="text" id="originInput" placeholder="Nombre de la planta" required maxlength="120"></label>
-              <label><span data-t="date">FECHA DISPONIBLE</span><input type="date" id="dateInput" required></label>
-              <label class="full"><span data-t="notes">NOTAS TÉCNICAS / HUMEDAD</span><textarea id="notesInput" rows="4" placeholder="Condición del material, humedad, embalaje..."></textarea></label>
-            </div>
-
-            <div class="form-footer">
-              <span data-t="localNotice">Los datos se guardan en este navegador.</span>
-              <button class="primary-button" type="submit"><span data-t="publish">PUBLICAR LOTE</span> ↗</button>
-            </div>
-          </form>
-
-          <article class="panel impact">
-            <div class="eyebrow">IMPACT SIMULATION / LIVE</div>
-            <div class="impact-graphic"><span>CO₂</span></div>
-            <div class="impact-label" data-t="avoided">EMISIONES EVITADAS ESTIMADAS</div>
-            <div class="impact-value" id="co2Preview">30.0 <small>tCO₂e</small></div>
-            <div class="impact-factor"><span>ILLUSTRATIVE FACTOR</span><strong>2.4 tCO₂e/t</strong></div>
-            <p data-t="carbonWarning">Estimación de demostración, no certificada ni validada.</p>
+          <article class="white-card"><div class="card-heading"><h2 data-i18n="batchInfo">Información del lote</h2><span class="little-tag">SOTOL</span></div>
+            <form id="batchForm"><div class="form-grid">
+              <label><span data-i18n="materialType">Tipo de material</span><select id="materialInput" required><option value="sotol_fiber" data-i18n="fiber">Fibra de sotol</option><option value="sotol_bagasse" data-i18n="bagasse">Bagazo de sotol</option></select></label>
+              <label><span data-i18n="quantityTons">Cantidad (toneladas)</span><input id="quantityInput" type="number" min="0.1" step="0.1" value="12.5" required></label>
+              <label><span data-i18n="originLocation">Ubicación / planta de origen</span><input id="originInput" type="text" maxlength="120" placeholder="Planta Industrial Juárez" required></label>
+              <label><span data-i18n="availableDate">Fecha de disponibilidad</span><input id="dateInput" type="date" required></label>
+              <label class="wide"><span data-i18n="technicalNotes">Notas técnicas / humedad</span><textarea id="notesInput" rows="4" maxlength="500" placeholder="Humedad, embalaje, condiciones del material..."></textarea></label>
+            </div><div class="form-actions"><span data-i18n="savedLocally">Los datos se guardan en este navegador.</span><button type="submit" class="primary-button"><i class="fa-solid fa-plus"></i> <span data-i18n="publishBatch">Publicar lote</span></button></div></form>
           </article>
+          <article class="impact-card"><div class="impact-icon"><i class="fa-solid fa-leaf"></i></div><small>ESTIMATED IMPACT / DEMO</small><h2 data-i18n="environmentalEstimate">Impacto ambiental estimado</h2><div class="impact-number" id="carbonPreview">30.0 <span>tCO₂e</span></div><div class="impact-factor">2.4 tCO₂e / t</div><p data-i18n="estimateWarning">Cálculo ilustrativo, no certificado. No equivale a créditos de carbono.</p></article>
         </div>
-
-        <article class="panel table-panel">
-          <div class="panel-heading"><div><div class="eyebrow">SUPPLIER / RECORDS</div><h2 data-t="registered">Lotes registrados</h2></div></div>
-          <div class="table-wrapper"><table><thead><tr><th data-t="batch">LOTE</th><th data-t="material">MATERIAL</th><th data-t="origin">ORIGEN</th><th data-t="quantity">CANTIDAD</th><th data-t="status">ESTADO</th></tr></thead><tbody id="supplierRows"></tbody></table></div>
-        </article>
+        <article class="table-card"><div class="table-heading"><h2 data-i18n="myLots">Mis lotes registrados</h2><span class="table-count" id="supplierCount">0</span></div><div class="table-scroll"><table><thead><tr><th data-i18n="thBatch">Lote</th><th data-i18n="thMaterial">Material</th><th data-i18n="thOrigin">Origen</th><th data-i18n="thQuantity">Cantidad</th><th data-i18n="thStatus">Estado</th></tr></thead><tbody id="supplierRows"></tbody></table></div></article>
       </section>
 
       <!-- ADMIN -->
-      <section class="page" id="admin">
-        <div class="section-kicker"><span class="accent-line"></span>OPERATIONS / APPROVALS<span class="section-index">03 / 06</span></div>
-        <div class="page-heading heading-flex">
-          <div><h1 data-t="adminTitle">Aprobaciones<span>.</span></h1><p data-t="adminDescription">Revisa los registros y autoriza las recolecciones.</p></div>
-          <div class="pending-counter"><strong id="queueCount">0</strong><small data-t="pendingLabel">PENDIENTES</small></div>
-        </div>
-        <article class="panel table-panel">
-          <div class="panel-heading"><div><div class="eyebrow">INBOUND / ALL RECORDS</div><h2 data-t="registry">Registro de lotes</h2></div>
-            <div class="filters" id="filters">
-              <button class="active" data-filter="all" data-t="all">TODOS</button>
-              <button data-filter="pending" data-t="pending">PENDIENTES</button>
-              <button data-filter="in_transit" data-t="inTransit">EN TRÁNSITO</button>
-              <button data-filter="warehouse" data-t="inWarehouse">ALMACÉN</button>
-            </div>
-          </div>
-          <div class="table-wrapper"><table><thead><tr><th data-t="batch">LOTE</th><th data-t="supplier">PROVEEDOR</th><th data-t="material">MATERIAL</th><th data-t="quantity">CANTIDAD</th><th data-t="date">FECHA</th><th data-t="status">ESTADO</th><th data-t="action">ACCIÓN</th></tr></thead><tbody id="adminRows"></tbody></table></div>
-        </article>
+      <section class="page" id="page-admin">
+        <div class="page-header"><div><small>REBOX / APPROVAL CENTER</small><h1><span data-i18n="adminTitle">Aprobaciones</span><em>.</em></h1><p data-i18n="adminSub">Revisa material y autoriza las rutas de recolección.</p></div><span class="header-chip"><span id="adminPending">0</span> <span data-i18n="pending">Pendientes</span></span></div>
+        <article class="table-card"><div class="table-heading wrap"><h2 data-i18n="records">Registro de operaciones</h2><div class="filter-pills" id="adminFilters"><button class="selected" data-filter="all" data-i18n="filterAll">Todos</button><button data-filter="pending" data-i18n="pending">Pendientes</button><button data-filter="in_transit" data-i18n="transit">En tránsito</button><button data-filter="warehouse" data-i18n="warehouse">En almacén</button></div></div><div class="table-scroll"><table><thead><tr><th data-i18n="thBatch">Lote</th><th data-i18n="thSupplier">Proveedor</th><th data-i18n="thMaterial">Material</th><th data-i18n="thQuantity">Cantidad</th><th data-i18n="thStatus">Estado</th><th data-i18n="thAction">Acción</th></tr></thead><tbody id="adminRows"></tbody></table></div></article>
       </section>
 
       <!-- LOGISTICS -->
-      <section class="page" id="logistics">
-        <div class="section-kicker"><span class="accent-line"></span>SUPPLY CHAIN / LOGISTICS<span class="section-index">04 / 06</span></div>
-        <div class="page-heading"><h1 data-t="logisticsTitle">En movimiento<span>.</span></h1><p data-t="logisticsDescription">Coordina el transporte y registra el pesaje de los materiales.</p></div>
-        <div class="metrics two">
-          <article class="metric"><div class="metric-heading"><span data-t="collections">RECOLECCIONES ACTIVAS</span><span>↗</span></div><div class="metric-value" id="activeCollections">0</div></article>
-          <article class="metric"><div class="metric-heading"><span data-t="transportWeight">CARGA ESTIMADA EN TRÁNSITO</span><span>⇢</span></div><div class="metric-value" id="transitWeight">0.0 <small>t</small></div></article>
-        </div>
-        <div id="logisticsCards" class="logistics-cards"></div>
+      <section class="page" id="page-logistics">
+        <div class="page-header"><div><small>REBOX / FIELD OPERATIONS</small><h1><span data-i18n="logisticsTitle">Logística</span><em>.</em></h1><p data-i18n="logisticsSub">Supervisa recolecciones y registra pesajes.</p></div><span class="header-chip"><span id="logisticsCount">0</span> <span data-i18n="active">Activas</span></span></div><div class="logistics-list" id="logisticsCards"></div>
       </section>
 
       <!-- WAREHOUSE -->
-      <section class="page" id="warehouse">
-        <div class="section-kicker"><span class="accent-line"></span>INVENTORY / MATERIAL CONTROL<span class="section-index">05 / 06</span></div>
-        <div class="page-heading"><h1 data-t="warehouseTitle">Control de almacén<span>.</span></h1><p data-t="warehouseDescription">Inventario, peso verificado y condiciones de los materiales.</p></div>
-        <div class="metrics three">
-          <article class="metric"><div class="metric-heading"><span data-t="stock">INVENTARIO TOTAL</span><span>▤</span></div><div class="metric-value" id="stockTotal">0.0 <small>t</small></div></article>
-          <article class="metric"><div class="metric-heading"><span data-t="recordedLots">LOTES REGISTRADOS</span><span>◫</span></div><div class="metric-value" id="stockLots">0</div></article>
-          <article class="metric"><div class="metric-heading"><span data-t="moisture">HUMEDAD PROMEDIO</span><span>◌</span></div><div class="metric-value" id="avgMoisture">—</div></article>
-        </div>
-        <article class="panel table-panel">
-          <div class="panel-heading"><div><div class="eyebrow">WAREHOUSE / INVENTORY</div><h2 data-t="ledger">Inventario por lote</h2></div><span class="outline-label">RECORDED WEIGH-IN</span></div>
-          <div class="table-wrapper"><table><thead><tr><th data-t="batch">LOTE</th><th data-t="material">MATERIAL</th><th data-t="weight">PESO VERIFICADO</th><th data-t="moisture">HUMEDAD</th><th data-t="driver">CONDUCTOR</th><th data-t="status">ESTADO</th></tr></thead><tbody id="warehouseRows"></tbody></table></div>
-        </article>
+      <section class="page" id="page-warehouse">
+        <div class="page-header"><div><small>REBOX / MATERIAL STOCK</small><h1><span data-i18n="warehouseTitle">Almacén</span><em>.</em></h1><p data-i18n="warehouseSub">Consulta el peso verificado y las condiciones de los lotes.</p></div></div>
+        <div class="warehouse-summary"><div><small data-i18n="warehouseTons">Toneladas almacenadas</small><strong id="warehouseTons">0 t</strong></div><div><small data-i18n="warehouseLots">Lotes recibidos</small><strong id="warehouseLots">0</strong></div><div><small data-i18n="averageMoisture">Humedad promedio</small><strong id="averageMoisture">—</strong></div></div>
+        <article class="table-card"><div class="table-heading"><h2 data-i18n="inventory">Inventario por lote</h2></div><div class="table-scroll"><table><thead><tr><th data-i18n="thBatch">Lote</th><th data-i18n="thMaterial">Material</th><th data-i18n="verifiedWeight">Peso verificado</th><th data-i18n="moisture">Humedad</th><th data-i18n="driver">Conductor</th></tr></thead><tbody id="warehouseRows"></tbody></table></div></article>
       </section>
 
       <!-- CATALOG -->
-      <section class="page" id="catalog">
-        <div class="section-kicker"><span class="accent-line"></span>MATERIALS / B2B CATALOG<span class="section-index">06 / 06</span></div>
-        <div class="page-heading"><h1 data-t="catalogTitle">Segunda vida<span>.</span></h1><p data-t="catalogDescription">Explora posibles aplicaciones industriales de los materiales recuperados.</p></div>
-        <div class="catalog-grid">
-          <article class="product-card">
-            <div class="product-visual fiber-visual"><div class="fiber-shape"></div><span>01 / FIBER</span></div>
-            <div class="product-content">
-              <div class="eyebrow">RECLAIMED PLANT FIBER</div>
-              <h2 data-t="fiberProduct">Fibra refinada de sotol</h2>
-              <p data-t="fiberDescription">Materia prima potencial para empaques moldeados y materiales compuestos, sujeta a pruebas técnicas.</p>
-              <div class="product-price"><span>INDICATIVE DEMO PRICE</span><strong>$180 <small>USD/t</small></strong></div>
-              <button class="outline-button quote-button"><span data-t="quote">SOLICITAR COTIZACIÓN</span> ↗</button>
-            </div>
-          </article>
-          <article class="product-card">
-            <div class="product-visual bagasse-visual"><div class="pellet-shape"></div><span>02 / BAGASSE</span></div>
-            <div class="product-content">
-              <div class="eyebrow">RECOVERED BIOMASS</div>
-              <h2 data-t="bagasseProduct">Bagazo pelletizado de sotol</h2>
-              <p data-t="bagasseDescription">Biomasa con aplicaciones energéticas potenciales, pendientes de validación técnica.</p>
-              <div class="product-price"><span>INDICATIVE DEMO PRICE</span><strong>$110 <small>USD/t</small></strong></div>
-              <button class="outline-button quote-button"><span data-t="quote">SOLICITAR COTIZACIÓN</span> ↗</button>
-            </div>
-          </article>
+      <section class="page" id="page-catalog">
+        <div class="page-header"><div><small>REBOX / B2B MATERIALS</small><h1><span data-i18n="catalogTitle">Catálogo B2B</span><em>.</em></h1><p data-i18n="catalogSub">Aplicaciones potenciales para materiales de sotol recuperados.</p></div></div>
+        <div class="product-grid">
+          <article class="product-card"><div class="product-art fiber-art"><i class="fa-solid fa-seedling"></i><span>FIBER / 01</span></div><div class="product-copy"><small>RECLAIMED FIBER</small><h2 data-i18n="productFiber">Fibra refinada de sotol</h2><p data-i18n="productFiberSub">Material potencial para empaques moldeados y compuestos, sujeto a pruebas técnicas.</p><div class="product-bottom"><strong>$180 USD/t <small>DEMO</small></strong><button class="primary-button" data-quote="fiber" data-i18n="requestQuote">Solicitar cotización</button></div></div></article>
+          <article class="product-card"><div class="product-art bagasse-art"><i class="fa-solid fa-recycle"></i><span>BIOMASS / 02</span></div><div class="product-copy"><small>RECOVERED BIOMASS</small><h2 data-i18n="productBagasse">Bagazo pelletizado de sotol</h2><p data-i18n="productBagasseSub">Biomasa de posible uso energético, pendiente de validación técnica.</p><div class="product-bottom"><strong>$110 USD/t <small>DEMO</small></strong><button class="primary-button" data-quote="bagasse" data-i18n="requestQuote">Solicitar cotización</button></div></div></article>
         </div>
-        <p class="catalog-note" data-t="catalogWarning">Los productos y precios son ilustrativos. Las cotizaciones no están conectadas a un servidor.</p>
+        <article class="table-card quotes-table"><div class="table-heading"><h2 data-i18n="quoteRequests">Solicitudes de cotización (demo)</h2><span class="table-count" id="quoteCount">0</span></div><div class="table-scroll"><table><thead><tr><th data-i18n="thQuote">Folio</th><th data-i18n="thCompany">Empresa</th><th data-i18n="thMaterial">Material</th><th data-i18n="thVolume">Volumen</th><th data-i18n="thDate">Fecha</th></tr></thead><tbody id="quoteRows"></tbody></table></div></article>
+        <p class="disclaimer" data-i18n="catalogDisclaimer">Precios y productos ilustrativos. Las solicitudes solo se guardan localmente.</p>
       </section>
-
     </main>
-
-    <footer>REBOX / CIRCULAR MATERIALS INTELLIGENCE <span data-t="footer">DEMO MODE — LOCAL DATA ONLY</span></footer>
   </div>
 </div>
 
-<!-- WEIGH-IN MODAL -->
-<div class="modal-backdrop hidden" id="scaleModal">
-  <div class="modal">
-    <div class="panel-heading">
-      <div><div class="eyebrow">LOGISTICS / DIGITAL SCALE</div><h2 data-t="scaleTitle">Registrar peso verificado</h2></div>
-      <button class="close-button" id="closeModal">✕</button>
-    </div>
-    <p id="modalBatch" class="modal-batch"></p>
-    <form id="scaleForm">
-      <label><span data-t="driver">CONDUCTOR / UNIDAD</span><input type="text" id="scaleDriver" required></label>
-      <div class="form-grid">
-        <label><span data-t="weight">PESO / TONELADAS</span><input type="number" id="scaleWeight" min="0.01" step="0.01" required></label>
-        <label><span data-t="moisture">HUMEDAD / %</span><input type="number" id="scaleMoisture" min="0" max="100" step="0.1" required></label>
-      </div>
-      <div class="modal-actions"><button class="outline-button" type="button" id="cancelModal" data-t="cancel">CANCELAR</button><button class="primary-button" type="submit"><span data-t="confirmWeight">CONFIRMAR PESAJE</span> ↗</button></div>
-    </form>
-  </div>
-</div>
-
-<div class="toast hidden" id="toast"></div>
-
+<!-- MODALS -->
+<div class="modal-backdrop hidden" id="scheduleModal"><div class="modal"><button class="modal-close" data-close-modal aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button><h2 data-i18n="scheduleTitle">Programar recolección</h2><p id="scheduleBatch" class="modal-caption"></p><form id="scheduleForm"><label><span data-i18n="driver">Conductor</span><input id="scheduleDriver" required maxlength="100" placeholder="Nombre y unidad"></label><label><span data-i18n="pickupDate">Fecha y hora programada</span><input type="datetime-local" id="pickupDate" required></label><div class="modal-actions"><button type="button" class="secondary-button" data-close-modal data-i18n="cancel">Cancelar</button><button class="primary-button" type="submit" data-i18n="schedule">Aprobar y programar</button></div></form></div></div>
+<div class="modal-backdrop hidden" id="weighModal"><div class="modal"><button class="modal-close" data-close-modal aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button><h2 data-i18n="weighTitle">Registrar pesaje</h2><p id="weighBatch" class="modal-caption"></p><form id="weighForm"><label><span data-i18n="driver">Conductor</span><input id="weighDriver" required maxlength="100"></label><div class="form-grid"><label><span data-i18n="verifiedWeight">Peso verificado (t)</span><input id="weighWeight" type="number" min="0.01" step="0.01" required></label><label><span data-i18n="moisture">Humedad (%)</span><input id="weighMoisture" type="number" min="0" max="100" step="0.1" required></label></div><div class="modal-actions"><button type="button" class="secondary-button" data-close-modal data-i18n="cancel">Cancelar</button><button class="primary-button" type="submit" data-i18n="confirmWeigh">Confirmar y almacenar</button></div></form></div></div>
+<div class="modal-backdrop hidden" id="quoteModal"><div class="modal"><button class="modal-close" data-close-modal aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button><h2 data-i18n="quoteTitle">Solicitar cotización</h2><p id="quoteProduct" class="modal-caption"></p><form id="quoteForm"><label><span data-i18n="company">Empresa</span><input id="quoteCompany" maxlength="100" required></label><div class="form-grid"><label><span data-i18n="volumeTons">Volumen (t)</span><input type="number" id="quoteVolume" min="0.1" step="0.1" required></label><label><span data-i18n="requiredDate">Fecha requerida</span><input type="date" id="quoteDate" required></label></div><div class="modal-actions"><button type="button" class="secondary-button" data-close-modal data-i18n="cancel">Cancelar</button><button class="primary-button" type="submit" data-i18n="saveQuote">Guardar solicitud demo</button></div></form></div></div>
+<div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

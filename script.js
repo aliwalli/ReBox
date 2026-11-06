@@ -1,8 +1,7 @@
-
 "use strict";
 
 const $ = id => document.getElementById(id);
-const FACTOR = 2.4; // Factor ilustrativo, no verificado.
+const FACTOR = 2.4;
 const STORAGE = "rebox_tech_records";
 const LANGUAGE_STORAGE = "rebox_tech_language";
 
@@ -32,98 +31,82 @@ let toastTimer = null;
 
 const translations = {
   es: {
-    navDashboard:"Resumen general",navSupplier:"Registrar material",navAdmin:"Aprobaciones",navLogistics:"Logística",navWarehouse:"Almacén",navCatalog:"Catálogo B2B",
-    demoStatus:"DEMO LOCAL · ACTIVO",online:"SISTEMA ACTIVO",
-    dashboardKicker:"INTELIGENCIA CIRCULAR / RESUMEN",heroTitle:"Materiales circulares.<br><em>Control total.</em>",
-    heroDescription:"Una plataforma para gestionar la recuperación, trazabilidad y transformación de residuos de sotol.",
-    newBatch:"+ NUEVO LOTE",recovered:"BIOMASA RECUPERADA",recoveredSub:"Peso registrado en almacén",
-    carbon:"CO₂e EVITADO ESTIMADO",carbonSub:"Cálculo ilustrativo, factor 2.4",
-    transit:"EN TRÁNSITO",transitSub:"Recolecciones activas",lots:"LOTES EN ALMACÉN",lotsSub:"Inventario registrado",
-    distribution:"Distribución de materiales",pipeline:"Estado de los lotes",recent:"Lotes recientes",viewAll:"VER TODOS",
-    batch:"LOTE",material:"MATERIAL",origin:"ORIGEN",quantity:"CANTIDAD",status:"ESTADO",
-    supplierTitle:"Registrar material",supplierDescription:"Publica residuos de sotol para su revisión y recolección.",
-    batchDetails:"Información del lote",materialType:"TIPO DE MATERIAL",fiber:"Fibra de sotol",bagasse:"Bagazo de sotol",
-    amount:"CANTIDAD / TONELADAS",facility:"ORIGEN / PLANTA",date:"FECHA DISPONIBLE",
-    notes:"NOTAS TÉCNICAS / HUMEDAD",localNotice:"Los datos se guardan en este navegador.",
-    publish:"PUBLICAR LOTE",avoided:"EMISIONES EVITADAS ESTIMADAS",
-    carbonWarning:"Estimación de demostración, no certificada ni validada.",
-    registered:"Lotes registrados",adminTitle:"Aprobaciones",
-    adminDescription:"Revisa los registros y autoriza las recolecciones.",
-    pendingLabel:"PENDIENTES",registry:"Registro de lotes",all:"TODOS",pending:"PENDIENTES",
-    inTransit:"EN TRÁNSITO",inWarehouse:"ALMACÉN",supplier:"PROVEEDOR",action:"ACCIÓN",
-    logisticsTitle:"En movimiento",
-    logisticsDescription:"Coordina el transporte y registra el pesaje de los materiales.",
-    collections:"RECOLECCIONES ACTIVAS",transportWeight:"CARGA ESTIMADA EN TRÁNSITO",
-    warehouseTitle:"Control de almacén",
-    warehouseDescription:"Inventario, peso verificado y condiciones de los materiales.",
-    stock:"INVENTARIO TOTAL",recordedLots:"LOTES REGISTRADOS",moisture:"HUMEDAD PROMEDIO",
-    ledger:"Inventario por lote",weight:"PESO VERIFICADO",driver:"CONDUCTOR",
-    catalogTitle:"Segunda vida",
-    catalogDescription:"Explora posibles aplicaciones industriales de los materiales recuperados.",
-    fiberProduct:"Fibra refinada de sotol",
-    fiberDescription:"Materia prima potencial para empaques moldeados y materiales compuestos, sujeta a pruebas técnicas.",
-    bagasseProduct:"Bagazo pelletizado de sotol",
-    bagasseDescription:"Biomasa con aplicaciones energéticas potenciales, pendientes de validación técnica.",
-    quote:"SOLICITAR COTIZACIÓN",
-    catalogWarning:"Los productos y precios son ilustrativos. Las cotizaciones no están conectadas a un servidor.",
-    footer:"DEMO MODE — LOCAL DATA ONLY",scaleTitle:"Registrar peso verificado",
-    cancel:"CANCELAR",confirmWeight:"CONFIRMAR PESAJE",
-    pendingStatus:"Pendiente",transitStatus:"En tránsito",warehouseStatus:"En almacén",
-    approve:"APROBAR Y DESPACHAR",weigh:"REGISTRAR PESAJE",
-    noRecords:"No hay registros.",noTransit:"No hay recolecciones activas.",
-    saved:"Lote registrado correctamente.",approved:"Lote aprobado y enviado a logística.",
-    weighed:"Pesaje registrado. El lote pasó al almacén.",
-    quoteDemo:"Las cotizaciones requieren un servidor. Función de demostración.",
-    invalid:"Revisa los datos ingresados.",
-    resetConfirm:"¿Restablecer los registros de demostración?",
-    resetDone:"Registros restablecidos."
+    navDashboard: "Resumen general", navSupplier: "Registrar material", navAdmin: "Aprobaciones",
+    navLogistics: "Logística", navWarehouse: "Almacén", navCatalog: "Catálogo B2B",
+    demoLabel: "DEMO LOCAL", notifications: "Actividad pendiente", distribution: "Distribución de materiales",
+    allPeriods: "Todos los periodos", last30: "Últimos 30 días", last90: "Últimos 90 días",
+    statusTitle: "Estado de los lotes", totalLots: "TOTAL LOTES", recentLots: "Lotes recientes",
+    viewAll: "Ver todos", thBatch: "Lote", thMaterial: "Material", thOrigin: "Origen",
+    thQuantity: "Cantidad", thStatus: "Estado", statBiomass: "Biomasa en almacén",
+    statCO2: "CO₂e estimado*", statTransit: "En tránsito", statQuotes: "Cotizaciones (demo)",
+    carbonDisclaimer: "*El factor de CO₂e es ilustrativo y no representa una certificación ambiental.",
+    supplierTitle: "Registrar material", supplierSub: "Publica residuos de sotol para su revisión y recolección.",
+    batchInfo: "Información del lote", materialType: "Tipo de material", fiber: "Fibra de sotol",
+    bagasse: "Bagazo de sotol", quantityTons: "Cantidad (toneladas)", originLocation: "Ubicación / planta de origen",
+    availableDate: "Fecha de disponibilidad", technicalNotes: "Notas técnicas / humedad",
+    savedLocally: "Los datos se guardan en este navegador.", publishBatch: "Publicar lote",
+    environmentalEstimate: "Impacto ambiental estimado", estimateWarning: "Cálculo ilustrativo, no certificado. No equivale a créditos de carbono.",
+    myLots: "Mis lotes registrados", adminTitle: "Aprobaciones", adminSub: "Revisa material y autoriza las rutas de recolección.",
+    pending: "Pendientes", records: "Registro de operaciones", filterAll: "Todos", transit: "En tránsito",
+    warehouse: "En almacén", thSupplier: "Proveedor", thAction: "Acción", logisticsTitle: "Logística",
+    logisticsSub: "Supervisa recolecciones y registra pesajes.", active: "Activas", warehouseTitle: "Almacén",
+    warehouseSub: "Consulta el peso verificado y las condiciones de los lotes.", warehouseTons: "Toneladas almacenadas",
+    warehouseLots: "Lotes recibidos", averageMoisture: "Humedad promedio", inventory: "Inventario por lote",
+    verifiedWeight: "Peso verificado", moisture: "Humedad", driver: "Conductor", catalogTitle: "Catálogo B2B",
+    catalogSub: "Aplicaciones potenciales para materiales de sotol recuperados.", productFiber: "Fibra refinada de sotol",
+    productFiberSub: "Material potencial para empaques moldeados y compuestos, sujeto a pruebas técnicas.",
+    requestQuote: "Solicitar cotización", productBagasse: "Bagazo pelletizado de sotol",
+    productBagasseSub: "Biomasa de posible uso energético, pendiente de validación técnica.",
+    quoteRequests: "Solicitudes de cotización (demo)", thQuote: "Folio", thCompany: "Empresa",
+    thVolume: "Volumen", thDate: "Fecha", catalogDisclaimer: "Precios y productos ilustrativos. Las solicitudes solo se guardan localmente.",
+    weighTitle: "Registrar pesaje", cancel: "Cancelar", confirmWeigh: "Confirmar y almacenar",
+    searchPlaceholder: "Buscar lotes, materiales o reportes...", originPlaceholder: "Planta Industrial Juárez",
+    notesPlaceholder: "Humedad, embalaje, condiciones del material...", driverPlaceholder: "Nombre y unidad",
+    pendingStatus: "Pendiente", transitStatus: "En tránsito", warehouseStatus: "En almacén",
+    approve: "Aprobar", weigh: "Pesaje", noRecords: "No hay registros.", noTransit: "No hay recolecciones activas.",
+    saved: "Lote registrado correctamente.", approved: "Lote aprobado y enviado a logística.",
+    weighed: "Pesaje registrado. El lote pasó al almacén.", invalid: "Revisa los datos ingresados.",
+    quoteDemo: "Las cotizaciones requieren un servidor. Función de demostración.",
+    resetConfirm: "¿Restablecer todos los registros?", resetDone: "Registros restablecidos."
   },
   en: {
-    navDashboard:"Overview",navSupplier:"Material intake",navAdmin:"Approvals",navLogistics:"Logistics",navWarehouse:"Warehouse",navCatalog:"B2B Catalog",
-    demoStatus:"LOCAL DEMO · CONNECTED",online:"SYSTEM ONLINE",
-    dashboardKicker:"CIRCULAR INTELLIGENCE / OVERVIEW",heroTitle:"Material flows.<br><em>Made visible.</em>",
-    heroDescription:"A platform for sotol recovery, batch traceability and circular material operations.",
-    newBatch:"+ NEW BATCH",recovered:"RECOVERED BIOMASS",recoveredSub:"Recorded warehouse weight",
-    carbon:"ESTIMATED AVOIDED CO₂e",carbonSub:"Illustrative factor 2.4",
-    transit:"IN TRANSIT",transitSub:"Active collections",lots:"WAREHOUSE LOTS",lotsSub:"Recorded inventory",
-    distribution:"Material distribution",pipeline:"Batch status",recent:"Recent batches",viewAll:"VIEW ALL",
-    batch:"BATCH",material:"MATERIAL",origin:"ORIGIN",quantity:"QUANTITY",status:"STATUS",
-    supplierTitle:"Register material",supplierDescription:"Publish sotol residue for collection and review.",
-    batchDetails:"Batch details",materialType:"MATERIAL TYPE",fiber:"Sotol fiber",bagasse:"Sotol bagasse",
-    amount:"QUANTITY / TONS",facility:"ORIGIN / FACILITY",date:"AVAILABLE DATE",
-    notes:"TECHNICAL NOTES / MOISTURE",localNotice:"Records are saved in this browser.",
-    publish:"PUBLISH BATCH",avoided:"ESTIMATED AVOIDED EMISSIONS",
-    carbonWarning:"Illustrative demo estimate, not verified or certified.",
-    registered:"Registered batches",adminTitle:"Approvals",
-    adminDescription:"Review material records and authorize collection.",
-    pendingLabel:"PENDING",registry:"Batch registry",all:"ALL",pending:"PENDING",
-    inTransit:"IN TRANSIT",inWarehouse:"WAREHOUSE",supplier:"SUPPLIER",action:"ACTION",
-    logisticsTitle:"In motion",
-    logisticsDescription:"Coordinate transport and record verified weights.",
-    collections:"ACTIVE COLLECTIONS",transportWeight:"ESTIMATED TRANSIT LOAD",
-    warehouseTitle:"Warehouse control",
-    warehouseDescription:"Inventory, verified weight and material conditions.",
-    stock:"TOTAL STOCK",recordedLots:"RECORDED LOTS",moisture:"AVERAGE MOISTURE",
-    ledger:"Batch inventory",weight:"VERIFIED WEIGHT",driver:"DRIVER",
-    catalogTitle:"Second life",
-    catalogDescription:"Explore possible industrial applications for reclaimed materials.",
-    fiberProduct:"Refined Sotol Fiber",
-    fiberDescription:"Potential feedstock for molded packaging and composites, subject to testing.",
-    bagasseProduct:"Pelletized Sotol Bagasse",
-    bagasseDescription:"Potential energy feedstock, subject to technical validation.",
-    quote:"REQUEST QUOTE",
-    catalogWarning:"Products and prices are illustrative. No live quotation service is connected.",
-    footer:"DEMO MODE — LOCAL DATA ONLY",scaleTitle:"Record verified weight",
-    cancel:"CANCEL",confirmWeight:"CONFIRM WEIGHT",
-    pendingStatus:"Pending",transitStatus:"In transit",warehouseStatus:"In warehouse",
-    approve:"APPROVE & DISPATCH",weigh:"RECORD WEIGHT",
-    noRecords:"No records available.",noTransit:"No active collections.",
-    saved:"Batch successfully registered.",approved:"Batch approved and dispatched.",
-    weighed:"Weight recorded. Batch transferred to warehouse.",
-    quoteDemo:"Quotations require a backend. Demo function only.",
-    invalid:"Check the entered information.",
-    resetConfirm:"Reset all demonstration records?",
-    resetDone:"Records restored."
+    navDashboard: "Overview", navSupplier: "Register Material", navAdmin: "Approvals",
+    navLogistics: "Logistics", navWarehouse: "Warehouse", navCatalog: "B2B Catalog",
+    demoLabel: "LOCAL DEMO", notifications: "Pending activity", distribution: "Material distribution",
+    allPeriods: "All periods", last30: "Last 30 days", last90: "Last 90 days",
+    statusTitle: "Batch status", totalLots: "TOTAL BATCHES", recentLots: "Recent batches",
+    viewAll: "View all", thBatch: "Batch", thMaterial: "Material", thOrigin: "Origin",
+    thQuantity: "Quantity", thStatus: "Status", statBiomass: "Stored biomass",
+    statCO2: "Estimated CO₂e*", statTransit: "In transit", statQuotes: "Quotes (demo)",
+    carbonDisclaimer: "*CO₂e factor is illustrative and does not constitute environmental certification.",
+    supplierTitle: "Register material", supplierSub: "Publish sotol residues for review and collection.",
+    batchInfo: "Batch details", materialType: "Material type", fiber: "Sotol fiber",
+    bagasse: "Sotol bagasse", quantityTons: "Quantity (tons)", originLocation: "Origin facility / location",
+    availableDate: "Availability date", technicalNotes: "Technical notes / moisture",
+    savedLocally: "Data is saved in this browser.", publishBatch: "Publish batch",
+    environmentalEstimate: "Estimated environmental impact", estimateWarning: "Illustrative demo calculation, not certified. Does not equal carbon credits.",
+    myLots: "My registered batches", adminTitle: "Approvals", adminSub: "Review material and authorize collection routes.",
+    pending: "Pending", records: "Operations log", filterAll: "All", transit: "In transit",
+    warehouse: "In warehouse", thSupplier: "Supplier", thAction: "Action", logisticsTitle: "Logistics",
+    logisticsSub: "Monitor collections and record verified weights.", active: "Active", warehouseTitle: "Warehouse",
+    warehouseSub: "Check verified weight and material conditions.", warehouseTons: "Stored tons",
+    warehouseLots: "Received batches", averageMoisture: "Average moisture", inventory: "Inventory by batch",
+    verifiedWeight: "Verified weight", moisture: "Moisture", driver: "Driver", catalogTitle: "B2B Catalog",
+    catalogSub: "Potential applications for reclaimed sotol materials.", productFiber: "Refined Sotol Fiber",
+    productFiberSub: "Potential feedstock for molded packaging and composites, subject to technical testing.",
+    requestQuote: "Request quote", productBagasse: "Pelletized Sotol Bagasse",
+    productBagasseSub: "Biomass for potential energy use, subject to technical validation.",
+    quoteRequests: "Quote requests (demo)", thQuote: "ID", thCompany: "Company",
+    thVolume: "Volume", thDate: "Date", catalogDisclaimer: "Illustrative prices and products. Requests are only stored locally.",
+    weighTitle: "Record weight", cancel: "Cancel", confirmWeigh: "Confirm & Store",
+    searchPlaceholder: "Search batches, materials or reports...", originPlaceholder: "Juarez Industrial Facility",
+    notesPlaceholder: "Moisture, packaging, material status...", driverPlaceholder: "Driver name and truck ID",
+    pendingStatus: "Pending", transitStatus: "In transit", warehouseStatus: "In warehouse",
+    approve: "Approve", weigh: "Weight", noRecords: "No records found.", noTransit: "No active collections.",
+    saved: "Batch registered successfully.", approved: "Batch approved and dispatched to logistics.",
+    weighed: "Weight recorded. Transferred to warehouse.", invalid: "Please check input data.",
+    quoteDemo: "Quotes require backend integration. Demo mode only.",
+    resetConfirm: "Reset all demo records?", resetDone: "Records reset successfully."
   }
 };
 
@@ -154,11 +137,11 @@ function statusBadge(value) {
     in_transit: t("transitStatus"),
     warehouse: t("warehouseStatus")
   };
-  return `<span class="status-pill status-${value}">${labels[value] || escapeHTML(value)}</span>`;
+  return `<span class="status-badge status-${value}">${labels[value] || escapeHTML(value)}</span>`;
 }
 
 function emptyRow(columns) {
-  return `<tr><td class="empty" colspan="${columns}">${t("noRecords")}</td></tr>`;
+  return `<tr><td class="empty-cell" colspan="${columns}">${t("noRecords")}</td></tr>`;
 }
 
 function save() {
@@ -168,6 +151,7 @@ function save() {
 
 function notify(message) {
   const toast = $("toast");
+  if (!toast) return;
   toast.textContent = message;
   toast.classList.remove("hidden");
   clearTimeout(toastTimer);
@@ -178,34 +162,41 @@ function setLanguage(value) {
   lang = value;
   localStorage.setItem(LANGUAGE_STORAGE, lang);
   document.documentElement.lang = lang;
-document.querySelectorAll("[data-t]").forEach(el => {
-  el.textContent = t(el.dataset.t);
-});
 
-document.querySelectorAll("[data-t-html]").forEach(el => {
-  el.innerHTML = t(el.dataset.tHtml);
-});
-  document.querySelectorAll("[data-t-html]").forEach(el => {
-    el.innerHTML = t(el.dataset.tHtml);
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.dataset.i18n;
+    if (translations[lang] && translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
   });
+
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.dataset.i18nPlaceholder;
+    if (translations[lang] && translations[lang][key]) {
+      el.placeholder = translations[lang][key];
+    }
+  });
+
   document.querySelectorAll("[data-lang]").forEach(button => {
-    button.classList.toggle("selected", button.dataset.lang === lang);
+    button.classList.toggle("active", button.dataset.lang === lang);
   });
+
   renderAll();
   updateCarbonPreview();
 }
 
 function navigate(name) {
-  if (!$(name)) return;
+  const targetPage = $("page-" + name) || $(name);
+  if (!targetPage) return;
   page = name;
-  document.querySelectorAll(".page").forEach(section => {
-    section.classList.toggle("active", section.id === name);
-  });
-  document.querySelectorAll(".nav-item").forEach(button => {
+  document.querySelectorAll(".page").forEach(section => section.classList.remove("active"));
+  targetPage.classList.add("active");
+
+  document.querySelectorAll(".nav-link").forEach(button => {
     button.classList.toggle("active", button.dataset.page === name);
   });
-  $("breadcrumb").textContent = name.toUpperCase();
-  $("sidebar").classList.remove("open");
+  
+  if ($("sidebar")) $("sidebar").classList.remove("open");
   window.scrollTo({top:0,behavior:"instant"});
   if (name === "dashboard") requestAnimationFrame(renderCharts);
 }
@@ -216,27 +207,24 @@ function renderAll() {
   const pending = items.filter(i => i.status === "pending");
 
   const totalWeight = warehouse.reduce((sum,i) => sum + Number(i.weightScale ?? i.quantity),0);
-  const transitWeight = transit.reduce((sum,i) => sum + Number(i.quantity),0);
 
-  $("kpiTons").innerHTML = `${fmt(totalWeight)} <small>t</small>`;
-  $("kpiCarbon").innerHTML = `${fmt(totalWeight * FACTOR)} <small>t</small>`;
-  $("kpiTransit").textContent = transit.length;
-  $("kpiLots").textContent = warehouse.length;
-  $("donutTotal").textContent = items.length;
+  if ($("totalTons")) $("totalTons").textContent = `${fmt(totalWeight)} t`;
+  if ($("totalCO2")) $("totalCO2").textContent = `${fmt(totalWeight * FACTOR)} t`;
+  if ($("totalTransit")) $("totalTransit").textContent = transit.length;
+  if ($("donutTotal")) $("donutTotal").textContent = items.length;
 
-  $("pendingBadge").textContent = pending.length;
-  $("transitBadge").textContent = transit.length;
-  $("queueCount").textContent = pending.length;
-
-  $("activeCollections").textContent = transit.length;
-  $("transitWeight").innerHTML = `${fmt(transitWeight)} <small>t</small>`;
-  $("stockTotal").innerHTML = `${fmt(totalWeight)} <small>t</small>`;
-  $("stockLots").textContent = warehouse.length;
+  if ($("pendingCount")) $("pendingCount").textContent = pending.length;
+  if ($("adminPending")) $("adminPending").textContent = pending.length;
+  if ($("logisticsCount")) $("logisticsCount").textContent = transit.length;
+  if ($("warehouseTons")) $("warehouseTons").textContent = `${fmt(totalWeight)} t`;
+  if ($("warehouseLots")) $("warehouseLots").textContent = warehouse.length;
 
   const moistureValues = warehouse.map(i => Number(i.moisture)).filter(Number.isFinite);
-  $("avgMoisture").textContent = moistureValues.length
-    ? fmt(moistureValues.reduce((a,b) => a+b,0)/moistureValues.length) + "%"
-    : "—";
+  if ($("averageMoisture")) {
+    $("averageMoisture").textContent = moistureValues.length
+      ? fmt(moistureValues.reduce((a,b) => a+b,0)/moistureValues.length) + "%"
+      : "—";
+  }
 
   const basicRow = item => `
     <tr>
@@ -247,81 +235,81 @@ function renderAll() {
       <td>${statusBadge(item.status)}</td>
     </tr>`;
 
-  $("recentRows").innerHTML = items.slice(0,5).map(basicRow).join("") || emptyRow(5);
-  $("supplierRows").innerHTML = items.map(basicRow).join("") || emptyRow(5);
+  if ($("recentRows")) $("recentRows").innerHTML = items.slice(0,5).map(basicRow).join("") || emptyRow(5);
+  if ($("supplierRows")) $("supplierRows").innerHTML = items.map(basicRow).join("") || emptyRow(5);
 
   const filteredItems = items.filter(item => filter === "all" || item.status === filter);
+  if ($("adminRows")) {
+    $("adminRows").innerHTML = filteredItems.map(item => `
+      <tr>
+        <td>${escapeHTML(item.id)}</td>
+        <td>${escapeHTML(item.supplier)}</td>
+        <td>${escapeHTML(materialName(item.materialType))}</td>
+        <td>${fmt(item.quantity)} t</td>
+        <td>${statusBadge(item.status)}</td>
+        <td>${item.status === "pending"
+          ? `<button class="table-action" data-approve="${escapeHTML(item.id)}">${t("approve")} ↗</button>`
+          : "—"}</td>
+      </tr>
+    `).join("") || emptyRow(6);
+  }
 
-  $("adminRows").innerHTML = filteredItems.map(item => `
-    <tr>
-      <td>${escapeHTML(item.id)}</td>
-      <td>${escapeHTML(item.supplier)}</td>
-      <td>${escapeHTML(materialName(item.materialType))}</td>
-      <td>${fmt(item.quantity)} t</td>
-      <td>${escapeHTML(item.date)}</td>
-      <td>${statusBadge(item.status)}</td>
-      <td>${item.status === "pending"
-        ? `<button class="table-action" data-approve="${escapeHTML(item.id)}">${t("approve")} ↗</button>`
-        : "—"}</td>
-    </tr>
-  `).join("") || emptyRow(7);
-
-  $("logisticsCards").innerHTML = transit.map(item => `
-    <article class="panel logistics-card">
-      <div>
-        <div class="eyebrow">DISPATCH / ${escapeHTML(item.id)}</div>
-        <h2>${escapeHTML(materialName(item.materialType))}</h2>
-        <p>${escapeHTML(item.location)} · ${escapeHTML(item.driver || "—")}</p>
-        <div class="timeline">
-          <span class="done">✓ APPROVED</span><b></b>
-          <span class="current">● IN TRANSIT</span><b></b>
-          <span>WAREHOUSE</span>
+  if ($("logisticsCards")) {
+    $("logisticsCards").innerHTML = transit.map(item => `
+      <article class="logistics-item">
+        <div>
+          <small>DISPATCH / ${escapeHTML(item.id)}</small>
+          <h2>${escapeHTML(materialName(item.materialType))}</h2>
+          <p>${escapeHTML(item.location)} · ${escapeHTML(item.driver || "—")}</p>
         </div>
+        <div>
+          <strong>${fmt(item.quantity)} t</strong>
+          <button class="primary-button" data-weigh="${escapeHTML(item.id)}">${t("weigh")} ↗</button>
+        </div>
+      </article>
+    `).join("") || `<div class="empty-panel">${t("noTransit")}</div>`;
+  }
+
+  if ($("warehouseRows")) {
+    $("warehouseRows").innerHTML = warehouse.map(item => `
+      <tr>
+        <td>${escapeHTML(item.id)}-WH</td>
+        <td>${escapeHTML(materialName(item.materialType))}</td>
+        <td><strong>${fmt(item.weightScale ?? item.quantity)} t</strong></td>
+        <td>${item.moisture == null ? "—" : fmt(item.moisture) + "%"}</td>
+        <td>${escapeHTML(item.driver || "—")}</td>
+      </tr>
+    `).join("") || emptyRow(5);
+  }
+
+  if ($("chartLegend")) {
+    const colors = {warehouse:"#acffc8",in_transit:"#7399ef",pending:"#f1c27c"};
+    const labels = {warehouse:t("warehouseStatus"),in_transit:t("transitStatus"),pending:t("pendingStatus")};
+
+    $("chartLegend").innerHTML = Object.keys(colors).map(key => `
+      <div class="legend-line">
+        <span class="legend-dot" style="background:${colors[key]}"></span>
+        <span>${labels[key]}</span>
+        <strong>${items.filter(i => i.status === key).length}</strong>
       </div>
-      <div class="logistics-right">
-        <strong>${fmt(item.quantity)} <small>t</small></strong>
-        <button class="primary-button" data-weigh="${escapeHTML(item.id)}">${t("weigh")} ↗</button>
-      </div>
-    </article>
-  `).join("") || `<div class="panel">${t("noTransit")}</div>`;
-
-  $("warehouseRows").innerHTML = warehouse.map(item => `
-    <tr>
-      <td>${escapeHTML(item.id)}-WH</td>
-      <td>${escapeHTML(materialName(item.materialType))}</td>
-      <td><strong>${fmt(item.weightScale ?? item.quantity)} t</strong></td>
-      <td>${item.moisture == null ? "—" : fmt(item.moisture) + "%"}</td>
-      <td>${escapeHTML(item.driver || "—")}</td>
-      <td>${statusBadge(item.status)}</td>
-    </tr>
-  `).join("") || emptyRow(6);
-
-  const colors = {warehouse:"#acffc8",in_transit:"#7399ef",pending:"#f1c27c"};
-  const labels = {warehouse:t("warehouseStatus"),in_transit:t("transitStatus"),pending:t("pendingStatus")};
-
-  $("statusLegend").innerHTML = Object.keys(colors).map(key => `
-    <span><i style="background:${colors[key]}"></i>${labels[key]}: ${items.filter(i => i.status === key).length}</span>
-  `).join("");
+    `).join("");
+  }
 
   if (page === "dashboard") renderCharts();
 }
 
 function renderCharts() {
-  if (typeof Chart === "undefined") return;
+  if (typeof Chart === "undefined" || !$("materialChart") || !$("statusChart")) return;
 
   const warehouse = items.filter(item => item.status === "warehouse");
-  const fiber = warehouse
-    .filter(item => item.materialType === "sotol_fiber")
-    .reduce((s,i) => s + Number(i.weightScale ?? i.quantity),0);
-  const bagasse = warehouse
-    .filter(item => item.materialType === "sotol_bagasse")
-    .reduce((s,i) => s + Number(i.weightScale ?? i.quantity),0);
+  const fiber = warehouse.filter(item => item.materialType === "sotol_fiber").reduce((s,i) => s + Number(i.weightScale ?? i.quantity),0);
+  const bagasse = warehouse.filter(item => item.materialType === "sotol_bagasse").reduce((s,i) => s + Number(i.weightScale ?? i.quantity),0);
 
   if (materialChart) materialChart.destroy();
   if (statusChart) statusChart.destroy();
 
-  Chart.defaults.color = "#8fa3ae";
-  Chart.defaults.font.family = "DM Mono";
+  Chart.defaults.color = "#4c6753";
+  Chart.defaults.font.family = "DM Sans";
 
   materialChart = new Chart($("materialChart"), {
     type:"bar",
@@ -329,18 +317,15 @@ function renderCharts() {
       labels:[t("fiber"),t("bagasse")],
       datasets:[{
         data:[fiber,bagasse],
-        backgroundColor:["#81f3e3","#527b75"],
-        borderRadius:2,
-        barThickness:30
+        backgroundColor:["#087247","#b5ce89"],
+        borderRadius:6,
+        barThickness:28
       }]
     },
     options:{
       responsive:true,maintainAspectRatio:false,indexAxis:"y",
       plugins:{legend:{display:false}},
-      scales:{
-        x:{beginAtZero:true,grid:{color:"#293746"}},
-        y:{grid:{display:false}}
-      }
+      scales:{ x:{beginAtZero:true}, y:{grid:{display:false}} }
     }
   });
 
@@ -354,27 +339,26 @@ function renderCharts() {
           items.filter(i => i.status === "in_transit").length,
           items.filter(i => i.status === "pending").length
         ],
-        backgroundColor:["#acffc8","#7399ef","#f1c27c"],
-        borderColor:"#101721",
-        borderWidth:5
+        backgroundColor:["#35a568","#7399ef","#f1c27c"],
+        borderWidth:2
       }]
     },
     options:{
       responsive:true,maintainAspectRatio:false,
-      cutout:"78%",
+      cutout:"75%",
       plugins:{legend:{display:false}}
     }
   });
 }
 
 function updateCarbonPreview() {
+  if (!$("carbonPreview") || !$("quantityInput")) return;
   const quantity = Math.max(0,Number($("quantityInput").value) || 0);
-  $("co2Preview").innerHTML = `${fmt(quantity * FACTOR)} <small>tCO₂e</small>`;
+  $("carbonPreview").innerHTML = `${fmt(quantity * FACTOR)} <span>tCO₂e</span>`;
 }
 
 function publishBatch(event) {
   event.preventDefault();
-
   const quantity = Number($("quantityInput").value);
   const location = $("originInput").value.trim();
   const date = $("dateInput").value;
@@ -397,14 +381,12 @@ function publishBatch(event) {
     status:"pending",
     weightScale:null,
     moisture:null,
-    driver:null,
-    notes:$("notesInput").value.trim()
+    driver:null
   });
 
   save();
   $("batchForm").reset();
   $("quantityInput").value = 12.5;
-  $("dateInput").value = localDate();
   updateCarbonPreview();
   navigate("admin");
   notify(t("saved"));
@@ -415,7 +397,7 @@ function approveBatch(id) {
   if (!item || item.status !== "pending") return;
 
   item.status = "in_transit";
-  item.driver = item.driver || "Por asignar";
+  item.driver = "Por asignar";
   save();
   notify(t("approved"));
 }
@@ -425,30 +407,28 @@ function openScale(id) {
   if (!item || item.status !== "in_transit") return;
 
   selectedLot = id;
-  $("modalBatch").textContent = id + " / " + materialName(item.materialType);
-  $("scaleDriver").value = item.driver === "Por asignar" ? "" : (item.driver || "");
-  $("scaleWeight").value = item.weightScale ?? item.quantity;
-  $("scaleMoisture").value = item.moisture ?? 12;
-  $("scaleModal").classList.remove("hidden");
+  if ($("weighBatch")) $("weighBatch").textContent = id + " / " + materialName(item.materialType);
+  if ($("weighDriver")) $("weighDriver").value = item.driver === "Por asignar" ? "" : (item.driver || "");
+  if ($("weighWeight")) $("weighWeight").value = item.weightScale ?? item.quantity;
+  if ($("weighMoisture")) $("weighMoisture").value = item.moisture ?? 12;
+  if ($("weighModal")) $("weighModal").classList.remove("hidden");
 }
 
 function closeScale() {
-  $("scaleModal").classList.add("hidden");
+  if ($("weighModal")) $("weighModal").classList.add("hidden");
   selectedLot = null;
 }
 
 function confirmScale(event) {
   event.preventDefault();
-
   const item = items.find(i => i.id === selectedLot);
   if (!item) return;
 
-  const weight = Number($("scaleWeight").value);
-  const moisture = Number($("scaleMoisture").value);
-  const driver = $("scaleDriver").value.trim();
+  const weight = Number($("weighWeight").value);
+  const moisture = Number($("weighMoisture").value);
+  const driver = $("weighDriver").value.trim();
 
-  if (!Number.isFinite(weight) || weight <= 0 ||
-      !Number.isFinite(moisture) || moisture < 0 || moisture > 100 || !driver) {
+  if (!Number.isFinite(weight) || weight <= 0 || !driver) {
     notify(t("invalid"));
     return;
   }
@@ -465,8 +445,7 @@ function confirmScale(event) {
 
 function localDate() {
   const date = new Date();
-  return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
-    .toISOString().slice(0,10);
+  return new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().slice(0,10);
 }
 
 document.addEventListener("click", event => {
@@ -486,40 +465,44 @@ document.addEventListener("click", event => {
   if (filterButton) {
     filter = filterButton.dataset.filter;
     document.querySelectorAll("[data-filter]").forEach(button => {
-      button.classList.toggle("active", button === filterButton);
+      button.classList.toggle("selected", button === filterButton);
     });
     renderAll();
   }
 
   if (event.target.closest(".quote-button")) notify(t("quoteDemo"));
+
+  const closeModalBtn = event.target.closest("[data-close-modal]");
+  if (closeModalBtn) closeScale();
 });
 
-$("batchForm").addEventListener("submit",publishBatch);
-$("scaleForm").addEventListener("submit",confirmScale);
-$("quantityInput").addEventListener("input",updateCarbonPreview);
+if ($("batchForm")) $("batchForm").addEventListener("submit", publishBatch);
+if ($("weighForm")) $("weighForm").addEventListener("submit", confirmScale);
+if ($("quantityInput")) $("quantityInput").addEventListener("input", updateCarbonPreview);
 
-$("closeModal").addEventListener("click",closeScale);
-$("cancelModal").addEventListener("click",closeScale);
-$("scaleModal").addEventListener("click",event => {
-  if (event.target === $("scaleModal")) closeScale();
-});
+if ($("mobileMenu")) {
+  $("mobileMenu").addEventListener("click", () => {
+    if ($("sidebar")) $("sidebar").classList.toggle("open");
+  });
+}
 
-document.addEventListener("keydown",event => {
-  if (event.key === "Escape") closeScale();
-});
+if ($("closeSidebar")) {
+  $("closeSidebar").addEventListener("click", () => {
+    if ($("sidebar")) $("sidebar").classList.remove("open");
+  });
+}
 
-$("menuButton").addEventListener("click",() => {
-  $("sidebar").classList.toggle("open");
-});
+if ($("resetButton")) {
+  $("resetButton").addEventListener("click", () => {
+    if (confirm(t("resetConfirm"))) {
+      items = structuredClone(seed);
+      save();
+      notify(t("resetDone"));
+    }
+  });
+}
 
-$("resetButton").addEventListener("click",() => {
-  if (confirm(t("resetConfirm"))) {
-    items = structuredClone(seed);
-    save();
-    notify(t("resetDone"));
-  }
-});
+if ($("dateInput")) $("dateInput").value = localDate();
 
-$("dateInput").value = localDate();
 setLanguage(lang);
 navigate("dashboard");
